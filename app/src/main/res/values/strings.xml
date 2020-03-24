@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">MOBET</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_rank">랭크</string>
+    <string name="title_account">가계부</string>
+    <string name="title_home">홈</string>
+    <string name="title_my">마이페이지</string>
+    <string name="title_setting">설정</string>
 </resources>

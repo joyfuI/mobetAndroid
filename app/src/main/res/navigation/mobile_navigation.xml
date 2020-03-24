@@ -6,20 +6,32 @@
     app:startDestination="@+id/navigation_home">
 
     <fragment
+        android:id="@+id/navigation_rank"
+        android:name="maw.mobet.ui.rank.RankFragment"
+        android:label="@string/title_rank"
+        tools:layout="@layout/fragment_rank" />
+
+    <fragment
+        android:id="@+id/navigation_account"
+        android:name="maw.mobet.ui.account.AccountFragment"
+        android:label="@string/title_account"
+        tools:layout="@layout/fragment_account" />
+
+    <fragment
         android:id="@+id/navigation_home"
         android:name="maw.mobet.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="maw.mobet.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_my"
+        android:name="maw.mobet.ui.my.MyFragment"
+        android:label="@string/title_my"
+        tools:layout="@layout/fragment_my" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="maw.mobet.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_setting"
+        android:name="maw.mobet.ui.setting.SettingFragment"
+        android:label="@string/title_setting"
+        tools:layout="@layout/fragment_setting" />
 </navigation>
