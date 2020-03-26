@@ -5,4 +5,6 @@
     <string name="title_home">홈</string>
     <string name="title_my">마이페이지</string>
     <string name="title_setting">설정</string>
+    <string name="tab_account_history">내역</string>
+    <string name="tab_account_statistics">통계</string>
 </resources>

@@ -1,7 +1,7 @@
-package maw.mobet.ui.account
+package maw.mobet.ui.account.history
 
 import androidx.lifecycle.ViewModel
 
-class AccountViewModel : ViewModel() {
+class HistoryViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 }

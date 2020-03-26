@@ -8,67 +8,68 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import kotlinx.android.synthetic.main.list_item_home.view.*
 import maw.mobet.R
 import maw.mobet.api.HomeListItem
 import maw.mobet.dpToPx
 import maw.mobet.intToWon
 import kotlin.math.absoluteValue
 
-class MyAdapter(private val data: List<HomeListItem>) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+class MyAdapter(
+    private val data: List<HomeListItem>, private val listener: OnClickListener? = null
+) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
     interface OnClickListener {
-        fun onClick(view: View, position: Int)
+        fun onClick(view: View)
     }
 
-    lateinit var parentView: ViewGroup
-    var onClickListener: OnClickListener? = null
+    private val onClickListener = View.OnClickListener {
+        listener?.onClick(it)
+    }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        parentView = parent
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.list_item_home, parent, false)
-        return MyViewHolder(view)
+        return ViewHolder(view)
     }
 
-    override fun getItemCount(): Int {
-        return data.size
-    }
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = data[position]
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        Glide.with(parentView).load(data[position].imgUrl)
-            .apply(RequestOptions().circleCrop()).override(dpToPx(parentView.context, 30f).toInt())
+        Glide.with(holder.itemView).load(item.imgUrl)
+            .apply(RequestOptions().circleCrop())
+            .override(dpToPx(holder.itemView.context, 30f).toInt())
             .into(holder.profileImg)
-        holder.profileTxt.text = data[position].name
+        holder.profileTxt.text = item.name
         holder.titleImg.setImageResource(R.drawable.ic_launcher_background)
-        val text = "[${when (data[position].category) {
+        val text = "[${when (item.category) {
             0 -> "패스트푸드"
             1 -> "편의점"
             else -> ""
-        }}] ${data[position].startDate} ~ ${data[position].endDate}"
+        }}] ${item.startDate} ~ ${item.endDate}"
         holder.titleTopTxt.text = text
-        holder.titleTxt.text = data[position].title
-        holder.titleBottomTxt.text = intToWon(data[position].price.absoluteValue)
-        holder.titleBottomImg.setImageResource(if (data[position].price > 0) {
+        holder.titleTxt.text = item.title
+        holder.titleBottomTxt.text = intToWon(item.price.absoluteValue)
+        holder.titleBottomImg.setImageResource(if (item.price > 0) {
             R.drawable.ic_arrow_upward_black_24dp
         } else {
             R.drawable.ic_arrow_downward_black_24dp
         })
+
+        with (holder.itemView) {
+            tag = item
+            setOnClickListener(onClickListener)
+        }
     }
 
-    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
-        init {
-            itemView.setOnClickListener(this)
-        }
+    override fun getItemCount(): Int = data.size
 
-        val profileImg: ImageView = itemView.findViewById(R.id.profile_img)
-        val profileTxt: TextView = itemView.findViewById(R.id.profile_txt)
-        val titleImg: ImageView = itemView.findViewById(R.id.title_img)
-        val titleTopTxt: TextView = itemView.findViewById(R.id.title_top_txt)
-        val titleTxt: TextView = itemView.findViewById(R.id.title_txt)
-        val titleBottomTxt: TextView = itemView.findViewById(R.id.title_bottom_txt)
-        val titleBottomImg: ImageView = itemView.findViewById(R.id.title_bottom_img)
-
-        override fun onClick(p0: View?) {	// 클릭 리스너
-            onClickListener?.onClick(p0!!, adapterPosition)
-        }
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val profileImg: ImageView = itemView.profile_img
+        val profileTxt: TextView = itemView.profile_txt
+        val titleImg: ImageView = itemView.title_img
+        val titleTopTxt: TextView = itemView.title_top_txt
+        val titleTxt: TextView = itemView.title_txt
+        val titleBottomTxt: TextView = itemView.title_bottom_txt
+        val titleBottomImg: ImageView = itemView.title_bottom_img
     }
 }
