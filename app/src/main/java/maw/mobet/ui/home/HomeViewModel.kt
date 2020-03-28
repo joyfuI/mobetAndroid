@@ -1,11 +1,11 @@
 package maw.mobet.ui.home
 
 import android.app.Application
-import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import maw.mobet.R
 import maw.mobet.RetrofitClient
 import maw.mobet.api.HomeListItem
 import retrofit2.Call
@@ -31,8 +31,11 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             }
 
             override fun onFailure(call: Call<List<HomeListItem>>, t: Throwable) {
-                Log.d("joyfuI", t.toString())
-                Toast.makeText(getApplication(), "네트워크 오류!!!", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    getApplication(),
+                    getApplication<Application>().resources.getString(R.string.network_error),
+                    Toast.LENGTH_LONG
+                ).show()
             }
         })
     }

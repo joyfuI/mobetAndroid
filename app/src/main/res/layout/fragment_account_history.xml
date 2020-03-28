@@ -5,9 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.account.history.HistoryFragment">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView android:id="@+id/list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/tab_account_history" />
+        android:layout_height="match_parent" />
 
 </FrameLayout>

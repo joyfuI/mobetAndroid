@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="category">
+        <item>식사</item>
+        <item>카페</item>
+        <item>간식</item>
+        <item>생활</item>
+        <item>문화/예술</item>
+        <item>마트</item>
+        <item>의료/건강</item>
+        <item>저축</item>
+        <item>교통</item>
+        <item>출금</item>
+        <item>숙박</item>
+        <item>차량</item>
+    </string-array>
+</resources>

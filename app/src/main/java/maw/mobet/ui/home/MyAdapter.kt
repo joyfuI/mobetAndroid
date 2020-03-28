@@ -11,6 +11,7 @@ import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.list_item_home.view.*
 import maw.mobet.R
 import maw.mobet.api.HomeListItem
+import maw.mobet.dateToStr
 import maw.mobet.dpToPx
 import maw.mobet.intToWon
 import kotlin.math.absoluteValue
@@ -41,11 +42,10 @@ class MyAdapter(
             .into(holder.profileImg)
         holder.profileTxt.text = item.name
         holder.titleImg.setImageResource(R.drawable.ic_launcher_background)
-        val text = "[${when (item.category) {
-            0 -> "패스트푸드"
-            1 -> "편의점"
-            else -> ""
-        }}] ${item.startDate} ~ ${item.endDate}"
+        val category = holder.itemView.resources.getStringArray(R.array.category)
+        val startDate = dateToStr(item.startDate, "MM.dd")
+        val endDate = dateToStr(item.endDate, "MM.dd")
+        val text = "[${category[item.category]}] $startDate ~ $endDate"
         holder.titleTopTxt.text = text
         holder.titleTxt.text = item.title
         holder.titleBottomTxt.text = intToWon(item.price.absoluteValue)

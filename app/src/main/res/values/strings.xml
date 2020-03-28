@@ -7,4 +7,11 @@
     <string name="title_setting">설정</string>
     <string name="tab_account_history">내역</string>
     <string name="tab_account_statistics">통계</string>
+
+    <string name="won">원</string>
+    <string name="month_day">M월 d일</string>
+    <string name="deposit">입금</string>
+    <string name="withdrawal">출금</string>
+
+    <string name="network_error">네트워크 오류!!!</string>
 </resources>

@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.fragment_account_history.*
 import maw.mobet.R
 
 class HistoryFragment : Fragment() {
@@ -24,6 +27,10 @@ class HistoryFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        // TODO: Use the ViewModel
+
+        list_view.layoutManager = LinearLayoutManager(activity)
+        viewModel.list.observe(viewLifecycleOwner, Observer {
+            list_view.adapter = MyAdapter(it)
+        })
     }
 }

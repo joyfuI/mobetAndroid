@@ -6,4 +6,7 @@ import retrofit2.http.GET
 interface AppService {
     @GET("homelist.json")
     fun homeList(): Call<List<HomeListItem>>
+
+    @GET("historylist.json")
+    fun historyList(): Call<List<HistoryItem>>
 }

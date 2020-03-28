@@ -1,11 +1,13 @@
 package maw.mobet.api
 
+import java.util.*
+
 data class HomeListItem(
     val name: String,
     val title: String,
     val category: Int,
     val price: Int,
-    val startDate: String,
-    val endDate: String,
+    val startDate: Date,
+    val endDate: Date,
     val imgUrl: String
 )

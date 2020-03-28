@@ -3,4 +3,7 @@
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#FFFFFF</color>
     <color name="colorAccent">#3C027B</color>
+
+    <color name="colorDeposit">#70B8AD</color>
+    <color name="colorWithdrawal">#FFA300</color>
 </resources>
