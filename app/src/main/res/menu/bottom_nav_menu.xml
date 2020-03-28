@@ -8,7 +8,7 @@
 
     <item
         android:id="@+id/navigation_account"
-        android:icon="@drawable/account2"
+        android:icon="@drawable/account"
         android:title="@string/title_account" />
 
     <item
