@@ -1,7 +1,7 @@
 package maw.mobet
 
 import android.os.Bundle
-import android.view.LayoutInflater
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -12,17 +12,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val actionBar = supportActionBar?.apply {
-            setDisplayShowCustomEnabled(true)
-            setDisplayHomeAsUpEnabled(false)
-            setDisplayShowTitleEnabled(false)
-            setDisplayShowHomeEnabled(false)
-        }
-        actionBar?.customView = LayoutInflater.from(this).inflate(
-            R.layout.custom_actionbar, container, false
-        )
-
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        nav_view.setupWithNavController(navHostFragment.navController)
+        val navController = navHostFragment.navController
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.navigation_home) {
+                fab.visibility = View.VISIBLE
+            } else {
+                fab.visibility = View.GONE
+            }
+        }
+        nav_view.setupWithNavController(navController)
+
+        fab.alpha = 0.5f
     }
 }

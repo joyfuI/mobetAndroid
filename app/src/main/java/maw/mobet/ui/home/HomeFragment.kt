@@ -24,7 +24,6 @@ class HomeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        fab.alpha = 0.5f
         list_view.layoutManager = LinearLayoutManager(activity)
         list_view.addItemDecoration(MyItemDecoration())
         viewModel.list.observe(viewLifecycleOwner, Observer {
