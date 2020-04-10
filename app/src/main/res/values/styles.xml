@@ -16,4 +16,25 @@
         <item name="android:textSize">15sp</item>
     </style>
 
+    <style name="EditTheme">
+        <item name="android:fontFamily">@font/nanumsquare_b</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:letterSpacing">0.05</item>
+        <item name="android:textColorHint">#4D3C027B</item>
+    </style>
+
+    <style name="RadioTheme">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:fontFamily">@font/nanumsquare_eb</item>
+        <item name="android:textSize">11.3sp</item>
+        <item name="android:textColor">@drawable/rdo_text_selector</item>
+        <item name="android:letterSpacing">0.05</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/rdo_selector</item>
+        <item name="android:button">@null</item>
+    </style>
+
 </resources>

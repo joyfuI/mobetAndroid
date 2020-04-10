@@ -8,10 +8,34 @@
     <string name="tab_account_history">내역</string>
     <string name="tab_account_statistics">통계</string>
 
+    <string name="year">년</string>
+    <string name="month">월</string>
+    <string name="day">일</string>
+
+    <!-- 경쟁전 생성 -->
+    <string name="makegame_title1">경쟁전 생성</string>
+    <string name="makegame_title">제목</string>
+    <string name="makegame_title_hint">방 제목을 입력해주세요</string>
+    <string name="makegame_public">다같이</string>
+    <string name="makegame_private">우리끼리</string>
+    <string name="makegame_condition">참가조건</string>
+    <string name="makegame_condition_greater">얼마부터</string>
+    <string name="makegame_condition_less">얼마까지</string>
+    <string name="makegame_date_start">언제부터?</string>
+    <string name="makegame_date_end">언제까지?</string>
+    <string name="makegame_price">얼마까지?</string>
+    <string name="makegame_price_hint">금액을 입력해주세요</string>
+    <string name="makegame_price_less">이하</string>
+    <string name="makegame_price_greater">이상</string>
+    <string name="makegame_category">카테고리\n선택하기</string>
+    <string name="makegame_button">생성</string>
+
+    <!-- 내역 -->
     <string name="won">원</string>
     <string name="month_day">M월 d일</string>
     <string name="deposit">입금</string>
     <string name="withdrawal">출금</string>
 
+    <!-- 토스트 메시지 -->
     <string name="network_error">네트워크 오류!!!</string>
 </resources>

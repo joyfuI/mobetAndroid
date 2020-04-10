@@ -9,7 +9,7 @@
         android:layout_height="36dp"
         android:layout_margin="8dp"
         android:scaleType="center"
-        android:background="@drawable/profile_ring"
+        android:background="@drawable/border_circle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -19,7 +19,7 @@
         android:layout_marginStart="8dp"
         android:fontFamily="@font/nanumsquare_eb"
         android:textSize="12.3sp"
-        android:textColor="#3C027B"
+        android:textColor="@color/colorText"
         android:letterSpacing="0.1"
         app:layout_constraintStart_toEndOf="@id/profile_img"
         app:layout_constraintTop_toTopOf="@id/profile_img"
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/nanumsquare_b"
             android:textSize="12sp"
-            android:textColor="#fafafa"
+            android:textColor="@color/colorWhiteText"
             android:letterSpacing="0.1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -56,7 +56,7 @@
             android:layout_marginTop="25dp"
             android:fontFamily="@font/nanumsquare_eb"
             android:textSize="17sp"
-            android:textColor="#fafafa"
+            android:textColor="@color/colorWhiteText"
             android:letterSpacing="0.1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/title_top_txt" />
@@ -67,7 +67,7 @@
             android:layout_marginTop="25dp"
             android:fontFamily="@font/nanumsquare_b"
             android:textSize="12sp"
-            android:textColor="#e0e0e0"
+            android:textColor="#E0E0E0"
             android:letterSpacing="0.1"
             app:layout_constraintEnd_toStartOf="@id/title_bottom_img"
             app:layout_constraintTop_toTopOf="@id/title_txt" />

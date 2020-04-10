@@ -1,5 +1,6 @@
 package maw.mobet
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -24,5 +25,15 @@ class MainActivity : AppCompatActivity() {
         nav_view.setupWithNavController(navController)
 
         fab.alpha = 0.5f
+    }
+
+    fun onClick(view: View) {
+        when (view) {
+            // 플러스 버튼
+            fab -> {
+                val intent = Intent(this, MakegameActivity::class.java)
+                startActivity(intent)
+            }
+        }
     }
 }

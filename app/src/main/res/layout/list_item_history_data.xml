@@ -12,7 +12,7 @@
         android:background="@drawable/round_shape"
         android:fontFamily="@font/notosanskr_m"
         android:textSize="12.8sp"
-        android:textColor="#FAFAFA"
+        android:textColor="@color/colorWhiteText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

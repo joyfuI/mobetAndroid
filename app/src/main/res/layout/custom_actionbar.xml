@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:paddingHorizontal="14dp"
+    android:background="@color/colorPrimary"
+    app:layout_scrollFlags="scroll|enterAlways">
+
+    <ImageButton android:id="@+id/back_img"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/ic_arrow_back_black_24dp"
+        android:visibility="gone" />
+
+    <TextView android:id="@+id/app_title_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/netmarble"
+        android:text="@string/app_name"
+        android:textSize="17.5sp"
+        android:textColor="@color/colorWhiteText"
+        android:letterSpacing="0.15" />
+
+    <ImageButton android:id="@+id/noti_img"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@id/app_title_txt"
+        android:background="@drawable/chat" />
+
+</RelativeLayout>

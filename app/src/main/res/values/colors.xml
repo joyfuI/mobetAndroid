@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#5C1488</color>
     <color name="colorAccent">#401277</color>
 
+    <color name="colorText">#3C027B</color>
+    <color name="colorWhiteText">#FAFAFA</color>
+
     <color name="colorDeposit">#70B8AD</color>
     <color name="colorWithdrawal">#FFA300</color>
 </resources>
