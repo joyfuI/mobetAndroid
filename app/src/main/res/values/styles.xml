@@ -1,5 +1,4 @@
 <resources>
-
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -10,7 +9,11 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-    
+
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="windowNoTitle">true</item>
+    </style>
+
     <style name="TabLayoutText" parent="TextAppearance.Design.Tab">
         <item name="android:fontFamily">@font/notosanskr_b</item>
         <item name="android:textSize">15sp</item>
@@ -36,5 +39,4 @@
         <item name="android:background">@drawable/rdo_selector</item>
         <item name="android:button">@null</item>
     </style>
-
 </resources>

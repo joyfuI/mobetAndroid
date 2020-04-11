@@ -227,7 +227,9 @@
                 android:layout_height="80dp"
                 android:layout_marginTop="39.5dp"
                 android:layout_marginStart="36.5dp"
+                android:padding="10dp"
                 android:background="@drawable/border_square"
+                android:onClick="onClick"
                 app:layout_constraintTop_toBottomOf="@id/price_edit"
                 app:layout_constraintStart_toStartOf="parent" />
             <TextView android:id="@+id/category_txt"
@@ -239,6 +241,7 @@
                 android:textColor="#81179E"
                 android:text="@string/makegame_category"
                 android:letterSpacing="0.05"
+                android:background="@android:color/white"
                 app:layout_constraintTop_toTopOf="@id/category_img"
                 app:layout_constraintBottom_toBottomOf="@id/category_img"
                 app:layout_constraintLeft_toLeftOf="@id/category_img"
