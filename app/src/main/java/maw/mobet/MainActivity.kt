@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         when (view) {
             // 플러스 버튼
             fab -> {
-                val intent = Intent(this, MakegameActivity::class.java)
+                val intent = Intent(this, CreategameActivity::class.java)
                 startActivity(intent)
             }
         }

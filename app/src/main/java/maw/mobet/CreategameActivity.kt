@@ -9,23 +9,23 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_makegame.*
+import kotlinx.android.synthetic.main.activity_creategame.*
 import kotlinx.android.synthetic.main.custom_actionbar.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MakegameActivity : AppCompatActivity(), View.OnFocusChangeListener {
+class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
     private val today = Date()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_makegame)
+        setContentView(R.layout.activity_creategame)
 
         noti_img.visibility = View.GONE
 
         val items = listOf(
-            resources.getString(R.string.makegame_price_less),
-            resources.getString(R.string.makegame_price_greater)
+            resources.getString(R.string.creategame_price_less),
+            resources.getString(R.string.creategame_price_greater)
         )
         price_cmb.adapter = ArrayAdapter(
             this,
