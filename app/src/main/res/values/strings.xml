@@ -15,7 +15,7 @@
     <!-- 경쟁전 생성 -->
     <string name="creategame_title1">경쟁전 생성</string>
     <string name="creategame_title">제목</string>
-    <string name="creategame_title_hint">방 제목을 입력해주세요</string>
+    <string name="creategame_title_hint">경쟁전 제목을 입력해주세요</string>
     <string name="creategame_public">다같이</string>
     <string name="creategame_private">우리끼리</string>
     <string name="creategame_condition">참가조건</string>
@@ -52,5 +52,10 @@
     <string name="withdrawal">출금</string>
 
     <!-- 토스트 메시지 -->
+    <string name="error">오류!!!</string>
     <string name="network_error">네트워크 오류!!!</string>
+    <string name="not_number">잘못된 숫자입니다</string>
+    <string name="todate_less_date">오늘 이후 날짜부터 가능합니다</string>
+    <string name="enddate_less_date">시작 날짜보다 늦습니다</string>
+    <string name="not_category">카테고리를 선택해주세요</string>
 </resources>

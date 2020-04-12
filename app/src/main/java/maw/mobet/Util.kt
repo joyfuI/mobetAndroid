@@ -24,9 +24,9 @@ object RetrofitClient {
     fun getInstance(): AppService = service
 }
 
-//fun strToDate(date: String): Date? {
-//    return SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).parse(date)
-//}
+fun strToDate(date: String): Date? {
+    return SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).parse(date)
+}
 
 fun dateToStr(date: Date, format: String): String {
     return SimpleDateFormat(format, Locale.KOREA).format(date)
@@ -46,4 +46,9 @@ fun dpToPx(context: Context, dp: Float): Float {
         dp,
         context.resources.displayMetrics
     )
+}
+
+fun diffDate(fromDate: Date, toDate: Date): Int {
+    val diff = Math.ceil((toDate.time - fromDate.time).toDouble() / 86400000)
+    return diff.toInt()
 }
