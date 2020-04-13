@@ -1,7 +1,9 @@
 package maw.mobet
 
 import android.content.Context
+import android.os.Build
 import android.util.TypedValue
+import android.widget.TextView
 import com.google.gson.GsonBuilder
 import maw.mobet.api.AppService
 import retrofit2.Retrofit
@@ -51,4 +53,13 @@ fun dpToPx(context: Context, dp: Float): Float {
 fun diffDate(fromDate: Date, toDate: Date): Int {
     val diff = Math.ceil((toDate.time - fromDate.time).toDouble() / 86400000)
     return diff.toInt()
+}
+
+fun changeTitle(view: TextView, title: String) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        view.typeface = view.resources.getFont(R.font.notosanskr_m)
+    }
+    view.text = title
+    view.textSize = 16.3f
+    view.letterSpacing = 0.03f
 }

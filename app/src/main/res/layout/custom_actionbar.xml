@@ -12,7 +12,7 @@
         android:layout_height="27dp"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true"
-        android:background="@drawable/ic_arrow_back_black_24dp"
+        android:background="@drawable/ic_arrow_back_24dp"
         android:visibility="gone" />
 
     <TextView android:id="@+id/app_title_txt"

@@ -9,7 +9,7 @@
     android:animateLayoutChanges="true"
     tools:context=".LoginActivity">
 
-    <TextView android:id="@+id/app_title"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/netmarble"
@@ -32,7 +32,7 @@
             android:fontFamily="@font/notosanskr_b"
             android:textSize="15sp"
             android:textColor="@color/colorText"
-            android:text="@string/login_email" />
+            android:text="@string/email" />
         <com.google.android.material.textfield.TextInputLayout android:id="@+id/email_edit_l"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
             android:fontFamily="@font/notosanskr_b"
             android:textSize="15sp"
             android:textColor="@color/colorText"
-            android:text="@string/login_passwd" />
+            android:text="@string/passwd" />
         <com.google.android.material.textfield.TextInputLayout android:id="@+id/passwd_edit_l"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -83,9 +83,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="85.8dp"
             android:layout_marginHorizontal="42dp"
-            android:background="@drawable/switch_track"
+            android:background="@drawable/button_login"
             android:fontFamily="@font/notosanskr_b"
-            android:text="@string/login_login"
+            android:text="@string/login_button"
             android:textSize="14.8sp"
             android:textColor="@color/colorWhiteText"
             android:onClick="onclick" />

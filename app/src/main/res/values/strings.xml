@@ -8,17 +8,28 @@
     <string name="tab_account_history">내역</string>
     <string name="tab_account_statistics">통계</string>
 
+    <string name="ok">확인</string>
     <string name="year">년</string>
     <string name="month">월</string>
     <string name="day">일</string>
+    <string name="email">이메일</string>
+    <string name="passwd">비밀번호</string>
 
     <!-- 로그인 -->
-    <string name="login_email">이메일</string>
     <string name="login_email_hint">이메일을 입력해주세요</string>
-    <string name="login_passwd">비밀번호</string>
     <string name="login_passwd_hint">비밀번호를 입력해주세요</string>
-    <string name="login_login">로그인</string>
+    <string name="login_button">로그인</string>
     <string name="login_signup">이메일로 회원가입</string>
+
+    <!-- 회원가입 -->
+    <string name="signup_title">회원가입</string>
+    <string name="signup_email_direct">직접입력</string>
+    <string name="signup_passwd">비밀번호 확인</string>
+    <string name="signup_nick">닉네임</string>
+    <string name="signup_double">중복확인</string>
+    <string name="signup_code">인증코드</string>
+    <string name="signup_resend">재전송</string>
+    <string name="signup_button">회원가입 완료</string>
 
     <!-- 경쟁전 생성 -->
     <string name="creategame_title1">경쟁전 생성</string>
@@ -37,9 +48,9 @@
     <string name="creategame_price_greater">이상</string>
     <string name="creategame_category">카테고리\n선택하기</string>
     <string name="creategame_button">생성</string>
-    <string name="category">카테고리</string>
 
     <!-- 카테고리 -->
+    <string name="category">카테고리</string>
     <string name="restaurant">식사</string>
     <string name="cafe">카페</string>
     <string name="dessert">간식</string>

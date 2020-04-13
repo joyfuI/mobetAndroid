@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class SplashActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -26,10 +25,10 @@ class SplashActivity : AppCompatActivity() {
         textView.text = getString(R.string.app_name)
         textView.textSize = 22f
         textView.setTextColor(getColor(R.color.colorPrimary))
+        textView.letterSpacing = 0.15f
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             textView.typeface = resources.getFont(R.font.netmarble)
         }
-        textView.letterSpacing = 0.15f
         layout.addView(textView)
         setContentView(layout)
 

@@ -50,9 +50,9 @@ class MyAdapter(
         holder.titleTxt.text = item.title
         holder.titleBottomTxt.text = intToWon(item.price.absoluteValue)
         holder.titleBottomImg.setImageResource(if (item.price > 0) {
-            R.drawable.ic_arrow_upward_black_24dp
+            R.drawable.ic_arrow_upward_24dp
         } else {
-            R.drawable.ic_arrow_downward_black_24dp
+            R.drawable.ic_arrow_downward_24dp
         })
 
         with (holder.itemView) {
