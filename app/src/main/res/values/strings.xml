@@ -12,6 +12,14 @@
     <string name="month">월</string>
     <string name="day">일</string>
 
+    <!-- 로그인 -->
+    <string name="login_email">이메일</string>
+    <string name="login_email_hint">이메일을 입력해주세요</string>
+    <string name="login_passwd">비밀번호</string>
+    <string name="login_passwd_hint">비밀번호를 입력해주세요</string>
+    <string name="login_login">로그인</string>
+    <string name="login_signup">이메일로 회원가입</string>
+
     <!-- 경쟁전 생성 -->
     <string name="creategame_title1">경쟁전 생성</string>
     <string name="creategame_title">제목</string>
