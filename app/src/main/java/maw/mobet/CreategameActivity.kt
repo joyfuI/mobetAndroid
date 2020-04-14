@@ -36,6 +36,21 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
             items
         )
 
+        toggle.setOnCheckedChangeListener { _, i ->
+            when (i) {
+                // 공개
+                pub_rdo.id -> {
+                    start_txt.visibility = View.VISIBLE
+                    start_edit.visibility = View.VISIBLE
+                }
+                // 비공개
+                pri_rdo.id -> {
+                    start_txt.visibility = View.INVISIBLE
+                    start_edit.visibility = View.INVISIBLE
+                }
+            }
+        }
+
         val cal = Calendar.getInstance()
         cal.time = today
         cal.add (Calendar.DAY_OF_MONTH, 3)
@@ -44,7 +59,7 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
         end_edit.setText(dateToStr(cal.time, "yyyy-MM-dd"))
         end_edit.isFocusable = false
 
-        category_img.tag = -1
+        category_img.tag = -2
 
         title_edit.onFocusChangeListener = this
         greater_edit.onFocusChangeListener = this
@@ -195,9 +210,15 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
                 val position = data!!.getIntExtra("result", -1)
 
 //                category_txt.visibility = View.GONE
-                category_txt.text = titleArr[position]
-                category_img.tag = position
-                category_img.setImageResource(drawableArr.getResourceId(position, -1))
+                if (position == -1) {
+                    category_txt.text = getText(R.string.category_all)
+                    category_img.tag = position
+                    category_img.setImageResource(0)
+                } else {
+                    category_txt.text = titleArr[position]
+                    category_img.tag = position
+                    category_img.setImageResource(drawableArr.getResourceId(position, -1))
+                }
 
                 drawableArr.recycle()
             }
@@ -243,7 +264,7 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
                 return null
             }
 
-            start_edit_l.error != null -> {
+            start_edit_l.error != null && pub_rdo.isChecked -> {
                 toast(start_edit_l.error.toString())
                 return null
             }
@@ -260,6 +281,11 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
 
             price == null -> {
                 toast(resources.getString(R.string.creategame_price_hint))
+                return null
+            }
+
+            category == -2 -> {
+                toast(resources.getString(R.string.not_category))
                 return null
             }
         }

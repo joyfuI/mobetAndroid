@@ -33,7 +33,11 @@ class CategoryActivity : AppCompatActivity(), MyAdapter.OnClickListener {
 
     override fun onClick(view: View) {
         val intent = Intent()
-        intent.putExtra("result", view.tag as Int)
+        if (view == all_btn) {
+            intent.putExtra("result", -1)
+        } else {
+            intent.putExtra("result", view.tag as Int)
+        }
         setResult(RESULT_OK, intent)
         finish()
     }
