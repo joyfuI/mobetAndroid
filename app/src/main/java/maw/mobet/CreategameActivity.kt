@@ -59,7 +59,7 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
         end_edit.setText(dateToStr(cal.time, "yyyy-MM-dd"))
         end_edit.isFocusable = false
 
-        category_img.tag = -2
+        category_img.tag = -1
 
         title_edit.onFocusChangeListener = this
         greater_edit.onFocusChangeListener = this
@@ -210,15 +210,9 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
                 val position = data!!.getIntExtra("result", -1)
 
 //                category_txt.visibility = View.GONE
-                if (position == -1) {
-                    category_txt.text = getText(R.string.category_all)
-                    category_img.tag = position
-                    category_img.setImageResource(0)
-                } else {
-                    category_txt.text = titleArr[position]
-                    category_img.tag = position
-                    category_img.setImageResource(drawableArr.getResourceId(position, -1))
-                }
+                category_txt.text = titleArr[position]
+                category_img.tag = position
+                category_img.setImageResource(drawableArr.getResourceId(position, -1))
 
                 drawableArr.recycle()
             }
@@ -284,7 +278,7 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
                 return null
             }
 
-            category == -2 -> {
+            category == -1 -> {
                 toast(resources.getString(R.string.not_category))
                 return null
             }

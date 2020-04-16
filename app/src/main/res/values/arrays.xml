@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="category">
+        <item>@string/category_all</item>
         <item>@string/restaurant</item>
         <item>@string/cafe</item>
         <item>@string/dessert</item>
@@ -16,6 +17,7 @@
     </string-array>
 
     <array name="category_drawable">
+        <item>@drawable/restaurant</item>
         <item>@drawable/restaurant</item>
         <item>@drawable/cafe</item>
         <item>@drawable/dessert</item>
