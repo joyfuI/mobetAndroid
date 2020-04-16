@@ -13,7 +13,7 @@ import maw.mobet.R
 import maw.mobet.api.HomeListItem
 import maw.mobet.dateToStr
 import maw.mobet.dpToPx
-import maw.mobet.intToWon
+import maw.mobet.intToStr
 import kotlin.math.absoluteValue
 
 class MyAdapter(
@@ -48,7 +48,7 @@ class MyAdapter(
         val text = "[${category[item.category]}] $startDate ~ $endDate"
         holder.titleTopTxt.text = text
         holder.titleTxt.text = item.title
-        holder.titleBottomTxt.text = intToWon(item.price.absoluteValue)
+        holder.titleBottomTxt.text = intToStr(item.price.absoluteValue, prefix = "₩")
         holder.titleBottomImg.setImageResource(if (item.price > 0) {
             R.drawable.ic_arrow_upward_24dp
         } else {

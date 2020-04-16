@@ -53,11 +53,11 @@ class MyAdapter(
                 res.getString(R.string.month_day)
             )
             if (headerItem.plus != 0) {
-                headerHolder.plusTxt.text = intToStr(headerItem.plus, res.getString(R.string.won))
+                headerHolder.plusTxt.text = intToStr(headerItem.plus, prefix = "+", suffix = res.getString(R.string.won))
                 headerHolder.plusTxt.visibility = View.VISIBLE
             }
             if (headerItem.minus != 0) {
-                headerHolder.minusTxt.text = intToStr(headerItem.minus, res.getString(R.string.won))
+                headerHolder.minusTxt.text = intToStr(headerItem.minus, suffix = res.getString(R.string.won))
                 headerHolder.minusTxt.visibility = View.VISIBLE
             }
         } else {
@@ -87,7 +87,7 @@ class MyAdapter(
                 ))
             }
             dataHolder.nameTxt.text = dataItem.name
-            dataHolder.accountTxt.text = intToStr(dataItem.money, res.getString(R.string.won))
+            dataHolder.accountTxt.text = intToStr(dataItem.money, suffix = res.getString(R.string.won))
         }
 
         with (holder.itemView) {

@@ -9,7 +9,6 @@ import maw.mobet.api.AppService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.text.DecimalFormat
-import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -34,12 +33,12 @@ fun dateToStr(date: Date, format: String): String {
     return SimpleDateFormat(format, Locale.KOREA).format(date)
 }
 
-fun intToWon(num: Int): String {
-    return NumberFormat.getCurrencyInstance(Locale.KOREA).format(num)
-}
+//fun intToWon(num: Int): String {
+//    return NumberFormat.getCurrencyInstance(Locale.KOREA).format(num)
+//}
 
-fun intToStr(num: Int, suffix: String = ""): String {
-    return DecimalFormat("###,###").format(num) + suffix
+fun intToStr(num: Int, prefix: String = "", suffix: String = ""): String {
+    return prefix + DecimalFormat("###,###").format(num) + suffix
 }
 
 fun dpToPx(context: Context, dp: Float): Float {
