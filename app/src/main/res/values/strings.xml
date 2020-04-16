@@ -22,6 +22,7 @@
     <string name="login_signup">이메일로 회원가입</string>
 
     <!-- 회원가입 -->
+    <string name="signup_message">회원가입을 위해\n몇 가지 정보를 입력해주세요.</string>
     <string name="signup_title">회원가입</string>
     <string name="signup_email_direct">직접입력</string>
     <string name="signup_passwd">비밀번호 확인</string>

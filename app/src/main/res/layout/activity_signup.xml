@@ -6,6 +6,35 @@
     android:layout_height="match_parent"
     tools:context=".SignupActivity">
 
+    <RelativeLayout android:id="@+id/before"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/singup_gradient"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="128dp"
+            android:fontFamily="@font/notosanskr_b"
+            android:textSize="21sp"
+            android:textColor="@color/colorWhiteText"
+            android:lineSpacingExtra="14sp"
+            android:text="@string/signup_message" />
+
+        <ImageButton android:id="@+id/next_btn"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="82dp"
+            android:background="@drawable/button_signup_next"
+            android:onClick="onclick" />
+
+    </RelativeLayout>
+
     <FrameLayout android:id="@+id/after"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
