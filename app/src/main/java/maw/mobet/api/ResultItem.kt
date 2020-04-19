@@ -1,6 +1,6 @@
 package maw.mobet.api
 
 data class ResultItem(
-    val success: Boolean,
+    val code: Int,
     val message: String
 )

@@ -6,6 +6,9 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface AppService {
+    @POST("login.json")
+    fun login(@Body data: LoginData): Call<LoginItem>
+
     @GET("homelist.json")
     fun homeList(): Call<List<HomeListItem>>
 
