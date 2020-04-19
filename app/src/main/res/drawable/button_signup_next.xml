@@ -1,24 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
-        <shape android:shape="oval">
-            <size
-                android:width="50dp"
-                android:height="50dp" />
-            <stroke
-                android:width="0.5dp"
-                android:color="#FAFAFA" />
-        </shape>
-    </item>
-    <item>
-        <vector
-            android:width="24dp" android:height="24dp"
-            android:viewportHeight="24.0" android:viewportWidth="24.0"
-            android:tint="#FAFAFA">
-            <path
-                android:pathData="M 16 11 L 12 14 L 8 11"
-                android:strokeColor="#000000"
-                android:strokeWidth="1" />
-        </vector>
-    </item>
-</layer-list>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp"
+    android:viewportHeight="24.0" android:viewportWidth="24.0"
+    android:tint="#FAFAFA">
+    <path
+        android:pathData="M 0.5 12 C 0.5 8.95135 1.7121 6.0246 3.86835 3.86835 C 6.0246 1.7121 8.95135 0.5 12 0.5 C 15.04865 0.5 17.9754 1.7121 20.13165 3.86835 C 22.2879 6.0246 23.5 8.95135 23.5 12 C 23.5 15.04865 22.2879 17.9754 20.13165 20.13165 C 17.9754 22.2879 15.04865 23.5 12 23.5 C 8.95135 23.5 6.0246 22.2879 3.86835 20.13165 C 1.7121 17.9754 0.5 15.04865 0.5 12"
+        android:strokeColor="#000000"
+        android:strokeWidth="0.24" />
+    <path
+        android:pathData="M 16 11 L 12 14 L 8 11"
+        android:strokeColor="#000000"
+        android:strokeWidth="1" />
+</vector>
