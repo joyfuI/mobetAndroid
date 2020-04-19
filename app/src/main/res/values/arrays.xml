@@ -31,4 +31,15 @@
         <item>@drawable/lodge</item>
         <item>@drawable/gas_station_parking_lot</item>
     </array>
+
+    <string-array name="email">
+        <item>@string/signup_email_direct</item>
+        <item>naver.com</item>
+        <item>hanmail.net</item>
+        <item>gmail.com</item>
+        <item>nate.com</item>
+        <item>outlook.com</item>
+        <item>icloud.com</item>
+        <item>kakao.com</item>
+    </string-array>
 </resources>

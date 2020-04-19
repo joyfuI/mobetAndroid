@@ -298,7 +298,7 @@
                 app:layout_constraintLeft_toLeftOf="@id/category_img"
                 app:layout_constraintRight_toRightOf="@id/category_img" />
 
-            <Button android:id="@+id/create"
+            <Button android:id="@+id/create_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="30dp"

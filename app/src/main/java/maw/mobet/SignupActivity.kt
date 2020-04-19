@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.custom_actionbar.*
 
-class SignupActivity : AppCompatActivity() {
+class SignupActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
@@ -23,6 +25,14 @@ class SignupActivity : AppCompatActivity() {
         back_img.setOnClickListener {
             finish()
         }
+
+        // Spinner
+        email_cmb.adapter = ArrayAdapter(
+            this,
+            R.layout.spinner_item2,
+            resources.getStringArray(R.array.email)
+        )
+        email_cmb.onItemSelectedListener = this
     }
 
     fun onclick(view: View) {
@@ -59,5 +69,18 @@ class SignupActivity : AppCompatActivity() {
                 after.startAnimation(inAnim)
             }
         }
+    }
+
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        if (p2 == 0) {
+            email2_edit.isEnabled = true
+        } else {
+            email2_edit.isEnabled = false
+            val emailArr = resources.getStringArray(R.array.email)
+            email2_edit.setText(emailArr[p2])
+        }
+    }
+
+    override fun onNothingSelected(p0: AdapterView<*>?) {
     }
 }

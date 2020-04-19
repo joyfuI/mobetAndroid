@@ -24,8 +24,10 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_creategame)
 
+        // 액션바
         noti_img.visibility = View.GONE
 
+        // Spinner
         val items = listOf(
             resources.getString(R.string.creategame_price_less),
             resources.getString(R.string.creategame_price_greater)
@@ -36,6 +38,7 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
             items
         )
 
+        // RadioButton
         toggle.setOnCheckedChangeListener { _, i ->
             when (i) {
                 // 공개
@@ -165,7 +168,7 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
                 startActivityForResult(intent, 0)
             }
             // 생성
-            create -> {
+            create_btn -> {
                 val service = RetrofitClient.getInstance()
                 val data = makeDate() ?: return
                 val dataCall = service.createGame(data)
