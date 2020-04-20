@@ -9,6 +9,9 @@ interface AppService {
     @POST("login.json")
     fun login(@Body data: LoginData): Call<LoginItem>
 
+    @POST("post.php")
+    fun signup(@Body data: SignupData): Call<ResultItem>
+
     @GET("homelist.json")
     fun homeList(): Call<List<HomeListItem>>
 

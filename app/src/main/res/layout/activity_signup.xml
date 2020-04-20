@@ -325,6 +325,7 @@
                     android:textSize="14.8sp"
                     android:textColor="@color/colorWhiteText"
                     android:text="@string/signup_button"
+                    android:onClick="onclick"
                     app:layout_constraintTop_toBottomOf="@id/code_edit_l"
                     app:layout_constraintEnd_toEndOf="parent"/>
 
