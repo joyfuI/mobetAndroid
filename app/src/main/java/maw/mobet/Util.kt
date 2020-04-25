@@ -30,7 +30,7 @@ object RetrofitClient {
         OkHttpClient.Builder().addInterceptor {
             val request = if (key != null) {
                 it.request().newBuilder()
-                    .addHeader("Authorization", key)
+                    .addHeader("Authorization", "Bearer $key")
                     .build()
             } else {
                 it.request()

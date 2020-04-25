@@ -80,7 +80,8 @@
     <string name="not_passwd">비밀번호를 입력해주세요</string>
     <string name="mis_passwd">비밀번호가 일치하지 않습니다</string>
     <string name="not_nick">닉네임을 입력해주세요</string>
-    <string name="not_nick_ok">닉네임을 입력해주세요</string>
+    <string name="not_nick_ok">닉네임 중복확인을 해주세요</string>
+    <string name="nick_ok">사용할 수 있는 닉네임입니다</string>
     <string name="not_code">인증코드를 확인해주세요</string>
     <string name="signup_ok">회원가입이 완료되었습니다</string>
     <string name="not_number">잘못된 숫자입니다</string>
