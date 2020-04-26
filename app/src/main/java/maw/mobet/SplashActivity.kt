@@ -27,7 +27,7 @@ class SplashActivity : AppCompatActivity() {
         textView.setTextColor(getColor(R.color.colorPrimary))
         textView.letterSpacing = 0.15f
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            textView.typeface = resources.getFont(R.font.netmarble)
+            textView.typeface = resources.getFont(R.font.netmarble_b)
         }
         layout.addView(textView)
         setContentView(layout)

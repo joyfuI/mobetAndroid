@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:fontFamily="@font/netmarble"
+        android:fontFamily="@font/netmarble_b"
         android:text="@string/app_name"
         android:textSize="17.5sp"
         android:textColor="@color/colorWhiteText"
