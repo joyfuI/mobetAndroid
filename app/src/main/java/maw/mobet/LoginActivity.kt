@@ -28,6 +28,8 @@ class LoginActivity : AppCompatActivity() {
         when (view) {
             // 로그인
             login_btn -> {
+                login_btn.isClickable = false
+
                 val service = RetrofitClient.getInstance()
                 val dataCall = service.login(
                     LoginData(email_edit.toString(), passwd_edit.toString())
@@ -51,6 +53,7 @@ class LoginActivity : AppCompatActivity() {
                                     result?.message,
                             Toast.LENGTH_LONG
                         ).show()
+                        login_btn.isClickable = true
                     }
 
                     override fun onFailure(call: Call<LoginItem>, t: Throwable) {
@@ -60,6 +63,7 @@ class LoginActivity : AppCompatActivity() {
                                     t.localizedMessage,
                             Toast.LENGTH_LONG
                         ).show()
+                        login_btn.isClickable = true
                     }
                 })
             }

@@ -169,6 +169,8 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
             }
             // 생성
             create_btn -> {
+                create_btn.isClickable = false
+
                 val service = RetrofitClient.getInstance()
                 val data = makeDate() ?: return
                 val dataCall = service.createGame(data)
@@ -187,6 +189,7 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
                                     result?.message,
                             Toast.LENGTH_LONG
                         ).show()
+                        create_btn.isClickable = true
                     }
 
                     override fun onFailure(call: Call<ResultItem>, t: Throwable) {
@@ -196,6 +199,7 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
                                     t.localizedMessage,
                             Toast.LENGTH_LONG
                         ).show()
+                        create_btn.isClickable = true
                     }
                 })
             }

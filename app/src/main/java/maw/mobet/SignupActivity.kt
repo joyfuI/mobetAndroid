@@ -68,6 +68,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
             if (nickOk) {
                 nickOk = false
                 nick_edit_l.error = null
+                nick_btn.isClickable = true
             }
         }
 
@@ -154,10 +155,13 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
             }
             // 닉네임 중복확인
             nick_btn -> {
-                if (nick_edit.text.toString().isEmpty()) {
+                if (nickOk) {
+                    return
+                } else if (nick_edit.text.toString().isEmpty()) {
                     toast(resources.getString(R.string.not_nick))
                     return
                 }
+                nick_btn.isClickable = false
 
                 val service = RetrofitClient.getInstance()
                 val dataCall = service.nickCheck(NickData(nick_edit.text.toString()))
@@ -180,6 +184,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                                     result?.message,
                             Toast.LENGTH_LONG
                         ).show()
+                        nick_btn.isClickable = true
                     }
 
                     override fun onFailure(call: Call<ResultItem>, t: Throwable) {
@@ -189,6 +194,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                                     t.localizedMessage,
                             Toast.LENGTH_LONG
                         ).show()
+                        nick_btn.isClickable = true
                     }
                 })
             }
@@ -199,6 +205,8 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
             }
             // 회원가입
             signup_btn -> {
+                signup_btn.isClickable = false
+
                 val service = RetrofitClient.getInstance()
                 val data = makeDate() ?: return
                 val dataCall = service.signup(data)
@@ -222,6 +230,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                                     result?.message,
                             Toast.LENGTH_LONG
                         ).show()
+                        signup_btn.isClickable = true
                     }
 
                     override fun onFailure(call: Call<ResultItem>, t: Throwable) {
@@ -231,6 +240,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                                     t.localizedMessage,
                             Toast.LENGTH_LONG
                         ).show()
+                        signup_btn.isClickable = true
                     }
                 })
             }
