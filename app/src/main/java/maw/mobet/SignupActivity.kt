@@ -32,7 +32,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
 
         before.visibility = View.VISIBLE
         after.visibility = View.GONE
-        errorColor
+        errorColor  // 초기화
 
         // 액션바
         changeTitle(app_title_txt, getString(R.string.signup_title))

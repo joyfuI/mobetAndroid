@@ -17,6 +17,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        app_content.visibility = View.GONE
+
         app_content.post {
             app_content.visibility = View.VISIBLE
         }
