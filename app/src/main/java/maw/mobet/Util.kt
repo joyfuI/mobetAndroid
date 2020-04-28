@@ -51,12 +51,12 @@ object Regex {
         .toRegex()
 }
 
-fun strToDate(date: String): Date? {
-    return SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).parse(date)
+fun String.toDate(): Date? {
+    return SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).parse(this)
 }
 
-fun dateToStr(date: Date, format: String): String {
-    return SimpleDateFormat(format, Locale.KOREA).format(date)
+fun Date.toString(format: String): String {
+    return SimpleDateFormat(format, Locale.KOREA).format(this)
 }
 
 //fun intToWon(num: Int): String {

@@ -57,9 +57,9 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
         val cal = Calendar.getInstance()
         cal.time = today
         cal.add (Calendar.DAY_OF_MONTH, 3)
-        start_edit.setText(dateToStr(cal.time, "yyyy-MM-dd"))
+        start_edit.setText(cal.time.toString("yyyy-MM-dd"))
         start_edit.isFocusable = false
-        end_edit.setText(dateToStr(cal.time, "yyyy-MM-dd"))
+        end_edit.setText(cal.time.toString("yyyy-MM-dd"))
         end_edit.isFocusable = false
 
         category_img.tag = -1
@@ -132,14 +132,14 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
                 val edit = view as TextInputEditText
                 val editL = if (view == start_edit) start_edit_l else end_edit_l
 
-                val date = strToDate(edit.text.toString())!!
+                val date = edit.text.toString().toDate()!!
                 val cal = Calendar.getInstance()
                 cal.time = date
                 DatePickerDialog(
                     this,
                     DatePickerDialog.OnDateSetListener { _, i, i2, i3 ->
                         cal.set(i, i2, i3)
-                        edit.setText(dateToStr(cal.time, "yyyy-MM-dd"))
+                        edit.setText(cal.time.toString("yyyy-MM-dd"))
 
                         if (diffDate(today, cal.time) < 1) {
                             editL.error = resources.getString(R.string.todate_less_date)
@@ -148,8 +148,8 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
                         }
                         if (
                             diffDate(
-                                strToDate(start_edit.text.toString())!!,
-                                strToDate(end_edit.text.toString())!!
+                                start_edit.text.toString().toDate()!!,
+                                end_edit.text.toString().toDate()!!
                             ) < 0
                         ) {
                             end_edit_l.error = resources.getString(R.string.enddate_less_date)
@@ -239,8 +239,8 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
         } catch (e: NumberFormatException) {
             null
         }
-        val start = strToDate(start_edit.text.toString())!!
-        val end = strToDate(end_edit.text.toString())!!
+        val start = start_edit.text.toString().toDate()!!
+        val end = end_edit.text.toString().toDate()!!
         val price = try {
             val num = Integer.parseInt(price_edit.text.toString())
             if (price_cmb.selectedItemId == 0L) -num else num

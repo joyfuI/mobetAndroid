@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.list_item_history_data.view.*
 import kotlinx.android.synthetic.main.list_item_history_header.view.*
 import maw.mobet.R
-import maw.mobet.dateToStr
 import maw.mobet.intToStr
+import maw.mobet.toString
 
 class MyAdapter(
     private val data: List<HistoryListItem>, private val listener: OnClickListener? = null
@@ -48,10 +48,7 @@ class MyAdapter(
             val headerHolder = holder as HeaderViewHolder
             val headerItem = item as HistoryListHeaderItem
 
-            headerHolder.dateTxt.text = dateToStr(
-                headerItem.date,
-                res.getString(R.string.month_day)
-            )
+            headerHolder.dateTxt.text = headerItem.date.toString(res.getString(R.string.month_day))
             if (headerItem.plus != 0) {
                 headerHolder.plusTxt.text = intToStr(headerItem.plus, prefix = "+", suffix = res.getString(R.string.won))
                 headerHolder.plusTxt.visibility = View.VISIBLE
