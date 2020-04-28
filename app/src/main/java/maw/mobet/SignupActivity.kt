@@ -9,6 +9,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.custom_actionbar.*
 import maw.mobet.api.NickData
@@ -22,9 +23,10 @@ import splitties.resources.txtArray
 import splitties.toast.toast
 
 class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
-    var nickOk = false
-    var codeOk = false
-    val errorColor by lazy {
+    private lateinit var auth: FirebaseAuth
+    private var nickOk = false
+    private var codeOk = false
+    private val errorColor by lazy {
         nick_edit_l.errorCurrentTextColors
     }
 
@@ -80,6 +82,17 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
         passwd2_edit.onFocusChangeListener = this
         nick_edit.onFocusChangeListener = this
         code_edit.onFocusChangeListener = this
+
+        auth = FirebaseAuth.getInstance()
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        if (auth.currentUser != null) {
+            toast(R.string.signup_login)
+            finish()
+        }
     }
 
     override fun onFocusChange(p0: View?, p1: Boolean) {
@@ -91,6 +104,8 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
             passwd_edit -> {
                 if (passwd_edit.text.toString().isEmpty()) {
                     passwd_edit_l.error = txt(R.string.not_passwd)
+                } else if (!passwdCheck(passwd_edit.text.toString())) {
+                    passwd_edit_l.error = txt(R.string.wrong_passwd)
                 } else {
                     passwd_edit_l.error = null
                 }
@@ -180,7 +195,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                             nickOk = true
                             return
                         }
-                        toast("${txt(R.string.error)}\n${result?.message}")
+                        toast("${txt(R.string.error)} ${result?.code}")
                         nick_btn.isClickable = true
                     }
 
@@ -199,28 +214,38 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
             signup_btn -> {
                 signup_btn.isClickable = false
 
-                val service = RetrofitClient.getInstance()
                 val data = makeDate() ?: return
-                val dataCall = service.signup(data)
-                dataCall.enqueue(object : Callback<ResultItem> {
-                    override fun onResponse(
-                        call: Call<ResultItem>, response: Response<ResultItem>
-                    ) {
-                        val result = response.body()
-                        if (result?.code == 0) {
-                            toast(R.string.signup_ok)
-                            finish()
-                            return
-                        }
-                        toast("${txt(R.string.error)}\n${result?.message}")
-                        signup_btn.isClickable = true
-                    }
+                auth.createUserWithEmailAndPassword(data.email, passwd_edit.text.toString())
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            val user = auth.currentUser!!
+                            data.uid = user.uid
 
-                    override fun onFailure(call: Call<ResultItem>, t: Throwable) {
-                        toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
-                        signup_btn.isClickable = true
+                            val service = RetrofitClient.getInstance()
+                            val dataCall = service.signup(data)
+                            dataCall.enqueue(object : Callback<ResultItem> {
+                                override fun onResponse(
+                                    call: Call<ResultItem>, response: Response<ResultItem>
+                                ) {
+                                    val result = response.body()
+                                    if (result?.code == 0) {
+                                        toast(R.string.signup_ok)
+                                        finish()
+                                        return
+                                    }
+                                    toast("${txt(R.string.error)} ${result?.code}")
+                                    signup_btn.isClickable = true
+                                }
+
+                                override fun onFailure(call: Call<ResultItem>, t: Throwable) {
+                                    toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
+                                    signup_btn.isClickable = true
+                                }
+                            })
+                        } else {
+                            toast(txt(R.string.signup_error))
+                        }
                     }
-                })
             }
         }
     }
@@ -231,7 +256,6 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
         } else {
             "${email1_edit.text.toString()}@${email2_edit.text.toString()}"
         }
-        val passwd = passwd_edit.text.toString()
         val nick = nick_edit.text.toString()
 
         when {
@@ -247,6 +271,11 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
 
             passwd_edit.text.toString().isEmpty() -> {
                 toast(R.string.not_passwd)
+                return null
+            }
+
+            !passwdCheck(passwd_edit.text.toString()) -> {
+                toast(R.string.wrong_passwd)
                 return null
             }
 
@@ -270,10 +299,29 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                 return null
             }
         }
-        return SignupData(email!!, passwd, nick)
+        return SignupData(email!!, nick, null)
     }
 
-    private fun toast(msg: String) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    private fun passwdCheck(str: String): Boolean {
+        // 알파벳 대문자와 소문자, 특수문자, 숫자. 4가지 종류 중 두 종류 이상의 문자구성과
+        // 8자리 이상의 길이로 구성된 문자열
+        var type = 0
+        if (Regex.alphabetUpper.containsMatchIn(str)) {
+            type++
+        }
+        if (Regex.alphabetLower.containsMatchIn(str)) {
+            type++
+        }
+        if (Regex.number.containsMatchIn(str)) {
+            type++
+        }
+        if (Regex.specialChar.containsMatchIn(str)) {
+            type++
+        }
+
+        if (type < 2 || str.length < 8) {
+            return false
+        }
+        return true
     }
 }

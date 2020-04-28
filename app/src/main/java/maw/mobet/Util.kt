@@ -47,6 +47,10 @@ object RetrofitClient {
 object Regex {
     val email = """^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$"""
         .toRegex()
+    val alphabetUpper = """[A-Z]""".toRegex()
+    val alphabetLower = """[a-z]""".toRegex()
+    val number = """\d""".toRegex()
+    val specialChar = """[`~!@#$%^&*()\-_=+\\|\[{\]};:'",<.>/?]""".toRegex()
 }
 
 fun String.toDate(): Date? {

@@ -185,7 +185,7 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
                             finish()
                             return
                         }
-                        toast("${txt(R.string.error)}\n${result?.message}")
+                        toast("${txt(R.string.error)} ${result?.code}")
                         create_btn.isClickable = true
                     }
 
