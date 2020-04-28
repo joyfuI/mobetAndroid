@@ -12,7 +12,8 @@ import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.list_item_notify.view.*
 import maw.mobet.R
 import maw.mobet.api.NotifyListItem
-import maw.mobet.dpToPx
+import splitties.dimensions.dip
+import splitties.init.appCtx
 import splitties.resources.appColorSL
 
 class MyAdapter(
@@ -44,7 +45,7 @@ class MyAdapter(
 
         Glide.with(holder.itemView).load(item.imgUrl)
             .apply(RequestOptions().circleCrop())
-            .override(dpToPx(45.5f).toInt())
+            .override(appCtx.dip(45))
             .into(holder.profileImg)
         holder.profileTxt.text = item.name
         holder.msgTxt.text = item.msg

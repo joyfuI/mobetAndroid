@@ -11,9 +11,10 @@ import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.list_item_home.view.*
 import maw.mobet.R
 import maw.mobet.api.HomeListItem
-import maw.mobet.dpToPx
 import maw.mobet.intToStr
 import maw.mobet.toString
+import splitties.dimensions.dip
+import splitties.init.appCtx
 import splitties.resources.appTxtArray
 import kotlin.math.absoluteValue
 
@@ -39,7 +40,7 @@ class MyAdapter(
 
         Glide.with(holder.itemView).load(item.imgUrl)
             .apply(RequestOptions().circleCrop())
-            .override(dpToPx(30f).toInt())
+            .override(appCtx.dip(30))
             .into(holder.profileImg)
         holder.profileTxt.text = item.name
         holder.titleImg.setImageResource(R.drawable.ic_launcher_background)
