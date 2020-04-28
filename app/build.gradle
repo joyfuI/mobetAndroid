@@ -61,4 +61,5 @@ dependencies {
     implementation "com.louiscad.splitties:splitties-toast:$splitties_version"
     implementation "com.louiscad.splitties:splitties-activities:$splitties_version"
     implementation "com.louiscad.splitties:splitties-resources:$splitties_version"
+    implementation "com.louiscad.splitties:splitties-appctx:$splitties_version"
 }

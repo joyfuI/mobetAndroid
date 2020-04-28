@@ -39,7 +39,7 @@ class MyAdapter(
 
         Glide.with(holder.itemView).load(item.imgUrl)
             .apply(RequestOptions().circleCrop())
-            .override(dpToPx(holder.itemView.context, 30f).toInt())
+            .override(dpToPx(30f).toInt())
             .into(holder.profileImg)
         holder.profileTxt.text = item.name
         holder.titleImg.setImageResource(R.drawable.ic_launcher_background)

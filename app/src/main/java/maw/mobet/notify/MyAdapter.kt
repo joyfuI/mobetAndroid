@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.list_item_notify.view.*
 import maw.mobet.R
 import maw.mobet.api.NotifyListItem
 import maw.mobet.dpToPx
+import splitties.resources.appColorSL
 
 class MyAdapter(
     private val data: List<NotifyListItem>, private val listener: OnClickListener? = null
@@ -28,13 +29,12 @@ class MyAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.list_item_notify, parent, false)
-        val res = view.resources
         var shape: GradientDrawable
 
         shape = view.accept_btn.background as GradientDrawable
-        shape.color = res.getColorStateList(R.color.colorDeposit, view.context.theme)
+        shape.color = appColorSL(R.color.colorDeposit)
         shape = view.reject_btn.background as GradientDrawable
-        shape.color = res.getColorStateList(R.color.colorWithdrawal, view.context.theme)
+        shape.color = appColorSL(R.color.colorWithdrawal)
 
         return ViewHolder(view)
     }
@@ -44,7 +44,7 @@ class MyAdapter(
 
         Glide.with(holder.itemView).load(item.imgUrl)
             .apply(RequestOptions().circleCrop())
-            .override(dpToPx(holder.itemView.context, 45.5f).toInt())
+            .override(dpToPx(45.5f).toInt())
             .into(holder.profileImg)
         holder.profileTxt.text = item.name
         holder.msgTxt.text = item.msg

@@ -12,6 +12,10 @@ import kotlinx.android.synthetic.main.list_item_history_header.view.*
 import maw.mobet.R
 import maw.mobet.intToStr
 import maw.mobet.toString
+import splitties.resources.appColor
+import splitties.resources.appColorSL
+import splitties.resources.appStr
+import splitties.resources.appTxt
 
 class MyAdapter(
     private val data: List<HistoryListItem>, private val listener: OnClickListener? = null
@@ -41,20 +45,19 @@ class MyAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val res = holder.itemView.resources
         val item = data[position]
 
         if (item.getType() == HistoryListItem.TYPE_HEADER) {
             val headerHolder = holder as HeaderViewHolder
             val headerItem = item as HistoryListHeaderItem
 
-            headerHolder.dateTxt.text = headerItem.date.toString(res.getString(R.string.month_day))
+            headerHolder.dateTxt.text = headerItem.date.toString(appStr(R.string.month_day))
             if (headerItem.plus != 0) {
-                headerHolder.plusTxt.text = intToStr(headerItem.plus, prefix = "+", suffix = res.getString(R.string.won))
+                headerHolder.plusTxt.text = intToStr(headerItem.plus, prefix = "+", suffix = appStr(R.string.won))
                 headerHolder.plusTxt.visibility = View.VISIBLE
             }
             if (headerItem.minus != 0) {
-                headerHolder.minusTxt.text = intToStr(headerItem.minus, suffix = res.getString(R.string.won))
+                headerHolder.minusTxt.text = intToStr(headerItem.minus, suffix = appStr(R.string.won))
                 headerHolder.minusTxt.visibility = View.VISIBLE
             }
         } else {
@@ -63,28 +66,16 @@ class MyAdapter(
 
             val shape = dataHolder.dataBtn.background as GradientDrawable
             if (dataItem.money > 0) {
-                shape.color = res.getColorStateList(
-                    R.color.colorDeposit,
-                    dataHolder.itemView.context.theme
-                )
-                dataHolder.dataBtn.text = res.getString(R.string.deposit)
-                dataHolder.accountTxt.setTextColor(res.getColor(
-                    R.color.colorDeposit,
-                    dataHolder.itemView.context.theme
-                ))
+                shape.color = appColorSL(R.color.colorDeposit)
+                dataHolder.dataBtn.text = appTxt(R.string.deposit)
+                dataHolder.accountTxt.setTextColor(appColor(R.color.colorDeposit))
             } else {
-                shape.color = res.getColorStateList(
-                    R.color.colorWithdrawal,
-                    dataHolder.itemView.context.theme
-                )
-                dataHolder.dataBtn.text = res.getString(R.string.withdrawal)
-                dataHolder.accountTxt.setTextColor(res.getColor(
-                    R.color.colorWithdrawal,
-                    dataHolder.itemView.context.theme
-                ))
+                shape.color = appColorSL(R.color.colorWithdrawal)
+                dataHolder.dataBtn.text = appTxt(R.string.withdrawal)
+                dataHolder.accountTxt.setTextColor(appColor(R.color.colorWithdrawal))
             }
             dataHolder.nameTxt.text = dataItem.name
-            dataHolder.accountTxt.text = intToStr(dataItem.money, suffix = res.getString(R.string.won))
+            dataHolder.accountTxt.text = intToStr(dataItem.money, suffix = appStr(R.string.won))
         }
 
         with (holder.itemView) {

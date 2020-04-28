@@ -1,6 +1,5 @@
 package maw.mobet
 
-import android.content.Context
 import android.os.Build
 import android.util.TypedValue
 import android.widget.TextView
@@ -9,6 +8,7 @@ import maw.mobet.api.AppService
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import splitties.init.appCtx
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -67,11 +67,11 @@ fun intToStr(num: Int, prefix: String = "", suffix: String = ""): String {
     return prefix + DecimalFormat("###,###").format(num) + suffix
 }
 
-fun dpToPx(context: Context, dp: Float): Float {
+fun dpToPx(dp: Float): Float {
     return TypedValue.applyDimension(
         TypedValue.COMPLEX_UNIT_DIP,
         dp,
-        context.resources.displayMetrics
+        appCtx.resources.displayMetrics
     )
 }
 
