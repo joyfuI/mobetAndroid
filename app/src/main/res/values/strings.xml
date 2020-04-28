@@ -14,6 +14,8 @@
     <string name="day">일</string>
     <string name="email">이메일</string>
     <string name="passwd">비밀번호</string>
+    <string name="accept">수락</string>
+    <string name="reject">거절</string>
 
     <!-- 로그인 -->
     <string name="login_email_hint">이메일을 입력해주세요</string>

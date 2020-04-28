@@ -1,5 +1,6 @@
 package maw.mobet.notify
 
+import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,6 +28,14 @@ class MyAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.list_item_notify, parent, false)
+        val res = view.resources
+        var shape: GradientDrawable
+
+        shape = view.accept_btn.background as GradientDrawable
+        shape.color = res.getColorStateList(R.color.colorDeposit, view.context.theme)
+        shape = view.reject_btn.background as GradientDrawable
+        shape.color = res.getColorStateList(R.color.colorWithdrawal, view.context.theme)
+
         return ViewHolder(view)
     }
 
@@ -39,7 +48,6 @@ class MyAdapter(
             .into(holder.profileImg)
         holder.profileTxt.text = item.name
         holder.msgTxt.text = item.msg
-
 
         with (holder.itemView) {
             tag = item
