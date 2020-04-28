@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="maw.mobet">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -11,12 +12,18 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".SignupActivity" />
-        <activity android:name=".LoginActivity" />
+        android:theme="@style/AppTheme"
+        tools:ignore="LockedOrientationActivity">
+        <activity
+            android:name=".SignupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SplashActivity"
-            android:noHistory="true">
+            android:noHistory="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,9 +32,14 @@
         </activity>
         <activity
             android:name=".CategoryActivity"
-            android:theme="@style/DialogTheme" />
-        <activity android:name=".CreategameActivity" />
-        <activity android:name=".MainActivity" />
+            android:theme="@style/DialogTheme"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CreategameActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
