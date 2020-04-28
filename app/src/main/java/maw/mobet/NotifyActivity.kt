@@ -13,6 +13,7 @@ import maw.mobet.notify.MyAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import splitties.resources.txt
 import splitties.toast.toast
 
 class NotifyActivity : AppCompatActivity() {
@@ -44,7 +45,7 @@ class NotifyActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<List<NotifyListItem>>, t: Throwable) {
-                toast("${resources.getString(R.string.network_error)}\n${t.localizedMessage}")
+                toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
             }
         })
     }

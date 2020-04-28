@@ -1,18 +1,18 @@
 package maw.mobet.ui.account
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import maw.mobet.R
 import maw.mobet.RetrofitClient
 import maw.mobet.api.HistoryItem
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import splitties.resources.appTxt
 import splitties.toast.toast
 
-class AccountViewModel(application: Application) : AndroidViewModel(application) {
+class AccountViewModel() : ViewModel() {
     private val _list = MutableLiveData<List<HistoryItem>>().apply {
         loadData()
     }
@@ -31,7 +31,7 @@ class AccountViewModel(application: Application) : AndroidViewModel(application)
             }
 
             override fun onFailure(call: Call<List<HistoryItem>>, t: Throwable) {
-                toast("${getApplication<Application>().resources.getString(R.string.network_error)}\n${t.localizedMessage}")
+                toast("${appTxt(R.string.network_error)}\n${t.localizedMessage}")
             }
         })
     }

@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.activity_category.*
 import maw.mobet.category.CategoryListItem
 import maw.mobet.category.MyAdapter
 import maw.mobet.category.MyItemDecoration
+import splitties.resources.strArray
 
 class CategoryActivity : AppCompatActivity(), MyAdapter.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,7 +17,7 @@ class CategoryActivity : AppCompatActivity(), MyAdapter.OnClickListener {
         setContentView(R.layout.activity_category)
 
         val drawableArr = resources.obtainTypedArray(R.array.category_drawable)
-        val titleArr = resources.getStringArray(R.array.category)
+        val titleArr = strArray(R.array.category)
 
         val categoryList = mutableListOf<CategoryListItem>()
         for (i in titleArr.indices) {

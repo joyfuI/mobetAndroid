@@ -1,18 +1,18 @@
 package maw.mobet.ui.home
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import maw.mobet.R
 import maw.mobet.RetrofitClient
 import maw.mobet.api.HomeListItem
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import splitties.resources.appTxt
 import splitties.toast.toast
 
-class HomeViewModel(application: Application) : AndroidViewModel(application) {
+class HomeViewModel() : ViewModel() {
     private val _list = MutableLiveData<List<HomeListItem>>().apply {
         loadData()
     }
@@ -31,7 +31,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             }
 
             override fun onFailure(call: Call<List<HomeListItem>>, t: Throwable) {
-                toast("${getApplication<Application>().resources.getString(R.string.network_error)}\n${t.localizedMessage}")
+                toast("${appTxt(R.string.network_error)}\n${t.localizedMessage}")
             }
         })
     }

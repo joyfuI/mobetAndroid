@@ -14,6 +14,8 @@ import maw.mobet.api.ResultItem
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import splitties.resources.txt
+import splitties.resources.txtArray
 import splitties.toast.toast
 import java.util.*
 
@@ -29,8 +31,8 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
 
         // Spinner
         val items = listOf(
-            resources.getString(R.string.creategame_price_less),
-            resources.getString(R.string.creategame_price_greater)
+            txt(R.string.creategame_price_less),
+            txt(R.string.creategame_price_greater)
         )
         price_cmb.adapter = ArrayAdapter(
             this,
@@ -79,9 +81,9 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
             title_edit -> {
                 if (title_edit.text.toString().isEmpty()) {
                     title_edit.hint = null
-                    title_edit_l.error = resources.getString(R.string.creategame_title_hint)
+                    title_edit_l.error = txt(R.string.creategame_title_hint)
                 } else {
-                    title_edit.hint = resources.getString(R.string.creategame_title_hint)
+                    title_edit.hint = txt(R.string.creategame_title_hint)
                     title_edit_l.error = null
                 }
             }
@@ -93,7 +95,7 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
                         Integer.parseInt(greater_edit.text.toString())
                     }
                 } catch (e: NumberFormatException) {
-                    greater_edit_l.error = resources.getString(R.string.not_number)
+                    greater_edit_l.error = txt(R.string.not_number)
                 }
             }
             // 참가조건 이하
@@ -104,7 +106,7 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
                         Integer.parseInt(less_edit.text.toString())
                     }
                 } catch (e: NumberFormatException) {
-                    less_edit_l.error = resources.getString(R.string.not_number)
+                    less_edit_l.error = txt(R.string.not_number)
                 }
             }
             // 금액
@@ -113,13 +115,13 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
                 try {
                     if (price_edit.text.toString().isEmpty()) {
                         price_edit.hint = null
-                        price_edit_l.error = resources.getString(R.string.creategame_price_hint)
+                        price_edit_l.error = txt(R.string.creategame_price_hint)
                     } else {
-                        title_edit.hint = resources.getString(R.string.creategame_price_hint)
+                        title_edit.hint = txt(R.string.creategame_price_hint)
                         Integer.parseInt(price_edit.text.toString())
                     }
                 } catch (e: NumberFormatException) {
-                    price_edit_l.error = resources.getString(R.string.not_number)
+                    price_edit_l.error = txt(R.string.not_number)
                 }
             }
         }
@@ -142,7 +144,7 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
                         edit.setText(cal.time.toString("yyyy-MM-dd"))
 
                         if (diffDate(today, cal.time) < 1) {
-                            editL.error = resources.getString(R.string.todate_less_date)
+                            editL.error = txt(R.string.todate_less_date)
                         } else {
                             editL.error = null
                         }
@@ -152,7 +154,7 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
                                 end_edit.text.toString().toDate()!!
                             ) < 0
                         ) {
-                            end_edit_l.error = resources.getString(R.string.enddate_less_date)
+                            end_edit_l.error = txt(R.string.enddate_less_date)
                         } else {
                             end_edit_l.error = null
                         }
@@ -183,12 +185,12 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
                             finish()
                             return
                         }
-                        toast("${resources.getString(R.string.error)}\n${result?.message}")
+                        toast("${txt(R.string.error)}\n${result?.message}")
                         create_btn.isClickable = true
                     }
 
                     override fun onFailure(call: Call<ResultItem>, t: Throwable) {
-                        toast("${resources.getString(R.string.network_error)}\n${t.localizedMessage}")
+                        toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
                         create_btn.isClickable = true
                     }
                 })
@@ -203,7 +205,7 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
             // 카테고리 선택
             if (resultCode == RESULT_OK) {
                 val drawableArr = resources.obtainTypedArray(R.array.category_drawable)
-                val titleArr = resources.getStringArray(R.array.category)
+                val titleArr = txtArray(R.array.category)
                 val position = data!!.getIntExtra("result", -1)
 
 //                category_txt.visibility = View.GONE

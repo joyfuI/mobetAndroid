@@ -17,6 +17,8 @@ import maw.mobet.api.SignupData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import splitties.resources.txt
+import splitties.resources.txtArray
 import splitties.toast.toast
 
 class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
@@ -46,7 +48,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
         email_cmb.adapter = ArrayAdapter(
             this,
             R.layout.spinner_item2,
-            resources.getStringArray(R.array.email)
+            txtArray(R.array.email)
         )
         email_cmb.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
@@ -54,7 +56,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                     email2_edit.isEnabled = true
                 } else {
                     email2_edit.isEnabled = false
-                    val emailArr = resources.getStringArray(R.array.email)
+                    val emailArr = txtArray(R.array.email)
                     email2_edit.setText(emailArr[p2])
                 }
             }
@@ -88,14 +90,14 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
             // 비밀번호
             passwd_edit -> {
                 if (passwd_edit.text.toString().isEmpty()) {
-                    passwd_edit_l.error = resources.getString(R.string.not_passwd)
+                    passwd_edit_l.error = txt(R.string.not_passwd)
                 } else {
                     passwd_edit_l.error = null
                 }
             }
             passwd2_edit -> {
                 if (passwd_edit.text.toString() != passwd2_edit.text.toString()) {
-                    passwd2_edit_l.error = resources.getString(R.string.mis_passwd)
+                    passwd2_edit_l.error = txt(R.string.mis_passwd)
                 } else {
                     passwd2_edit_l.error = null
                 }
@@ -107,12 +109,12 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                     intArrayOf(errorColor)
                 ))
                 if (nick_edit.text.toString().isEmpty()) {
-                    nick_edit_l.error = resources.getString(R.string.not_nick)
+                    nick_edit_l.error = txt(R.string.not_nick)
                 } else if (!nickOk) {
-                    nick_edit_l.error = resources.getString(R.string.not_nick_ok)
+                    nick_edit_l.error = txt(R.string.not_nick_ok)
                 } else if (nickOk) {
                     nick_edit_l.setErrorTextColor(getColorStateList(R.color.colorControlNormal))
-                    nick_edit_l.error = resources.getString(R.string.nick_ok)
+                    nick_edit_l.error = txt(R.string.nick_ok)
                 } else {
                     nick_edit_l.error = null
                 }
@@ -174,16 +176,16 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                             nick_edit_l.setErrorTextColor(
                                 getColorStateList(R.color.colorControlNormal)
                             )
-                            nick_edit_l.error = resources.getString(R.string.nick_ok)
+                            nick_edit_l.error = txt(R.string.nick_ok)
                             nickOk = true
                             return
                         }
-                        toast("${resources.getString(R.string.error)}\n${result?.message}")
+                        toast("${txt(R.string.error)}\n${result?.message}")
                         nick_btn.isClickable = true
                     }
 
                     override fun onFailure(call: Call<ResultItem>, t: Throwable) {
-                        toast("${resources.getString(R.string.network_error)}\n${t.localizedMessage}")
+                        toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
                         nick_btn.isClickable = true
                     }
                 })
@@ -210,12 +212,12 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                             finish()
                             return
                         }
-                        toast("${resources.getString(R.string.error)}\n${result?.message}")
+                        toast("${txt(R.string.error)}\n${result?.message}")
                         signup_btn.isClickable = true
                     }
 
                     override fun onFailure(call: Call<ResultItem>, t: Throwable) {
-                        toast("${resources.getString(R.string.network_error)}\n${t.localizedMessage}")
+                        toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
                         signup_btn.isClickable = true
                     }
                 })

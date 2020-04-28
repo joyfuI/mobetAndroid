@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.fragment_account.*
 import maw.mobet.R
 import maw.mobet.ui.account.history.HistoryFragment
 import maw.mobet.ui.account.statistics.StatisticsFragment
+import splitties.resources.txt
 
 class AccountFragment : Fragment() {
     override fun onCreateView(
@@ -22,8 +23,8 @@ class AccountFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val tabText = listOf(
-            resources.getString(R.string.tab_account_history),
-            resources.getString(R.string.tab_account_statistics)
+            txt(R.string.tab_account_history),
+            txt(R.string.tab_account_statistics)
         )
 
         view_pager.adapter = MyPagerAdapter(this, listOf(

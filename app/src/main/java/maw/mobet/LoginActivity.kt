@@ -10,6 +10,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import splitties.activities.start
+import splitties.resources.txt
 import splitties.toast.toast
 
 class LoginActivity : AppCompatActivity() {
@@ -46,12 +47,12 @@ class LoginActivity : AppCompatActivity() {
                             finish()
                             return
                         }
-                        toast("${resources.getString(R.string.error)}\n${result?.message}")
+                        toast("${txt(R.string.error)}\n${result?.message}")
                         login_btn.isClickable = true
                     }
 
                     override fun onFailure(call: Call<LoginItem>, t: Throwable) {
-                        toast("${resources.getString(R.string.network_error)}\n${t.localizedMessage}")
+                        toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
                         login_btn.isClickable = true
                     }
                 })
