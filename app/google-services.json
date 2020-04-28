@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "190674933444",
+    "firebase_url": "https://mobet-e7807.firebaseio.com",
+    "project_id": "mobet-e7807",
+    "storage_bucket": "mobet-e7807.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:190674933444:android:0ffc7a2bfd3e43f1711b91",
+        "android_client_info": {
+          "package_name": "maw.mobet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "190674933444-b48njhjaek8c19pkmr95l07391i484vg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "maw.mobet",
+            "certificate_hash": "89c695185d19ca8c9b8be532bfaecdcf6195681a"
+          }
+        },
+        {
+          "client_id": "190674933444-nojmc0bpo679v9vjgkmuksc84tc43mbg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMOTDc5wH8WpSa3wO_TWJBNEvlsV8_Adw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "190674933444-nojmc0bpo679v9vjgkmuksc84tc43mbg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
