@@ -18,6 +18,9 @@ interface AppService {
     @GET("homelist.json")
     fun homeList(): Call<List<HomeListItem>>
 
+    @GET("notifylist.json")
+    fun notifyList(): Call<List<NotifyListItem>>
+
     @GET("historylist.json")
     fun historyList(): Call<List<HistoryItem>>
 

@@ -15,6 +15,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="LockedOrientationActivity">
         <activity
+            android:name=".NotifyActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".SignupActivity"
             android:screenOrientation="portrait" />
         <activity

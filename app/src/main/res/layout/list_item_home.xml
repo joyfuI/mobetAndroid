@@ -43,7 +43,7 @@
         <TextView android:id="@+id/title_top_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/nanumsquare_b"
+            android:fontFamily="@font/nanumsquare_r"
             android:textSize="12sp"
             android:textColor="@color/colorWhiteText"
             android:letterSpacing="0.1"
