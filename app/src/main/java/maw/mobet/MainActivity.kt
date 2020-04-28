@@ -1,6 +1,5 @@
 package maw.mobet
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.custom_actionbar.*
+import splitties.activities.start
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,8 +16,7 @@ class MainActivity : AppCompatActivity() {
 
         // 액션바
         noti_img.setOnClickListener {
-            val intent = Intent(this, NotifyActivity::class.java)
-            startActivity(intent)
+            start<NotifyActivity>()
         }
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -38,8 +37,7 @@ class MainActivity : AppCompatActivity() {
         when (view) {
             // 플러스 버튼
             fab -> {
-                val intent = Intent(this, CreategameActivity::class.java)
-                startActivity(intent)
+                start<CreategameActivity>()
             }
         }
     }

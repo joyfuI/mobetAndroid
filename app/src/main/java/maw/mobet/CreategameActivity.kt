@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.activity_creategame.*
@@ -15,6 +14,7 @@ import maw.mobet.api.ResultItem
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import splitties.toast.toast
 import java.util.*
 
 class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
@@ -183,22 +183,12 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
                             finish()
                             return
                         }
-                        Toast.makeText(
-                            this@CreategameActivity,
-                            resources.getString(R.string.error) + "\n" +
-                                    result?.message,
-                            Toast.LENGTH_LONG
-                        ).show()
+                        toast("${resources.getString(R.string.error)}\n${result?.message}")
                         create_btn.isClickable = true
                     }
 
                     override fun onFailure(call: Call<ResultItem>, t: Throwable) {
-                        Toast.makeText(
-                            this@CreategameActivity,
-                            resources.getString(R.string.network_error) + "\n" +
-                                    t.localizedMessage,
-                            Toast.LENGTH_LONG
-                        ).show()
+                        toast("${resources.getString(R.string.network_error)}\n${t.localizedMessage}")
                         create_btn.isClickable = true
                     }
                 })
@@ -251,7 +241,7 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
 
         when {
             title.isEmpty() -> {
-                toast(resources.getString(R.string.creategame_title_hint))
+                toast(R.string.creategame_title_hint)
                 return null
             }
 
@@ -281,19 +271,15 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
             }
 
             price == null -> {
-                toast(resources.getString(R.string.creategame_price_hint))
+                toast(R.string.creategame_price_hint)
                 return null
             }
 
             category == -1 -> {
-                toast(resources.getString(R.string.not_category))
+                toast(R.string.not_category)
                 return null
             }
         }
         return CreategameData(title, public, greater, less, start, end, price!!, category)
-    }
-
-    private fun toast(msg: String) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 }

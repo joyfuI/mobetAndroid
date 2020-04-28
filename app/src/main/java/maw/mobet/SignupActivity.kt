@@ -7,7 +7,6 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import kotlinx.android.synthetic.main.activity_signup.*
@@ -18,6 +17,7 @@ import maw.mobet.api.SignupData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import splitties.toast.toast
 
 class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
     var nickOk = false
@@ -158,7 +158,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                 if (nickOk) {
                     return
                 } else if (nick_edit.text.toString().isEmpty()) {
-                    toast(resources.getString(R.string.not_nick))
+                    toast(R.string.not_nick)
                     return
                 }
                 nick_btn.isClickable = false
@@ -178,22 +178,12 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                             nickOk = true
                             return
                         }
-                        Toast.makeText(
-                            this@SignupActivity,
-                            resources.getString(R.string.error) + "\n" +
-                                    result?.message,
-                            Toast.LENGTH_LONG
-                        ).show()
+                        toast("${resources.getString(R.string.error)}\n${result?.message}")
                         nick_btn.isClickable = true
                     }
 
                     override fun onFailure(call: Call<ResultItem>, t: Throwable) {
-                        Toast.makeText(
-                            this@SignupActivity,
-                            resources.getString(R.string.network_error) + "\n" +
-                                    t.localizedMessage,
-                            Toast.LENGTH_LONG
-                        ).show()
+                        toast("${resources.getString(R.string.network_error)}\n${t.localizedMessage}")
                         nick_btn.isClickable = true
                     }
                 })
@@ -216,30 +206,16 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                     ) {
                         val result = response.body()
                         if (result?.code == 0) {
-                            Toast.makeText(
-                                this@SignupActivity,
-                                resources.getString(R.string.signup_ok),
-                                Toast.LENGTH_LONG
-                            ).show()
+                            toast(R.string.signup_ok)
                             finish()
                             return
                         }
-                        Toast.makeText(
-                            this@SignupActivity,
-                            resources.getString(R.string.error) + "\n" +
-                                    result?.message,
-                            Toast.LENGTH_LONG
-                        ).show()
+                        toast("${resources.getString(R.string.error)}\n${result?.message}")
                         signup_btn.isClickable = true
                     }
 
                     override fun onFailure(call: Call<ResultItem>, t: Throwable) {
-                        Toast.makeText(
-                            this@SignupActivity,
-                            resources.getString(R.string.network_error) + "\n" +
-                                    t.localizedMessage,
-                            Toast.LENGTH_LONG
-                        ).show()
+                        toast("${resources.getString(R.string.network_error)}\n${t.localizedMessage}")
                         signup_btn.isClickable = true
                     }
                 })
@@ -258,37 +234,37 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
 
         when {
             email == null -> {
-                toast(resources.getString(R.string.not_email))
+                toast(R.string.not_email)
                 return null
             }
 
             !Regex.email.matches(email) -> {
-                toast(resources.getString(R.string.mis_email))
+                toast(R.string.mis_email)
                 return null
             }
 
             passwd_edit.text.toString().isEmpty() -> {
-                toast(resources.getString(R.string.not_passwd))
+                toast(R.string.not_passwd)
                 return null
             }
 
             passwd_edit.text.toString() != passwd2_edit.text.toString() -> {
-                toast(resources.getString(R.string.mis_passwd))
+                toast(R.string.mis_passwd)
                 return null
             }
 
             nick_edit.text.toString().isEmpty() -> {
-                toast(resources.getString(R.string.not_nick))
+                toast(R.string.not_nick)
                 return null
             }
 
             !nickOk -> {
-                toast(resources.getString(R.string.not_nick_ok))
+                toast(R.string.not_nick_ok)
                 return null
             }
 
             !codeOk -> {
-                toast(resources.getString(R.string.not_code))
+                toast(R.string.not_code)
                 return null
             }
         }

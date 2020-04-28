@@ -2,7 +2,6 @@ package maw.mobet
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -14,6 +13,7 @@ import maw.mobet.notify.MyAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import splitties.toast.toast
 
 class NotifyActivity : AppCompatActivity() {
     private val list = MutableLiveData<List<NotifyListItem>>().apply {
@@ -44,13 +44,7 @@ class NotifyActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<List<NotifyListItem>>, t: Throwable) {
-                Toast.makeText(
-                    this@NotifyActivity,
-                    resources.getString(R.string.network_error) +
-                            "\n" +
-                            t.localizedMessage,
-                    Toast.LENGTH_LONG
-                ).show()
+                toast("${resources.getString(R.string.network_error)}\n${t.localizedMessage}")
             }
         })
     }

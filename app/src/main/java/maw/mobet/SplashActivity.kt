@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import splitties.activities.start
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,8 +36,8 @@ class SplashActivity : AppCompatActivity() {
         // 초기화 영역
         RetrofitClient.getInstance()
 
-        val intent = Intent(this, LoginActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-        startActivity(intent)
+        start<LoginActivity> {
+            this.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+        }
     }
 }
