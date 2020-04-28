@@ -1,15 +1,15 @@
 package maw.mobet.category
 
-import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Rect
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import maw.mobet.R
+import splitties.resources.appDrawable
 import kotlin.math.roundToInt
 
-class MyItemDecoration(context: Context) : RecyclerView.ItemDecoration() {
-    private var divider = context.resources.getDrawable(R.drawable.divider, null)
+class MyItemDecoration : RecyclerView.ItemDecoration() {
+    private var divider = appDrawable(R.drawable.divider)!!
     private val bounds = Rect()
 
     override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {

@@ -14,6 +14,7 @@ import maw.mobet.api.HomeListItem
 import maw.mobet.dpToPx
 import maw.mobet.intToStr
 import maw.mobet.toString
+import splitties.resources.appTxtArray
 import kotlin.math.absoluteValue
 
 class MyAdapter(
@@ -42,7 +43,7 @@ class MyAdapter(
             .into(holder.profileImg)
         holder.profileTxt.text = item.name
         holder.titleImg.setImageResource(R.drawable.ic_launcher_background)
-        val category = holder.itemView.resources.getStringArray(R.array.category)
+        val category = appTxtArray(R.array.category)
         val startDate = item.startDate.toString("MM.dd")
         val endDate = item.endDate.toString("MM.dd")
         val text = "[${category[item.category]}] $startDate ~ $endDate"

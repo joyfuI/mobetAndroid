@@ -26,7 +26,7 @@ class CategoryActivity : AppCompatActivity(), MyAdapter.OnClickListener {
         }
 
         list_view.layoutManager = GridLayoutManager(this, 3)
-        list_view.addItemDecoration(MyItemDecoration(this))
+        list_view.addItemDecoration(MyItemDecoration())
         list_view.adapter = MyAdapter(categoryList, this)
 
         drawableArr.recycle()
