@@ -54,15 +54,17 @@ class LoginActivity : AppCompatActivity() {
 
                 login_btn.isClickable = false
                 // 로그인 처리
-                auth.signInWithEmailAndPassword(email_edit.toString(), passwd_edit.toString())
-                    .addOnCompleteListener(this) { task ->
-                        if (task.isSuccessful) {
-                            onStart()
-                        } else {
-                            toast(R.string.login_error)
-                            login_btn.isClickable = true
-                        }
+                auth.signInWithEmailAndPassword(
+                    email_edit.text.toString(),
+                    passwd_edit.text.toString()
+                ).addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        onStart()
+                    } else {
+                        toast(R.string.login_error)
+                        login_btn.isClickable = true
                     }
+                }
             }
             // 회원가입
             signup_txt -> {
