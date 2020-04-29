@@ -10,6 +10,7 @@ import splitties.toast.toast
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
+    private var isClickable = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +39,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun onclick(view: View) {
+        if (!isClickable) {
+            return
+        }
         when (view) {
             // 로그인
             login_btn -> {
@@ -53,7 +57,7 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
 
-                login_btn.isClickable = false
+                isClickable = false
                 // 로그인 처리
                 auth.signInWithEmailAndPassword(
                     email_edit.text.toString(),
@@ -63,7 +67,7 @@ class LoginActivity : AppCompatActivity() {
                         onStart()
                     } else {
                         toast(R.string.login_error)
-                        login_btn.isClickable = true
+                        isClickable = true
                     }
                 }
             }

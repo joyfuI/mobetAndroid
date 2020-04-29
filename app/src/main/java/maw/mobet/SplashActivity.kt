@@ -16,11 +16,11 @@ class SplashActivity : AppCompatActivity() {
 
         // xml을 사용하지 않고 그리기
         val layout = LinearLayout(this)
-        val LayoutParams = LinearLayout.LayoutParams(
+        val layoutParams = LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.MATCH_PARENT
         )
-        layout.setLayoutParams(LayoutParams)
+        layout.layoutParams = layoutParams
         layout.gravity = Gravity.CENTER
         val textView = TextView(this)
         textView.text = getString(R.string.app_name)

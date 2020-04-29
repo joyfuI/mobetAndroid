@@ -26,6 +26,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
     private lateinit var auth: FirebaseAuth
     private var nickOk = false
     private var codeOk = false
+    private var isClickable = true
     private val errorColor by lazy {
         nick_edit_l.errorCurrentTextColors
     }
@@ -140,6 +141,9 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
     }
 
     fun onclick(view: View) {
+        if (!isClickable) {
+            return
+        }
         when (view) {
             // 회원가입 전 다음 버튼
             next_btn -> {
@@ -215,7 +219,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
             // 회원가입
             signup_btn -> {
                 val data = makeDate() ?: return
-                signup_btn.isClickable = false
+                isClickable = false
 
                 // 계정 생성
                 auth.createUserWithEmailAndPassword(data.email, passwd_edit.text.toString())
@@ -238,16 +242,17 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                                         return
                                     }
                                     toast("${txt(R.string.error)} ${result?.code}")
-                                    signup_btn.isClickable = true
+                                    isClickable = true
                                 }
 
                                 override fun onFailure(call: Call<ResultItem>, t: Throwable) {
                                     toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
-                                    signup_btn.isClickable = true
+                                    isClickable = true
                                 }
                             })
                         } else {
                             toast("${txt(R.string.signup_error)}\n${task.exception}")
+                            isClickable = true
                         }
                     }
             }
