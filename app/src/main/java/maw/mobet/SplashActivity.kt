@@ -37,7 +37,7 @@ class SplashActivity : AppCompatActivity() {
         RetrofitClient.getInstance()
 
         start<LoginActivity> {
-            this.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
         }
     }
 }

@@ -52,6 +52,10 @@
     <string name="creategame_category">카테고리\n선택하기</string>
     <string name="creategame_button">생성</string>
 
+    <!-- 설정 -->
+    <string name="setting_logout">로그아웃</string>
+    <string name="setting_logout_alert">정말로 로그아웃하시겠습니까?</string>
+
     <!-- 카테고리 -->
     <string name="category">카테고리</string>
     <string name="category_all">전체</string>

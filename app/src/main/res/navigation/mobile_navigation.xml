@@ -32,6 +32,5 @@
     <fragment
         android:id="@+id/navigation_setting"
         android:name="maw.mobet.ui.setting.SettingFragment"
-        android:label="@string/title_setting"
-        tools:layout="@layout/fragment_setting" />
+        android:label="@string/title_setting" />
 </navigation>
