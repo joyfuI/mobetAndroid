@@ -56,10 +56,12 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 if (p2 == 0) {
                     email2_edit.isEnabled = true
+                    email1_edit.nextFocusDownId = email2_edit.id
                 } else {
                     email2_edit.isEnabled = false
                     val emailArr = txtArray(R.array.email)
                     email2_edit.setText(emailArr[p2])
+                    email1_edit.nextFocusDownId = passwd_edit.id
                 }
             }
 
@@ -212,15 +214,17 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
             }
             // 회원가입
             signup_btn -> {
+                val data = makeDate() ?: return
                 signup_btn.isClickable = false
 
-                val data = makeDate() ?: return
+                // 계정 생성
                 auth.createUserWithEmailAndPassword(data.email, passwd_edit.text.toString())
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
                             val user = auth.currentUser!!
                             data.uid = user.uid
 
+                            // 서버로 계정 정보 전송
                             val service = RetrofitClient.getInstance()
                             val dataCall = service.signup(data)
                             dataCall.enqueue(object : Callback<ResultItem> {
@@ -243,7 +247,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                                 }
                             })
                         } else {
-                            toast(txt(R.string.signup_error))
+                            toast("${txt(R.string.signup_error)}\n${task.exception}")
                         }
                     }
             }

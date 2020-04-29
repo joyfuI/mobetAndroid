@@ -76,8 +76,6 @@
                         android:layout_height="wrap_content"
                         android:inputType="text"
                         android:textSize="13.8sp"
-                        android:textColor="#151026"
-                        android:importantForAutofill="no"
                         android:nextFocusDown="@id/email2_edit"
                         style="@style/EditTheme" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -108,8 +106,6 @@
                         android:layout_height="wrap_content"
                         android:inputType="text"
                         android:textSize="13.8sp"
-                        android:textColor="#151026"
-                        android:importantForAutofill="no"
                         android:nextFocusDown="@id/passwd_edit"
                         style="@style/EditTheme" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -154,8 +150,6 @@
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
                         android:textSize="13.8sp"
-                        android:textColor="#151026"
-                        android:importantForAutofill="no"
                         android:nextFocusDown="@id/passwd2_edit"
                         style="@style/EditTheme" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -190,8 +184,6 @@
                         android:layout_height="wrap_content"
                         android:inputType="textPassword"
                         android:textSize="13.8sp"
-                        android:textColor="#151026"
-                        android:importantForAutofill="no"
                         android:nextFocusDown="@id/nick_edit"
                         style="@style/EditTheme" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -227,8 +219,6 @@
                         android:layout_height="wrap_content"
                         android:inputType="text"
                         android:textSize="13.8sp"
-                        android:textColor="#151026"
-                        android:importantForAutofill="no"
                         android:nextFocusDown="@id/code_edit"
                         style="@style/EditTheme" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -280,8 +270,6 @@
                         android:layout_height="wrap_content"
                         android:inputType="number"
                         android:textSize="13.8sp"
-                        android:textColor="#151026"
-                        android:importantForAutofill="no"
                         style="@style/EditTheme" />
                 </com.google.android.material.textfield.TextInputLayout>
                 <Button android:id="@+id/code_btn"

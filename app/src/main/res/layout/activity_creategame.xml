@@ -58,7 +58,6 @@
                     android:maxLength="20"
                     android:textSize="16.3sp"
                     android:hint="@string/creategame_title_hint"
-                    android:importantForAutofill="no"
                     android:nextFocusDown="@id/greater_edit"
                     style="@style/EditTheme" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -118,7 +117,6 @@
                     android:inputType="number"
                     android:textSize="16.3sp"
                     android:hint="@string/creategame_condition_greater"
-                    android:importantForAutofill="no"
                     android:nextFocusDown="@id/less_edit"
                     style="@style/EditTheme" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -162,7 +160,6 @@
                     android:inputType="number"
                     android:textSize="16.3sp"
                     android:hint="@string/creategame_condition_less"
-                    android:importantForAutofill="no"
                     android:nextFocusDown="@id/start_edit"
                     style="@style/EditTheme" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -195,7 +192,6 @@
                     android:inputType="date"
                     android:textSize="13.8sp"
                     android:hint="YYYY-MM-DD"
-                    android:importantForAutofill="no"
                     android:nextFocusDown="@id/end_edit"
                     android:onClick="onClick"
                     style="@style/EditTheme" />
@@ -227,7 +223,6 @@
                     android:inputType="date"
                     android:textSize="13.8sp"
                     android:hint="YYYY-MM-DD"
-                    android:importantForAutofill="no"
                     android:nextFocusDown="@id/price_edit"
                     android:onClick="onClick"
                     style="@style/EditTheme" />
@@ -261,7 +256,6 @@
                     android:inputType="number"
                     android:textSize="16.3sp"
                     android:hint="@string/creategame_price_hint"
-                    android:importantForAutofill="no"
                     style="@style/EditTheme" />
             </com.google.android.material.textfield.TextInputLayout>
             <Spinner android:id="@+id/price_cmb"

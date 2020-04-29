@@ -44,8 +44,6 @@
                 android:inputType="textEmailAddress"
                 android:textSize="15sp"
                 android:hint="@string/login_email_hint"
-                android:textColorHint="#4D7C7C7C"
-                android:importantForAutofill="no"
                 style="@style/EditTheme" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -69,8 +67,6 @@
                 android:inputType="textPassword"
                 android:textSize="15sp"
                 android:hint="@string/login_passwd_hint"
-                android:textColorHint="#4D7C7C7C"
-                android:importantForAutofill="no"
                 style="@style/EditTheme" />
         </com.google.android.material.textfield.TextInputLayout>
 

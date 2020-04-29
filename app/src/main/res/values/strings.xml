@@ -77,6 +77,7 @@
     <!-- 토스트 메시지 -->
     <string name="error">오류!!!</string>
     <string name="network_error">네트워크 오류!!!</string>
+    <string name="login_error">이메일과 비밀번호를 확인해주세요</string>
     <string name="signup_error">회원가입 오류!!!</string>
     <string name="signup_login">이미 로그인되어 있습니다</string>
     <string name="not_email">이메일 주소를 입력해주세요</string>
