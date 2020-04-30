@@ -51,6 +51,7 @@ object Regex {
     val alphabetLower = """[a-z]""".toRegex()
     val number = """\d""".toRegex()
     val specialChar = """[`~!@#$%^&*()\-_=+\\|\[{\]};:'",<.>/?]""".toRegex()
+    val phone = """^010-?\d{3,4}-?\d{4}$""".toRegex()
 }
 
 fun String.toDate(): Date? {

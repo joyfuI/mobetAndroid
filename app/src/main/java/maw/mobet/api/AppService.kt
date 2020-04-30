@@ -12,6 +12,9 @@ interface AppService {
     @POST("post.php")
     fun nickCheck(@Body data: NickData): Call<ResultItem>
 
+    @POST("post.php")
+    fun phoneCheck(@Body data: PhoneData): Call<ResultItem>
+
     @GET("homelist.json")
     fun homeList(): Call<List<HomeListItem>>
 

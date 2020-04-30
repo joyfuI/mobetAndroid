@@ -9,10 +9,14 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
+import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthProvider
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.custom_actionbar.*
 import maw.mobet.api.NickData
+import maw.mobet.api.PhoneData
 import maw.mobet.api.ResultItem
 import maw.mobet.api.SignupData
 import retrofit2.Call
@@ -21,15 +25,17 @@ import retrofit2.Response
 import splitties.resources.txt
 import splitties.resources.txtArray
 import splitties.toast.toast
+import java.util.concurrent.TimeUnit
 
 class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
     private lateinit var auth: FirebaseAuth
-    private var nickOk = false
-    private var codeOk = false
+    private var nickOk = 0  // 0: 확인x, 1: 사용가능, 2: 중복
+    private var phoneOk = 0 // 0: 확인x, 1: 사용가능, 2: 중복, 3: 인증완료, 4: 코드전송, 5: 잘못된코드
     private var isClickable = true
     private val errorColor by lazy {
         nick_edit_l.errorCurrentTextColors
     }
+    private lateinit var storedVerificationId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +43,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
 
         before.visibility = View.VISIBLE
         after.visibility = View.GONE
+        code_l.visibility = View.GONE
         errorColor  // 초기화
 
         // 액션바
@@ -72,10 +79,20 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
 
         // EditText
         nick_edit.addTextChangedListener {
-            if (nickOk) {
-                nickOk = false
+            if (nickOk != 0) {
+                nickOk = 0
                 nick_edit_l.error = null
                 nick_btn.isClickable = true
+            }
+        }
+        phone_edit.addTextChangedListener {
+            if (phoneOk != 0) {
+                phoneOk = 0
+                phone_edit_l.error = null
+                phone_btn.isClickable = true
+                code_l.visibility = View.GONE
+                code_edit_l.error = null
+                code_btn.isClickable = true
             }
         }
 
@@ -84,18 +101,10 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
         passwd_edit.onFocusChangeListener = this
         passwd2_edit.onFocusChangeListener = this
         nick_edit.onFocusChangeListener = this
+        phone_edit.onFocusChangeListener = this
         code_edit.onFocusChangeListener = this
 
         auth = FirebaseAuth.getInstance()
-    }
-
-    override fun onStart() {
-        super.onStart()
-
-        if (auth.currentUser != null) {
-            toast(R.string.signup_login)
-            finish()
-        }
     }
 
     override fun onFocusChange(p0: View?, p1: Boolean) {
@@ -128,13 +137,45 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                 ))
                 if (nick_edit.text.toString().isEmpty()) {
                     nick_edit_l.error = txt(R.string.not_nick)
-                } else if (!nickOk) {
+                } else if (nickOk == 0) {
                     nick_edit_l.error = txt(R.string.not_nick_ok)
-                } else if (nickOk) {
+                } else if (nickOk == 2) {
+                    nick_edit_l.error = txt(R.string.nick_no)
+                } else if (nickOk == 1) {
                     nick_edit_l.setErrorTextColor(getColorStateList(R.color.colorControlNormal))
                     nick_edit_l.error = txt(R.string.nick_ok)
                 } else {
                     nick_edit_l.error = null
+                }
+            }
+            // 전화번호
+            phone_edit -> {
+                if (phone_edit.text.toString().isEmpty()) {
+                    phone_edit_l.error = txt(R.string.not_phone)
+                } else if (!Regex.phone.matches(phone_edit.text.toString())) {
+                    phone_edit_l.error = txt(R.string.mis_phone)
+                } else if (phoneOk == 0) {
+                    phone_edit_l.error = txt(R.string.not_phone_ok)
+                } else if (phoneOk == 2) {
+                    phone_edit_l.error = txt(R.string.phone_no)
+                } else if (phoneOk == 4) {
+                    phone_edit_l.setErrorTextColor(getColorStateList(R.color.colorControlNormal))
+                    phone_edit_l.error = txt(R.string.send_code)
+                } else if (phoneOk == 3) {
+                    phone_edit_l.setErrorTextColor(getColorStateList(R.color.colorControlNormal))
+                    phone_edit_l.error = txt(R.string.code_ok)
+                } else {
+                    phone_edit_l.error = null
+                }
+            }
+            // 인증코드
+            code_edit -> {
+                if (code_edit.text.toString().isEmpty()) {
+                    code_edit_l.error = txt(R.string.not_code)
+                } else if (phoneOk == 5) {
+                    code_edit_l.error = txt(R.string.not_nick_ok)
+                } else {
+                    code_edit_l.error = null
                 }
             }
         }
@@ -178,31 +219,42 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
             }
             // 닉네임 중복확인
             nick_btn -> {
-                if (nickOk) {
+                val nick = nick_edit.text.toString()
+                if (nickOk != 0) {
                     return
-                } else if (nick_edit.text.toString().isEmpty()) {
+                } else if (nick.isEmpty()) {
                     toast(R.string.not_nick)
                     return
                 }
                 nick_btn.isClickable = false
 
                 val service = RetrofitClient.getInstance()
-                val dataCall = service.nickCheck(NickData(nick_edit.text.toString()))
+                val dataCall = service.nickCheck(NickData(nick))
                 dataCall.enqueue(object : Callback<ResultItem> {
                     override fun onResponse(
                         call: Call<ResultItem>, response: Response<ResultItem>
                     ) {
                         val result = response.body()
-                        if (result?.code == 0) {
-                            nick_edit_l.setErrorTextColor(
-                                getColorStateList(R.color.colorControlNormal)
-                            )
-                            nick_edit_l.error = txt(R.string.nick_ok)
-                            nickOk = true
-                            return
+                        when (result?.code) {
+                            // 사용가능
+                            0 -> {
+                                nickOk = 1
+                                nick_edit_l.setErrorTextColor(
+                                    getColorStateList(R.color.colorControlNormal)
+                                )
+                                nick_edit_l.error = txt(R.string.nick_ok)
+                            }
+                            // 중복
+                            1 -> {
+                                nickOk = 2
+                                nick_edit_l.error = txt(R.string.nick_no)
+                            }
+
+                            else -> {
+                                toast("${txt(R.string.error)} ${result?.code}")
+                                nick_btn.isClickable = true
+                            }
                         }
-                        toast("${txt(R.string.error)} ${result?.code}")
-                        nick_btn.isClickable = true
                     }
 
                     override fun onFailure(call: Call<ResultItem>, t: Throwable) {
@@ -211,10 +263,89 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                     }
                 })
             }
+            // 인증코드 전송
+            phone_btn -> {
+                val phone = phone_edit.text.toString()
+                if (phoneOk != 0) {
+                    return
+                } else if (phone.isEmpty()) {
+                    toast(R.string.not_phone)
+                    return
+                } else if (!Regex.phone.matches(phone)) {
+                    toast(R.string.mis_phone)
+                    return
+                }
+                phone_btn.isClickable = false
+
+                val service = RetrofitClient.getInstance()
+                val dataCall = service.phoneCheck(
+                    PhoneData("[^0-9]".toRegex().replace(phone, ""))
+                )
+                dataCall.enqueue(object : Callback<ResultItem> {
+                    override fun onResponse(
+                        call: Call<ResultItem>, response: Response<ResultItem>
+                    ) {
+                        val result = response.body()
+                        when (result?.code) {
+                            // 사용가능
+                            0 -> {
+                                PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                                    "+82 ${phone.removePrefix("0")}",
+                                    60,
+                                    TimeUnit.SECONDS,
+                                    this@SignupActivity,
+                                    callbacks
+                                )
+                            }
+                            // 중복
+                            1 -> {
+                                phoneOk = 2
+                                phone_edit_l.error = txt(R.string.phone_no)
+                            }
+                            // 오류
+                            else -> {
+                                toast("${txt(R.string.error)} ${result?.code}")
+                                phone_btn.isClickable = true
+                            }
+                        }
+                    }
+
+                    override fun onFailure(call: Call<ResultItem>, t: Throwable) {
+                        toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
+                        phone_btn.isClickable = true
+                    }
+                })
+            }
             // 인증코드 확인
             code_btn -> {
-                // 일단 통과
-                codeOk = true
+                val code = code_edit.text.toString()
+                if (phoneOk != 4 && phoneOk != 5) {
+                    return
+                } else if (code.isEmpty()) {
+                    toast(R.string.not_code)
+                    return
+                }
+                code_btn.isClickable = false
+
+                val credential = PhoneAuthProvider.getCredential(
+                    storedVerificationId,
+                    code
+                )
+                auth.signInWithCredential(credential)
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            phoneOk = 3
+                            phone_edit_l.setErrorTextColor(getColorStateList(R.color.colorControlNormal))
+                            phone_edit_l.error = txt(R.string.code_ok)
+                            code_l.visibility = View.GONE
+                        } else {
+                            phoneOk = 5
+                            code_edit_l.error = txt(R.string.not_code_ok)
+                            code_btn.isClickable = true
+                        }
+                        auth.currentUser?.delete()
+                        auth.signOut()
+                    }
             }
             // 회원가입
             signup_btn -> {
@@ -266,6 +397,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
             "${email1_edit.text.toString()}@${email2_edit.text.toString()}"
         }
         val nick = nick_edit.text.toString()
+        val phone = "[^0-9]".toRegex().replace(phone_edit.text.toString(), "")
 
         when {
             email == null -> {
@@ -293,22 +425,32 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                 return null
             }
 
-            nick_edit.text.toString().isEmpty() -> {
+            nick.isEmpty() -> {
                 toast(R.string.not_nick)
                 return null
             }
 
-            !nickOk -> {
+            nickOk != 1 -> {
                 toast(R.string.not_nick_ok)
                 return null
             }
 
-            !codeOk -> {
-                toast(R.string.not_code)
+            phone.isEmpty() -> {
+                toast(R.string.not_phone)
+                return null
+            }
+
+            !Regex.phone.matches(phone) -> {
+                toast(R.string.mis_phone)
+                return null
+            }
+
+            phoneOk != 3 -> {
+                toast(R.string.not_phone_ok)
                 return null
             }
         }
-        return SignupData(email!!, nick, null)
+        return SignupData(email!!, nick, phone)
     }
 
     private fun passwdCheck(str: String): Boolean {
@@ -332,5 +474,34 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
             return false
         }
         return true
+    }
+
+    // 인증코드 전송 콜백
+    val callbacks = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+        // 인증 완료(자동인증)
+        override fun onVerificationCompleted(credential: PhoneAuthCredential) {
+            phoneOk = 3
+            phone_edit_l.setErrorTextColor(getColorStateList(R.color.colorControlNormal))
+            phone_edit_l.error = txt(R.string.code_ok)
+            code_l.visibility = View.GONE
+        }
+        // 인증 실패
+        override fun onVerificationFailed(e: FirebaseException) {
+            toast("${txt(R.string.error)}\n${e.localizedMessage}")
+            phone_btn.isClickable = true
+        }
+        // 코드전송
+        override fun onCodeSent(
+            verificationId: String,
+            token: PhoneAuthProvider.ForceResendingToken
+        ) {
+            phoneOk = 4
+            phone_edit_l.setErrorTextColor(getColorStateList(R.color.colorControlNormal))
+            phone_edit_l.error = txt(R.string.send_code)
+            code_l.visibility = View.VISIBLE
+            code_edit_l.error = null
+            code_btn.isClickable = true
+            storedVerificationId = verificationId
+        }
     }
 }

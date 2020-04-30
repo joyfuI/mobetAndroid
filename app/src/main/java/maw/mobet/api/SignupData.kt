@@ -3,5 +3,6 @@ package maw.mobet.api
 data class SignupData(
     val email: String,
     val nick: String,
-    var uid: String?
+    val phone: String,
+    var uid: String? = null
 )
