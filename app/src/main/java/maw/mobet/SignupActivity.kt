@@ -385,6 +385,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                             toast("${txt(R.string.signup_error)}\n${task.exception}")
                             isClickable = true
                         }
+                        auth.signOut()
                     }
             }
         }

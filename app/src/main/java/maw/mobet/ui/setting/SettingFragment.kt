@@ -23,8 +23,7 @@ class SettingFragment : PreferenceFragmentCompat() {
                     // 로그아웃
                     FirebaseAuth.getInstance().signOut()
                     start<LoginActivity> {
-                        // 애니메이션 x
-                        putExtra("anim", false)
+                        putExtra("anim", false) // 애니메이션 x
                     }
                     requireActivity().finish()
                 }
