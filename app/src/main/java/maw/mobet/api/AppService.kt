@@ -2,7 +2,6 @@ package maw.mobet.api
 
 import retrofit2.Call
 import retrofit2.http.Body
-import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface AppService {
@@ -15,16 +14,19 @@ interface AppService {
     @POST("post.php")
     fun phoneCheck(@Body data: PhoneData): Call<ResultItem>
 
-    @GET("notify.json")
+    @POST("notify.json")
     fun notify(): Call<ResultItem>
 
-    @GET("homelist.json")
+    @POST("post.php")
+    fun notifyRequest(@Body data: NotifyData): Call<ResultItem>
+
+    @POST("homelist.json")
     fun homeList(): Call<List<HomeListItem>>
 
-    @GET("notifylist.json")
+    @POST("notifylist.json")
     fun notifyList(): Call<List<NotifyListItem>>
 
-    @GET("historylist.json")
+    @POST("historylist.json")
     fun historyList(): Call<List<HistoryItem>>
 
     @POST("post.php")

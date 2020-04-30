@@ -3,6 +3,7 @@ package maw.mobet.api
 import java.util.*
 
 data class HomeListItem(
+    val id: Int,
     val name: String,
     val title: String,
     val category: Int,

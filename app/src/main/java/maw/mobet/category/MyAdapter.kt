@@ -3,10 +3,9 @@ package maw.mobet.category
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.list_item_category.view.*
+import kotlinx.android.extensions.LayoutContainer
+import kotlinx.android.synthetic.main.list_item_category.*
 import maw.mobet.R
 
 class MyAdapter(
@@ -29,8 +28,8 @@ class MyAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
 
-        holder.categoryImg.setImageResource(item.category)
-        holder.categoryTxt.text = item.title
+        holder.category_img.setImageResource(item.category)
+        holder.category_txt.text = item.title
 
         with (holder.itemView) {
             // position 저장
@@ -41,8 +40,7 @@ class MyAdapter(
 
     override fun getItemCount(): Int = data.size
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val categoryImg: ImageView = itemView.category_img
-        val categoryTxt: TextView = itemView.category_txt
-    }
+    inner class ViewHolder(
+        override val containerView: View
+    ) : RecyclerView.ViewHolder(containerView), LayoutContainer
 }

@@ -4,27 +4,24 @@ import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import kotlinx.android.extensions.LayoutContainer
+import kotlinx.android.synthetic.main.list_item_notify.*
 import kotlinx.android.synthetic.main.list_item_notify.view.*
 import maw.mobet.R
 import maw.mobet.api.NotifyListItem
 import splitties.dimensions.dip
 import splitties.init.appCtx
 import splitties.resources.appColorSL
+import splitties.resources.appStr
 
 class MyAdapter(
-    private val data: List<NotifyListItem>, private val listener: OnClickListener? = null
+    private val data: MutableList<NotifyListItem>, private val listener: OnClickListener? = null
 ) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
     interface OnClickListener {
-        fun onClick(view: View)
-    }
-
-    private val onClickListener = View.OnClickListener {
-        listener?.onClick(it)
+        fun onClick(view: View, position: Int, delete: () -> Unit)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -46,21 +43,33 @@ class MyAdapter(
         Glide.with(holder.itemView).load(item.imgUrl)
             .apply(RequestOptions().circleCrop())
             .override(appCtx.dip(45))
-            .into(holder.profileImg)
-        holder.profileTxt.text = item.name
-        holder.msgTxt.text = item.msg
+            .into(holder.profile_img)
+        holder.profile_txt.text = item.name
+        var msg = appStr(R.string.notify_msg)
+        msg = msg.replace("{0}", item.name)
+        msg = msg.replace("{1}", item.title)
+        holder.msg_txt.text = msg
 
-        with (holder.itemView) {
-            tag = item
-            setOnClickListener(onClickListener)
+        val onClickListener = View.OnClickListener {
+            listener?.onClick(it, position) {
+                holder.delete()
+            }
         }
+        holder.accept_btn.setOnClickListener(onClickListener)
+        holder.reject_btn.setOnClickListener(onClickListener)
+
+        holder.accept_btn.tag = item
+        holder.reject_btn.tag = item
     }
 
     override fun getItemCount(): Int = data.size
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val profileImg: ImageView = itemView.profile_img
-        val profileTxt: TextView = itemView.profile_txt
-        val msgTxt: TextView = itemView.msg_txt
+    inner class ViewHolder(
+        override val containerView: View
+    ) : RecyclerView.ViewHolder(containerView), LayoutContainer {
+        fun delete() {
+            data.removeAt(adapterPosition)
+            notifyItemRemoved(adapterPosition)
+        }
     }
 }

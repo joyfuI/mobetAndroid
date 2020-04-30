@@ -249,7 +249,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                                 nickOk = 2
                                 nick_edit_l.error = txt(R.string.nick_no)
                             }
-
+                            // 오류
                             else -> {
                                 toast("${txt(R.string.error)} ${result?.code}")
                                 nick_btn.isClickable = true
@@ -279,7 +279,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
 
                 val service = RetrofitClient.getInstance()
                 val dataCall = service.phoneCheck(
-                    PhoneData("[^0-9]".toRegex().replace(phone, ""))
+                    PhoneData(phone.replace("[^0-9]".toRegex(), ""))
                 )
                 dataCall.enqueue(object : Callback<ResultItem> {
                     override fun onResponse(
@@ -398,7 +398,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
             "${email1_edit.text.toString()}@${email2_edit.text.toString()}"
         }
         val nick = nick_edit.text.toString()
-        val phone = "[^0-9]".toRegex().replace(phone_edit.text.toString(), "")
+        val phone = phone_edit.text.toString().replace("[^0-9]".toRegex(), "")
 
         when {
             email == null -> {

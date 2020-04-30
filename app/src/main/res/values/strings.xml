@@ -32,6 +32,9 @@
     <string name="signup_code">인증코드</string>
     <string name="signup_button">회원가입 완료</string>
 
+    <!-- 알림 -->
+    <string name="notify_msg">{0}님이 \'{1}\'에 초대했습니다.</string>
+
     <!-- 경쟁전 생성 -->
     <string name="creategame_title1">경쟁전 생성</string>
     <string name="creategame_title">제목</string>

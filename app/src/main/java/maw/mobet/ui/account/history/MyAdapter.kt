@@ -4,11 +4,10 @@ import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.list_item_history_data.view.*
-import kotlinx.android.synthetic.main.list_item_history_header.view.*
+import kotlinx.android.extensions.LayoutContainer
+import kotlinx.android.synthetic.main.list_item_history_data.*
+import kotlinx.android.synthetic.main.list_item_history_header.*
 import maw.mobet.R
 import maw.mobet.intToStr
 import maw.mobet.toString
@@ -51,31 +50,31 @@ class MyAdapter(
             val headerHolder = holder as HeaderViewHolder
             val headerItem = item as HistoryListHeaderItem
 
-            headerHolder.dateTxt.text = headerItem.date.toString(appStr(R.string.month_day))
+            headerHolder.date_txt.text = headerItem.date.toString(appStr(R.string.month_day))
             if (headerItem.plus != 0) {
-                headerHolder.plusTxt.text = intToStr(headerItem.plus, prefix = "+", suffix = appStr(R.string.won))
-                headerHolder.plusTxt.visibility = View.VISIBLE
+                headerHolder.plus_txt.text = intToStr(headerItem.plus, prefix = "+", suffix = appStr(R.string.won))
+                headerHolder.plus_txt.visibility = View.VISIBLE
             }
             if (headerItem.minus != 0) {
-                headerHolder.minusTxt.text = intToStr(headerItem.minus, suffix = appStr(R.string.won))
-                headerHolder.minusTxt.visibility = View.VISIBLE
+                headerHolder.minus_txt.text = intToStr(headerItem.minus, suffix = appStr(R.string.won))
+                headerHolder.minus_txt.visibility = View.VISIBLE
             }
         } else {
             val dataHolder = holder as DataViewHolder
             val dataItem = item as HistoryListDataItem
 
-            val shape = dataHolder.dataBtn.background as GradientDrawable
+            val shape = dataHolder.data_btn.background as GradientDrawable
             if (dataItem.money > 0) {
                 shape.color = appColorSL(R.color.colorDeposit)
-                dataHolder.dataBtn.text = appTxt(R.string.deposit)
-                dataHolder.accountTxt.setTextColor(appColor(R.color.colorDeposit))
+                dataHolder.data_btn.text = appTxt(R.string.deposit)
+                dataHolder.account_txt.setTextColor(appColor(R.color.colorDeposit))
             } else {
                 shape.color = appColorSL(R.color.colorWithdrawal)
-                dataHolder.dataBtn.text = appTxt(R.string.withdrawal)
-                dataHolder.accountTxt.setTextColor(appColor(R.color.colorWithdrawal))
+                dataHolder.data_btn.text = appTxt(R.string.withdrawal)
+                dataHolder.account_txt.setTextColor(appColor(R.color.colorWithdrawal))
             }
-            dataHolder.nameTxt.text = dataItem.name
-            dataHolder.accountTxt.text = intToStr(dataItem.money, suffix = appStr(R.string.won))
+            dataHolder.name_txt.text = dataItem.name
+            dataHolder.account_txt.text = intToStr(dataItem.money, suffix = appStr(R.string.won))
         }
 
         with (holder.itemView) {
@@ -86,17 +85,10 @@ class MyAdapter(
 
     override fun getItemCount(): Int = data.size
 
-    abstract inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    abstract inner class ViewHolder(
+        override val containerView: View
+    ) : RecyclerView.ViewHolder(containerView), LayoutContainer
 
-    inner class DataViewHolder(itemView: View) : ViewHolder(itemView) {
-        val dataBtn: Button = itemView.data_btn
-        val nameTxt: TextView = itemView.name_txt
-        val accountTxt: TextView = itemView.account_txt
-    }
-
-    inner class HeaderViewHolder(itemView: View) : ViewHolder(itemView) {
-        val dateTxt: TextView = itemView.date_txt
-        val plusTxt: TextView = itemView.plus_txt
-        val minusTxt: TextView = itemView.minus_txt
-    }
+    inner class DataViewHolder(containerView: View) : ViewHolder(containerView)
+    inner class HeaderViewHolder(containerView: View) : ViewHolder(containerView)
 }
