@@ -1,13 +1,401 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.account.statistics.StatisticsFragment">
+    tools:context=".ui.account.statistics.StatisticsFragment"
+    android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginTop="13dp"
+            android:id="@+id/tv_current_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="#5c1488"
+            android:fontFamily="@font/notosanskr_b"
+            android:text="04"/>
+        <TextView
+            android:layout_marginTop="13dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="#5c1488"
+            android:fontFamily="@font/notosanskr_b"
+            android:text=" 월"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22.5sp"
+            android:textColor="#5c1488"
+            android:fontFamily="@font/nanumsquare_eb"
+            android:text="￦ "/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22.5sp"
+            android:textColor="#5c1488"
+            android:fontFamily="@font/nanumsquare_eb"
+            android:text="103,130"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22.5sp"
+            android:textColor="#5c1488"
+            android:fontFamily="@font/nanumsquare_eb"
+            android:text=" 지출"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="11.3sp"
+            android:textColor="#b1b1b1"
+            android:fontFamily="@font/nanumsquare_b"
+            android:text="지난 6개월간 월 평균 : ￦ "/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="11.3sp"
+            android:textColor="#b1b1b1"
+            android:fontFamily="@font/nanumsquare_b"
+            android:text="422,306"/>
+    </LinearLayout>
+
+    <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/tab_account_statistics" />
+        android:layout_height="201.3dp">
+        <LinearLayout
+            android:layout_marginTop="33dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8.5dp"
+                android:layout_marginLeft="8.5dp"
+                android:orientation="vertical">
 
-</FrameLayout>
+                <ProgressBar
+                    android:id="@+id/progressbar1"
+                    style="@style/Widget.ProgressBar.Vertical"
+                    android:layout_width="47dp"
+                    android:layout_height="130dp"
+                    android:max="100"
+                    android:progress="100"
+                    android:progressBackgroundTint="#ffffff"
+                    android:progressTint="#5c1488"
+                    />
+                <TextView
+                    android:layout_marginTop="12.3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:textColor="#b1b1b1"
+                    android:letterSpacing="0.03"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/notosanskr_b"
+                    android:text="10월"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="47dp"
+                android:layout_height="156dp"
+                android:layout_marginRight="8.5dp"
+                android:orientation="vertical">
+
+                <ProgressBar
+                    android:id="@+id/progressbar2"
+                    style="@style/Widget.ProgressBar.Vertical"
+                    android:layout_width="47dp"
+                    android:layout_height="130dp"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:progress="100"
+                    android:progressBackgroundTint="#ffffff"
+                    android:progressTint="#5c1488" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="12.3dp"
+                    android:letterSpacing="0.03"
+                    android:text="11월"
+                    android:textColor="#b1b1b1"
+                    android:fontFamily="@font/notosanskr_b"
+                    android:textSize="10sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8.5dp"
+                android:orientation="vertical">
+                <ProgressBar
+                    android:id="@+id/progressbar3"
+                    android:layout_width="47dp"
+                    android:layout_height="130dp"
+                    android:progress="10"
+                    android:max="100"
+                    style="@style/Widget.ProgressBar.Vertical"
+                    android:progressBackgroundTint="#ffffff"
+                    android:progressTint="#5c1488"
+                    />
+                <TextView
+                    android:layout_marginTop="12.3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:textColor="#b1b1b1"
+                    android:letterSpacing="0.03"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/notosanskr_b"
+                    android:text="12월"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8.5dp"
+                android:orientation="vertical">
+                <ProgressBar
+                    android:id="@+id/progressbar4"
+                    android:layout_width="47dp"
+                    android:layout_height="130dp"
+                    android:progress="10"
+                    android:max="100"
+                    style="@style/Widget.ProgressBar.Vertical"
+                    android:progressBackgroundTint="#ffffff"
+                    android:progressTint="#5c1488"
+                    />
+                <TextView
+                    android:layout_marginTop="12.3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:textColor="#b1b1b1"
+                    android:letterSpacing="0.03"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/notosanskr_b"
+                    android:text="01월"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8.5dp"
+                android:orientation="vertical">
+                <ProgressBar
+                    android:id="@+id/progressbar5"
+                    android:layout_width="47dp"
+                    android:layout_height="130dp"
+                    android:progress="10"
+                    android:max="100"
+                    style="@style/Widget.ProgressBar.Vertical"
+                    android:progressBackgroundTint="#ffffff"
+                    android:progressTint="#5c1488"
+                    />
+                <TextView
+                    android:layout_marginTop="12.3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:textColor="#b1b1b1"
+                    android:letterSpacing="0.03"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/notosanskr_b"
+                    android:text="02월"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8.5dp"
+                android:orientation="vertical">
+                <ProgressBar
+                    android:id="@+id/progressbar6"
+                    android:layout_width="47dp"
+                    android:layout_height="130dp"
+                    android:progress="10"
+                    android:max="100"
+                    style="@style/Widget.ProgressBar.Vertical"
+                    android:progressBackgroundTint="#ffffff"
+                    android:progressTint="#5c1488"
+                    />
+                <TextView
+                    android:layout_marginTop="12.3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:textColor="#b1b1b1"
+                    android:letterSpacing="0.03"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/notosanskr_b"
+                    android:text="03월"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8.5dp"
+                android:orientation="vertical">
+                <ProgressBar
+                    android:id="@+id/progressbar7"
+                    android:layout_width="47dp"
+                    android:layout_height="130dp"
+                    android:progress="10"
+                    android:max="100"
+                    style="@style/Widget.ProgressBar.Vertical"
+                    android:progressBackgroundTint="#ffffff"
+                    android:progressTint="#e0e0e0"
+                    />
+                <TextView
+                    android:layout_marginTop="12.3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:textColor="#b1b1b1"
+                    android:letterSpacing="0.03"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/notosanskr_b"
+                    android:text="04월"/>
+            </LinearLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
+    <LinearLayout
+        android:layout_width="299.3dp"
+        android:layout_height="33.5dp"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+        <RadioGroup
+            android:layout_width="299.3dp"
+            android:layout_height="33.5dp"
+            android:gravity="center_horizontal"
+            android:background="@drawable/radio_group"
+            android:orientation="horizontal">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="33.5dp"
+                android:gravity="center"
+                android:button="@drawable/radio_flat_selected"
+                android:checked="true"
+                android:text="날짜별"
+                android:textColor="#5c1488"
+                android:textSize="12.5sp"
+                />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="33.5dp"
+                android:gravity="center"
+                android:button="@drawable/radio_flat_regular"
+                android:checked="false"
+                android:text="경쟁전"
+                android:textColor="#e0e0e0"
+                android:textSize="12.5sp"
+                />
+
+        </RadioGroup>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="17.5dp"
+        android:layout_width="350dp"
+        android:layout_height="456dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/cal_background"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="29dp"
+            android:background="@drawable/cal_background"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="SUN"
+                android:textColor="#f29494"
+                android:textSize="10dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="MON"
+                android:textColor="#b1b1b1"
+                android:textSize="10dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="TUE"
+                android:textColor="#b1b1b1"
+                android:textSize="10dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="WED"
+                android:textColor="#b1b1b1"
+                android:textSize="10dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="THU"
+                android:textColor="#b1b1b1"
+                android:textSize="10dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="FRI"
+                android:textColor="#b1b1b1"
+                android:textSize="10dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="SAT"
+                android:textColor="#a5a2e8"
+                android:textSize="10dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_schedule"
+            android:layout_width="350dp"
+            android:layout_height="427dp"
+            >
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </LinearLayout>
+
+</LinearLayout>
