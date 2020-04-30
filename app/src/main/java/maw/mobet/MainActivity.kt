@@ -7,7 +7,13 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.custom_actionbar.*
+import maw.mobet.api.ResultItem
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import splitties.activities.start
+import splitties.resources.txt
+import splitties.toast.toast
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +37,29 @@ class MainActivity : AppCompatActivity() {
         nav_view.setupWithNavController(navController)
 
         fab.alpha = 0.5f
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        val service = RetrofitClient.getInstance()
+        val dataCall = service.notify()
+        dataCall.enqueue(object : Callback<ResultItem> {
+            override fun onResponse(call: Call<ResultItem>, response: Response<ResultItem>) {
+                val result = response.body()
+                noti_img.background = if (result?.code == 0) {
+                    // 없음
+                    getDrawable(R.drawable.chat)
+                } else {
+                    // 있음
+                    getDrawable(R.drawable.chat_new)
+                }
+            }
+
+            override fun onFailure(call: Call<ResultItem>, t: Throwable) {
+                toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
+            }
+        })
     }
 
     fun onClick(view: View) {
