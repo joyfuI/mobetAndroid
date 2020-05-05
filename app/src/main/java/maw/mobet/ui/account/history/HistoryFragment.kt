@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import kotlinx.android.synthetic.main.fragment_account_history.*
 import maw.mobet.R
 import maw.mobet.api.HistoryItem
@@ -15,7 +16,7 @@ import maw.mobet.ui.account.AccountViewModel
 import java.util.*
 import kotlin.collections.ArrayList
 
-class HistoryFragment : Fragment() {
+class HistoryFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     companion object {
         fun newInstance() = HistoryFragment()
     }
@@ -35,7 +36,15 @@ class HistoryFragment : Fragment() {
         list_view.layoutManager = LinearLayoutManager(activity)
         viewModel.list.observe(viewLifecycleOwner, Observer {
             list_view.adapter = MyAdapter(createList(it))
+            swipe_l.isRefreshing = false
         })
+
+        swipe_l.setOnRefreshListener(this)
+    }
+
+    // 당겨서 새로고침
+    override fun onRefresh() {
+        viewModel.loadData()
     }
 
     fun createList(data: List<HistoryItem>): List<HistoryListItem> {

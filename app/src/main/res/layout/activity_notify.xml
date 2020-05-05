@@ -8,10 +8,14 @@
     <include android:id="@+id/actionbar"
         layout="@layout/custom_actionbar" />
 
-    <androidx.recyclerview.widget.RecyclerView android:id="@+id/list_view"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout android:id="@+id/swipe_l"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:clipToPadding="false" />
+        android:layout_marginTop="?attr/actionBarSize">
+        <androidx.recyclerview.widget.RecyclerView android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </FrameLayout>

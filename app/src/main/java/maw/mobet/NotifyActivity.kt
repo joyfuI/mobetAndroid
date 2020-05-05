@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import kotlinx.android.synthetic.main.activity_notify.*
 import kotlinx.android.synthetic.main.custom_actionbar.*
 import kotlinx.android.synthetic.main.list_item_notify.*
@@ -19,7 +20,7 @@ import retrofit2.Response
 import splitties.resources.txt
 import splitties.toast.toast
 
-class NotifyActivity : AppCompatActivity(), MyAdapter.OnClickListener {
+class NotifyActivity : AppCompatActivity(), MyAdapter.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
     private val list = MutableLiveData<List<NotifyListItem>>().apply {
         loadData()
     }
@@ -34,10 +35,13 @@ class NotifyActivity : AppCompatActivity(), MyAdapter.OnClickListener {
         list_view.layoutManager = LinearLayoutManager(this)
         list.observe(this, Observer {
             list_view.adapter = MyAdapter(it.toMutableList(), this)
+            swipe_l.isRefreshing = false
         })
+
+        swipe_l.setOnRefreshListener(this)
     }
 
-    fun loadData() {
+    private fun loadData() {
         val service = RetrofitClient.getInstance()
         val dataCall = service.notifyList()
         dataCall.enqueue(object : Callback<List<NotifyListItem>> {
@@ -79,5 +83,10 @@ class NotifyActivity : AppCompatActivity(), MyAdapter.OnClickListener {
                 toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
             }
         })
+    }
+
+    // 당겨서 새로고침
+    override fun onRefresh() {
+        loadData()
     }
 }

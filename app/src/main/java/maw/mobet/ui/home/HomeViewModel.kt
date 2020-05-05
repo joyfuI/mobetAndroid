@@ -12,7 +12,7 @@ import retrofit2.Response
 import splitties.resources.appTxt
 import splitties.toast.toast
 
-class HomeViewModel() : ViewModel() {
+class HomeViewModel : ViewModel() {
     private val _list = MutableLiveData<List<HomeListItem>>().apply {
         loadData()
     }
