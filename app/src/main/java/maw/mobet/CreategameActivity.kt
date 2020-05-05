@@ -56,9 +56,10 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
             }
         }
 
-        val cal = Calendar.getInstance()
-        cal.time = today
-        cal.add (Calendar.DAY_OF_MONTH, 3)
+        val cal = Calendar.getInstance().apply {
+            time = today
+            add (Calendar.DAY_OF_MONTH, 3)
+        }
         start_edit.setText(cal.time.toString("yyyy-MM-dd"))
         start_edit.isFocusable = false
         end_edit.setText(cal.time.toString("yyyy-MM-dd"))
@@ -135,8 +136,9 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
                 val editL = if (view == start_edit) start_edit_l else end_edit_l
 
                 val date = edit.text.toString().toDate()!!
-                val cal = Calendar.getInstance()
-                cal.time = date
+                val cal = Calendar.getInstance().apply {
+                    time = date
+                }
                 DatePickerDialog(
                     this,
                     DatePickerDialog.OnDateSetListener { _, i, i2, i3 ->

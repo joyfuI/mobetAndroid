@@ -47,16 +47,17 @@ class HistoryFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         viewModel.loadData()
     }
 
-    fun createList(data: List<HistoryItem>): List<HistoryListItem> {
+    private fun createList(data: List<HistoryItem>): List<HistoryListItem> {
         val list = ArrayList<HistoryListItem>()
-        val dateTmp = Calendar.getInstance()
-        dateTmp.set(0, 0, 0)
+        val dateTmp = Calendar.getInstance().apply {
+            set(0, 0, 0)
+        }
         var header: HistoryListHeaderItem? = null
 
         for (i in data) {
-            val date = Calendar.getInstance()
-            date.time = i.date
-
+            val date = Calendar.getInstance().apply {
+                time = i.date
+            }
             if (
                 date.get(Calendar.YEAR) != dateTmp.get(Calendar.YEAR) ||
                 date.get(Calendar.MONTH) != dateTmp.get(Calendar.MONTH) ||

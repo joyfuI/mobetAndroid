@@ -10,6 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.ceil
 
 object RetrofitClient {
     private var key: String? = null
@@ -71,7 +72,7 @@ fun intToStr(num: Int, prefix: String = "", suffix: String = ""): String {
 }
 
 fun diffDate(fromDate: Date, toDate: Date): Int {
-    val diff = Math.ceil((toDate.time - fromDate.time).toDouble() / 86400000)
+    val diff = ceil((toDate.time - fromDate.time).toDouble() / 86400000)
     return diff.toInt()
 }
 
