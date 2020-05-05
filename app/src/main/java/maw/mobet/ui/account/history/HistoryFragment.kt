@@ -22,6 +22,7 @@ class HistoryFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     private lateinit var viewModel: AccountViewModel
+    private lateinit var listDate: List<HistoryListItem>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -34,8 +35,10 @@ class HistoryFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         super.onActivityCreated(savedInstanceState)
 
         list_view.layoutManager = LinearLayoutManager(activity)
+        list_view.addItemDecoration(MyItemDecoration())
         viewModel.list.observe(viewLifecycleOwner, Observer {
-            list_view.adapter = MyAdapter(createList(it))
+            listDate = createList(it)
+            list_view.adapter = MyAdapter(listDate)
             swipe_l.isRefreshing = false
         })
 
@@ -71,5 +74,34 @@ class HistoryFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
             list.add(HistoryListDataItem(i.name, i.money))
         }
         return list
+    }
+
+    fun scrollToDate(date: Date) {
+        val cal = Calendar.getInstance().apply {
+            time = date
+        }
+        var position: Int? = null
+        for ((index, value) in listDate.withIndex()) {
+            if (value is HistoryListHeaderItem) {
+                val calTmp = Calendar.getInstance().apply {
+                    time = value.date
+                }
+                if (
+                    cal.get(Calendar.YEAR) == calTmp.get(Calendar.YEAR) &&
+                    cal.get(Calendar.MONTH) == calTmp.get(Calendar.MONTH) &&
+                    cal.get(Calendar.DATE) == calTmp.get(Calendar.DATE)
+                ) {
+                    position = index
+                }
+            }
+        }
+
+        if (position != null) {
+            // 이상하게 맨밑으로 스크롤한 뒤 원하는 위치로 스크롤해야 작동
+            list_view.scrollToPosition(list_view.adapter!!.itemCount - 1)
+            list_view.post {
+                list_view.scrollToPosition(position)
+            }
+        }
     }
 }

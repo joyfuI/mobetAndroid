@@ -6,10 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import kotlinx.android.synthetic.main.fragment_account_statistics.*
 import maw.mobet.R
+import maw.mobet.ui.account.AccountFragment
 import maw.mobet.ui.account.AccountViewModel
+import java.util.*
 
-class StatisticsFragment : Fragment() {
+class StatisticsFragment : Fragment(), View.OnClickListener {
     companion object {
         fun newInstance() = StatisticsFragment()
     }
@@ -25,6 +28,18 @@ class StatisticsFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        // TODO: Use the ViewModel
+
+        test.setOnClickListener(this)
+    }
+
+    override fun onClick(p0: View?) {
+        when (p0) {
+            test -> {
+                val cal = Calendar.getInstance().apply {
+                    set(2020, 1 - 1, 10)
+                }
+                (parentFragment as AccountFragment).selectDate(cal.time)
+            }
+        }
     }
 }
