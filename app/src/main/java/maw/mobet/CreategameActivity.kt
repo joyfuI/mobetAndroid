@@ -31,8 +31,8 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
 
         // Spinner
         val items = listOf(
-            txt(R.string.creategame_price_less),
-            txt(R.string.creategame_price_greater)
+            txt(R.string.less),
+            txt(R.string.greater)
         )
         price_cmb.adapter = ArrayAdapter(
             this,

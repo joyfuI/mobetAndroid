@@ -18,7 +18,7 @@ interface AppService {
     fun notify(): Call<ResultItem>
 
     @POST("post.php")
-    fun notifyRequest(@Body data: NotifyData): Call<ResultItem>
+    fun notifyRequest(@Body data: IdData): Call<ResultItem>
 
     @POST("homelist.json")
     fun homeList(): Call<List<HomeListItem>>
@@ -31,4 +31,7 @@ interface AppService {
 
     @POST("post.php")
     fun createGame(@Body data: CreategameData): Call<ResultItem>
+
+    @POST("game.json")
+    fun game(@Body data: IdData): Call<GameItem>
 }

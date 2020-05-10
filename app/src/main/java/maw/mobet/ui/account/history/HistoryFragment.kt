@@ -12,6 +12,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import kotlinx.android.synthetic.main.fragment_account_history.*
 import maw.mobet.R
 import maw.mobet.api.HistoryItem
+import maw.mobet.ui.account.AccountFragment
 import maw.mobet.ui.account.AccountViewModel
 import java.util.*
 import kotlin.collections.ArrayList
@@ -27,7 +28,7 @@ class HistoryFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(activity ?: this)[AccountViewModel::class.java]
+        viewModel = ViewModelProvider(parentFragment as AccountFragment)[AccountViewModel::class.java]
         return inflater.inflate(R.layout.fragment_account_history, container, false)
     }
 

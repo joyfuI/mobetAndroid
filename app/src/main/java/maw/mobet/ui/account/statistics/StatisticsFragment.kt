@@ -22,7 +22,7 @@ class StatisticsFragment : Fragment(), View.OnClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(activity ?: this)[AccountViewModel::class.java]
+        viewModel = ViewModelProvider(parentFragment as AccountFragment)[AccountViewModel::class.java]
         return inflater.inflate(R.layout.fragment_account_statistics, container, false)
     }
 

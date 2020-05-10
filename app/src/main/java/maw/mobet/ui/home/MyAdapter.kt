@@ -14,6 +14,7 @@ import maw.mobet.intToStr
 import maw.mobet.toString
 import splitties.dimensions.dip
 import splitties.init.appCtx
+import splitties.resources.appStr
 import splitties.resources.appTxtArray
 import kotlin.math.absoluteValue
 
@@ -21,11 +22,7 @@ class MyAdapter(
     private val data: List<HomeListItem>, private val listener: OnClickListener? = null
 ) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
     interface OnClickListener {
-        fun onClick(view: View)
-    }
-
-    private val onClickListener = View.OnClickListener {
-        listener?.onClick(it)
+        fun onClick(view: View, position: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -49,13 +46,18 @@ class MyAdapter(
         val text = "[${category[item.category]}] $startDate ~ $endDate"
         holder.title_top_txt.text = text
         holder.title_txt.text = item.title
-        holder.title_bottom_txt.text = intToStr(item.price.absoluteValue, prefix = "₩")
+        holder.title_bottom_txt.text = intToStr(
+            item.price.absoluteValue, prefix = appStr(R.string.won_char)
+        )
         holder.title_bottom_img.setImageResource(if (item.price > 0) {
             R.drawable.ic_arrow_upward_24dp
         } else {
             R.drawable.ic_arrow_downward_24dp
         })
 
+        val onClickListener = View.OnClickListener {
+            listener?.onClick(it, position)
+        }
         with (holder.itemView) {
             tag = item
             setOnClickListener(onClickListener)

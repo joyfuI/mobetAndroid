@@ -1,6 +1,6 @@
 package maw.mobet.api
 
-data class NotifyData(
+data class IdData(
     val id: Int,
     val code: Int
 )

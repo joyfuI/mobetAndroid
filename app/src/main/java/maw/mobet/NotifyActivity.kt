@@ -10,7 +10,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import kotlinx.android.synthetic.main.activity_notify.*
 import kotlinx.android.synthetic.main.custom_actionbar.*
 import kotlinx.android.synthetic.main.list_item_notify.*
-import maw.mobet.api.NotifyData
+import maw.mobet.api.IdData
 import maw.mobet.api.NotifyListItem
 import maw.mobet.api.ResultItem
 import maw.mobet.notify.MyAdapter
@@ -63,7 +63,7 @@ class NotifyActivity : AppCompatActivity(), MyAdapter.OnClickListener, SwipeRefr
         val type = if (view.id == accept_btn.id) 1 else 0
 
         val service = RetrofitClient.getInstance()
-        val dataCall = service.notifyRequest(NotifyData(item.id, type))
+        val dataCall = service.notifyRequest(IdData(item.id, type))
         dataCall.enqueue(object : Callback<ResultItem> {
             override fun onResponse(call: Call<ResultItem>, response: Response<ResultItem>) {
                 val result = response.body()

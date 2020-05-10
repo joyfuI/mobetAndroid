@@ -10,9 +10,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import kotlinx.android.synthetic.main.fragment_home.*
+import maw.mobet.GameActivity
 import maw.mobet.R
+import maw.mobet.api.HomeListItem
+import splitties.fragments.start
 
-class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
+class HomeFragment : Fragment(), MyAdapter.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
     private lateinit var viewModel: HomeViewModel
 
     override fun onCreateView(
@@ -28,11 +31,27 @@ class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         list_view.layoutManager = LinearLayoutManager(activity)
         list_view.addItemDecoration(MyItemDecoration())
         viewModel.list.observe(viewLifecycleOwner, Observer {
-            list_view.adapter = MyAdapter(it)
+            list_view.adapter = MyAdapter(it, this)
             swipe_l.isRefreshing = false
         })
 
         swipe_l.setOnRefreshListener(this)
+    }
+
+    // 리스트 아이템 클릭
+    override fun onClick(view: View, position: Int) {
+        val item = view.tag as HomeListItem
+
+        start<GameActivity> {
+            putExtra("id", item.id)
+//            putExtra("name", item.name)
+//            putExtra("title", item.title)
+//            putExtra("category", item.category)
+//            putExtra("price", item.price)
+//            putExtra("startDate", item.startDate)
+//            putExtra("endDate", item.endDate)
+//            putExtra("imgUrl", item.imgUrl)
+        }
     }
 
     // 당겨서 새로고침
