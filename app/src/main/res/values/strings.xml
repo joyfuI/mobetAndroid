@@ -94,6 +94,7 @@
     <!-- 토스트 메시지 -->
     <string name="error">오류!!!</string>
     <string name="network_error">네트워크 오류!!!</string>
+    <string name="access_error">잘못된 접근!!!</string>
     <string name="login_error">이메일과 비밀번호를 확인해주세요</string>
     <string name="signup_error">회원가입 오류!!!</string>
     <string name="not_email">이메일 주소를 입력해주세요</string>

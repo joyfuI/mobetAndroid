@@ -1,7 +1,10 @@
 package maw.mobet.api
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 import java.util.*
 
+@Parcelize
 data class GameItem(
     val id: Int,
     val admin: Boolean,
@@ -17,4 +20,4 @@ data class GameItem(
     val price: Int,
     val category: Int,
     val members: List<MemberListItem>
-)
+) : Parcelable

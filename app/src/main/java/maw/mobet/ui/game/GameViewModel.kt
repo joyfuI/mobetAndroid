@@ -34,4 +34,8 @@ class GameViewModel : ViewModel() {
             }
         })
     }
+
+    fun loadData(data: GameItem) {
+        _info.value = data
+    }
 }
