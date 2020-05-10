@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView android:id="@+id/profile_img"
+    <de.hdodenhof.circleimageview.CircleImageView android:id="@+id/profile_img"
         android:layout_width="51.5dp"
         android:layout_height="51.5dp"
         android:layout_marginStart="13.5dp"
         android:layout_marginVertical="15dp"
-        android:scaleType="center"
-        android:background="@drawable/border_circle"
+        app:civ_border_width="2dp"
+        app:civ_border_color="@color/colorText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />

@@ -5,15 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.list_item_home.*
 import maw.mobet.R
 import maw.mobet.api.HomeListItem
 import maw.mobet.intToStr
 import maw.mobet.toString
-import splitties.dimensions.dip
-import splitties.init.appCtx
 import splitties.resources.appStr
 import splitties.resources.appTxtArray
 import kotlin.math.absoluteValue
@@ -35,8 +32,6 @@ class MyAdapter(
         val item = data[position]
 
         Glide.with(holder.itemView).load(item.imgUrl)
-            .apply(RequestOptions().circleCrop())
-            .override(appCtx.dip(30))
             .into(holder.profile_img)
         holder.profile_txt.text = item.name
         holder.title_img.setImageResource(R.drawable.ic_launcher_background)

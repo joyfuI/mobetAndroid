@@ -6,14 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.list_item_notify.*
 import kotlinx.android.synthetic.main.list_item_notify.view.*
 import maw.mobet.R
 import maw.mobet.api.NotifyListItem
-import splitties.dimensions.dip
-import splitties.init.appCtx
 import splitties.resources.appColorSL
 import splitties.resources.appStr
 
@@ -41,8 +38,6 @@ class MyAdapter(
         val item = data[position]
 
         Glide.with(holder.itemView).load(item.imgUrl)
-            .apply(RequestOptions().circleCrop())
-            .override(appCtx.dip(45))
             .into(holder.profile_img)
         holder.profile_txt.text = item.name
         var msg = appStr(R.string.notify_msg)
