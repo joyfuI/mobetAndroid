@@ -64,5 +64,14 @@
             android:text="@{game.compete ? @string/game_compete_out : @string/game_compete}"
             android:onClick="onClick" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/game_member" />
+        <androidx.recyclerview.widget.RecyclerView android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false" />
+
     </LinearLayout>
 </layout>

@@ -65,6 +65,7 @@
     <string name="game_category">카테고리</string>
     <string name="game_compete">경쟁전 참여</string>
     <string name="game_compete_out">경쟁전에서 나가기</string>
+    <string name="game_member">맴버 목록</string>
 
     <!-- 설정 -->
     <string name="setting_logout">로그아웃</string>
