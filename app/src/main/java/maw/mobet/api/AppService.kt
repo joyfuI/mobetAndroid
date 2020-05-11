@@ -9,10 +9,10 @@ interface AppService {
     fun signup(@Body data: SignupData): Call<ResultItem>
 
     @POST("post.php")
-    fun nickCheck(@Body data: NickData): Call<ResultItem>
+    fun nickCheck(@Body data: String): Call<ResultItem>
 
     @POST("post.php")
-    fun phoneCheck(@Body data: PhoneData): Call<ResultItem>
+    fun phoneCheck(@Body data: String): Call<ResultItem>
 
     @POST("notify.json")
     fun notify(): Call<ResultItem>

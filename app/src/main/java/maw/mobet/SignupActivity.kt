@@ -15,8 +15,6 @@ import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
 import kotlinx.android.synthetic.main.activity_signup.*
 import kotlinx.android.synthetic.main.custom_actionbar.*
-import maw.mobet.api.NickData
-import maw.mobet.api.PhoneData
 import maw.mobet.api.ResultItem
 import maw.mobet.api.SignupData
 import retrofit2.Call
@@ -229,7 +227,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                 nick_btn.isClickable = false
 
                 val service = RetrofitClient.getInstance()
-                val dataCall = service.nickCheck(NickData(nick))
+                val dataCall = service.nickCheck(nick)
                 dataCall.enqueue(object : Callback<ResultItem> {
                     override fun onResponse(
                         call: Call<ResultItem>, response: Response<ResultItem>
@@ -279,7 +277,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
 
                 val service = RetrofitClient.getInstance()
                 val dataCall = service.phoneCheck(
-                    PhoneData(phone.replace("[^0-9]".toRegex(), ""))
+                    phone.replace("[^0-9]".toRegex(), "")
                 )
                 dataCall.enqueue(object : Callback<ResultItem> {
                     override fun onResponse(
