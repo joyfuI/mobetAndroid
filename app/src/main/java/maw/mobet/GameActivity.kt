@@ -18,6 +18,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import splitties.activities.start
+import splitties.alertdialog.appcompat.alertDialog
+import splitties.alertdialog.appcompat.messageResource
+import splitties.alertdialog.appcompat.okButton
 import splitties.resources.txt
 import splitties.toast.toast
 
@@ -67,13 +70,29 @@ class GameActivity : AppCompatActivity() {
                 compete_btn.isClickable = false
 
                 val service = RetrofitClient.getInstance()
-                val dataCall = service.joinGame(IdData(info.id, 0))
+                val dataCall = service.joinGame(IdData(info.id, if (info.compete) {
+                    // 나가기
+                    1
+                } else {
+                    // 참가
+                    0
+                }))
                 dataCall.enqueue(object : Callback<ResultItem> {
                     override fun onResponse(
                         call: Call<ResultItem>, response: Response<ResultItem>
                     ) {
                         val result = response.body()
                         if (result?.code == 0) {
+                            alertDialog {
+                                messageResource = if (info.compete) {
+                                    // 나가기
+                                    R.string.game_compete_out_alert
+                                } else {
+                                    // 참가
+                                    R.string.game_compete_alert
+                                }
+                                okButton()
+                            }.show()
                             viewModel.loadData(info.id)
                             compete_btn.isClickable = true
                             return
