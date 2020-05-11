@@ -12,7 +12,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import kotlinx.android.synthetic.main.fragment_home.*
 import maw.mobet.GameActivity
 import maw.mobet.R
-import maw.mobet.api.HomeListItem
+import maw.mobet.api.GameItem
 import splitties.fragments.start
 
 class HomeFragment : Fragment(), MyAdapter.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
@@ -40,7 +40,7 @@ class HomeFragment : Fragment(), MyAdapter.OnClickListener, SwipeRefreshLayout.O
 
     // 리스트 아이템 클릭
     override fun onClick(view: View, position: Int) {
-        val item = view.tag as HomeListItem
+        val item = view.tag as GameItem
 
         start<GameActivity> {
             putExtra("id", item.id)

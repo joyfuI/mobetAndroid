@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.list_item_home.*
 import maw.mobet.R
-import maw.mobet.api.HomeListItem
+import maw.mobet.api.GameItem
 import maw.mobet.intToStr
 import maw.mobet.toString
 import splitties.resources.appStr
@@ -16,7 +16,7 @@ import splitties.resources.appTxtArray
 import kotlin.math.absoluteValue
 
 class MyAdapter(
-    private val data: List<HomeListItem>, private val listener: OnClickListener? = null
+    private val data: List<GameItem>, private val listener: OnClickListener? = null
 ) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
     interface OnClickListener {
         fun onClick(view: View, position: Int)
@@ -31,9 +31,9 @@ class MyAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
 
-        Glide.with(holder.itemView).load(item.imgUrl)
+        Glide.with(holder.itemView).load(item.admin.imgUrl)
             .into(holder.profile_img)
-        holder.profile_txt.text = item.name
+        holder.profile_txt.text = item.admin.nick
         holder.title_img.setImageResource(R.drawable.ic_launcher_background)
         val category = appTxtArray(R.array.category)
         val startDate = item.startDate.toString("MM.dd")

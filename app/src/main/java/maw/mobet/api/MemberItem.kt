@@ -4,8 +4,8 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class MemberListItem(
+data class MemberItem(
     val id: Int,
-    val name: String,
+    val nick: String,
     val imgUrl: String
 ) : Parcelable

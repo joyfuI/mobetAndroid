@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.activity_notify.*
 import kotlinx.android.synthetic.main.custom_actionbar.*
 import kotlinx.android.synthetic.main.list_item_notify.*
 import maw.mobet.api.IdData
-import maw.mobet.api.NotifyListItem
+import maw.mobet.api.NotifyItem
 import maw.mobet.api.ResultItem
 import maw.mobet.notify.MyAdapter
 import retrofit2.Call
@@ -21,7 +21,7 @@ import splitties.resources.txt
 import splitties.toast.toast
 
 class NotifyActivity : AppCompatActivity(), MyAdapter.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
-    private val list = MutableLiveData<List<NotifyListItem>>().apply {
+    private val list = MutableLiveData<List<NotifyItem>>().apply {
         loadData()
     }
 
@@ -44,14 +44,14 @@ class NotifyActivity : AppCompatActivity(), MyAdapter.OnClickListener, SwipeRefr
     private fun loadData() {
         val service = RetrofitClient.getInstance()
         val dataCall = service.notifyList()
-        dataCall.enqueue(object : Callback<List<NotifyListItem>> {
+        dataCall.enqueue(object : Callback<List<NotifyItem>> {
             override fun onResponse(
-                call: Call<List<NotifyListItem>>, response: Response<List<NotifyListItem>>
+                call: Call<List<NotifyItem>>, response: Response<List<NotifyItem>>
             ) {
                 list.value = response.body() ?: emptyList()
             }
 
-            override fun onFailure(call: Call<List<NotifyListItem>>, t: Throwable) {
+            override fun onFailure(call: Call<List<NotifyItem>>, t: Throwable) {
                 toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
             }
         })
@@ -59,7 +59,7 @@ class NotifyActivity : AppCompatActivity(), MyAdapter.OnClickListener, SwipeRefr
 
     // 리스트 아이템 클릭
     override fun onClick(view: View, position: Int, delete: () -> Unit) {
-        val item = view.tag as NotifyListItem
+        val item = view.tag as NotifyItem
         val type = if (view.id == accept_btn.id) 1 else 0
 
         val service = RetrofitClient.getInstance()

@@ -7,11 +7,11 @@ import java.util.*
 @Parcelize
 data class GameItem(
     val id: Int,
-    val admin: Boolean,
+    val isAdmin: Boolean,
     val compete: Boolean,
     val start: Boolean,
     val title: String,
-    val name: String,
+    val admin: MemberItem,
     val public: Boolean,
     val greater: Int?,
     val less: Int?,
@@ -19,5 +19,5 @@ data class GameItem(
     val endDate: Date,
     val price: Int,
     val category: Int,
-    val members: List<MemberListItem>
+    val members: List<MemberItem>
 ) : Parcelable

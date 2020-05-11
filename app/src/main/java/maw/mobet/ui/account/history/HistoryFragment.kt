@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import kotlinx.android.synthetic.main.fragment_account_history.*
 import maw.mobet.R
-import maw.mobet.api.HistoryItem
+import maw.mobet.api.AccountItem
 import maw.mobet.ui.account.AccountFragment
 import maw.mobet.ui.account.AccountViewModel
 import java.util.*
@@ -51,14 +51,14 @@ class HistoryFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         viewModel.loadData()
     }
 
-    private fun createList(data: List<HistoryItem>): List<HistoryListItem> {
+    private fun createList(data: AccountItem): List<HistoryListItem> {
         val list = ArrayList<HistoryListItem>()
         val dateTmp = Calendar.getInstance().apply {
             set(0, 0, 0)
         }
         var header: HistoryListHeaderItem? = null
 
-        for (i in data) {
+        for (i in data.history) {
             val date = Calendar.getInstance().apply {
                 time = i.date
             }

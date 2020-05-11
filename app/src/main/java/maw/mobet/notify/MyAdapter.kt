@@ -10,12 +10,12 @@ import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.list_item_notify.*
 import kotlinx.android.synthetic.main.list_item_notify.view.*
 import maw.mobet.R
-import maw.mobet.api.NotifyListItem
+import maw.mobet.api.NotifyItem
 import splitties.resources.appColorSL
 import splitties.resources.appStr
 
 class MyAdapter(
-    private val data: MutableList<NotifyListItem>, private val listener: OnClickListener? = null
+    private val data: MutableList<NotifyItem>, private val listener: OnClickListener? = null
 ) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
     interface OnClickListener {
         fun onClick(view: View, position: Int, delete: () -> Unit)
@@ -37,11 +37,11 @@ class MyAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
 
-        Glide.with(holder.itemView).load(item.imgUrl)
+        Glide.with(holder.itemView).load(item.member.imgUrl)
             .into(holder.profile_img)
-        holder.profile_txt.text = item.name
+        holder.profile_txt.text = item.member.nick
         var msg = appStr(R.string.notify_msg)
-        msg = msg.replace("{0}", item.name)
+        msg = msg.replace("{0}", item.member.nick)
         msg = msg.replace("{1}", item.title)
         holder.msg_txt.text = msg
 

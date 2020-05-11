@@ -20,14 +20,14 @@ interface AppService {
     @POST("post.php")
     fun notifyRequest(@Body data: IdData): Call<ResultItem>
 
-    @POST("homelist.json")
-    fun homeList(): Call<List<HomeListItem>>
+    @POST("home.json")
+    fun homeList(): Call<List<GameItem>>
 
     @POST("notifylist.json")
-    fun notifyList(): Call<List<NotifyListItem>>
+    fun notifyList(): Call<List<NotifyItem>>
 
-    @POST("historylist.json")
-    fun historyList(): Call<List<HistoryItem>>
+    @POST("account.json")
+    fun account(): Call<AccountItem>
 
     @POST("post.php")
     fun createGame(@Body data: CreategameData): Call<ResultItem>
