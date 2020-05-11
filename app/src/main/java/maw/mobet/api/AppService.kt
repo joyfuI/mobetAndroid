@@ -34,4 +34,7 @@ interface AppService {
 
     @POST("game.json")
     fun game(@Body data: IdData): Call<GameItem>
+
+    @POST("post.php")
+    fun joinGame(@Body data: IdData): Call<ResultItem>
 }
