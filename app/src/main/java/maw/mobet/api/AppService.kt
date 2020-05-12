@@ -9,26 +9,32 @@ interface AppService {
     fun signup(@Body data: SignupData): Call<ResultItem>
 
     @POST("post.php")
-    fun nickCheck(@Body data: NickData): Call<ResultItem>
+    fun nickCheck(@Body data: String): Call<ResultItem>
 
     @POST("post.php")
-    fun phoneCheck(@Body data: PhoneData): Call<ResultItem>
+    fun phoneCheck(@Body data: String): Call<ResultItem>
 
     @POST("notify.json")
     fun notify(): Call<ResultItem>
 
     @POST("post.php")
-    fun notifyRequest(@Body data: NotifyData): Call<ResultItem>
+    fun notifyRequest(@Body data: IdData): Call<ResultItem>
 
-    @POST("homelist.json")
-    fun homeList(): Call<List<HomeListItem>>
+    @POST("home.json")
+    fun homeList(): Call<List<GameItem>>
 
     @POST("notifylist.json")
-    fun notifyList(): Call<List<NotifyListItem>>
+    fun notifyList(): Call<List<NotifyItem>>
 
-    @POST("historylist.json")
-    fun historyList(): Call<List<HistoryItem>>
+    @POST("account.json")
+    fun account(): Call<AccountItem>
 
     @POST("post.php")
     fun createGame(@Body data: CreategameData): Call<ResultItem>
+
+    @POST("game.json")
+    fun game(@Body data: IdData): Call<GameItem>
+
+    @POST("post.php")
+    fun joinGame(@Body data: IdData): Call<ResultItem>
 }

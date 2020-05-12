@@ -11,8 +11,12 @@ import maw.mobet.R
 import maw.mobet.ui.account.history.HistoryFragment
 import maw.mobet.ui.account.statistics.StatisticsFragment
 import splitties.resources.txt
+import java.util.*
 
 class AccountFragment : Fragment() {
+    private val historyFragment = HistoryFragment.newInstance()
+    private val statisticsFragment = StatisticsFragment.newInstance()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -28,11 +32,16 @@ class AccountFragment : Fragment() {
         )
 
         view_pager.adapter = MyPagerAdapter(this, listOf(
-            HistoryFragment.newInstance(),
-            StatisticsFragment.newInstance()
+            historyFragment,
+            statisticsFragment
         ))
         TabLayoutMediator(tab_layout, view_pager) { tab, position ->
             tab.text = tabText[position]
         }.attach()
+    }
+
+    fun selectDate(date: Date) {
+        view_pager.currentItem = 0
+        historyFragment.scrollToDate(date)
     }
 }

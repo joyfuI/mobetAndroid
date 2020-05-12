@@ -5,27 +5,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.list_item_home.*
 import maw.mobet.R
-import maw.mobet.api.HomeListItem
+import maw.mobet.api.GameItem
 import maw.mobet.intToStr
 import maw.mobet.toString
-import splitties.dimensions.dip
-import splitties.init.appCtx
+import splitties.resources.appStr
 import splitties.resources.appTxtArray
 import kotlin.math.absoluteValue
 
 class MyAdapter(
-    private val data: List<HomeListItem>, private val listener: OnClickListener? = null
+    private val data: List<GameItem>, private val listener: OnClickListener? = null
 ) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
     interface OnClickListener {
-        fun onClick(view: View)
-    }
-
-    private val onClickListener = View.OnClickListener {
-        listener?.onClick(it)
+        fun onClick(view: View, position: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -37,11 +31,9 @@ class MyAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
 
-        Glide.with(holder.itemView).load(item.imgUrl)
-            .apply(RequestOptions().circleCrop())
-            .override(appCtx.dip(30))
+        Glide.with(holder.itemView).load(item.admin.imgUrl)
             .into(holder.profile_img)
-        holder.profile_txt.text = item.name
+        holder.profile_txt.text = item.admin.nick
         holder.title_img.setImageResource(R.drawable.ic_launcher_background)
         val category = appTxtArray(R.array.category)
         val startDate = item.startDate.toString("MM.dd")
@@ -49,13 +41,18 @@ class MyAdapter(
         val text = "[${category[item.category]}] $startDate ~ $endDate"
         holder.title_top_txt.text = text
         holder.title_txt.text = item.title
-        holder.title_bottom_txt.text = intToStr(item.price.absoluteValue, prefix = "₩")
+        holder.title_bottom_txt.text = intToStr(
+            item.price.absoluteValue, prefix = appStr(R.string.won_char)
+        )
         holder.title_bottom_img.setImageResource(if (item.price > 0) {
             R.drawable.ic_arrow_upward_24dp
         } else {
             R.drawable.ic_arrow_downward_24dp
         })
 
+        val onClickListener = View.OnClickListener {
+            listener?.onClick(it, position)
+        }
         with (holder.itemView) {
             tag = item
             setOnClickListener(onClickListener)

@@ -50,6 +50,8 @@ class MyAdapter(
             val headerHolder = holder as HeaderViewHolder
             val headerItem = item as HistoryListHeaderItem
 
+            headerHolder.plus_txt.visibility = View.GONE
+            headerHolder.minus_txt.visibility = View.GONE
             headerHolder.date_txt.text = headerItem.date.toString(appStr(R.string.month_day))
             if (headerItem.plus != 0) {
                 headerHolder.plus_txt.text = intToStr(headerItem.plus, prefix = "+", suffix = appStr(R.string.won))

@@ -96,7 +96,7 @@
                 android:fontFamily="@font/nanumsquare_b"
                 android:textSize="15sp"
                 android:textColor="@color/colorText"
-                android:text="₩"
+                android:text="@string/won_char"
                 app:layout_constraintBottom_toBottomOf="@id/tilde_txt"
                 app:layout_constraintStart_toStartOf="parent" />
             <com.google.android.material.textfield.TextInputLayout android:id="@+id/greater_edit_l"
@@ -139,7 +139,7 @@
                 android:fontFamily="@font/nanumsquare_b"
                 android:textSize="15sp"
                 android:textColor="@color/colorText"
-                android:text="₩"
+                android:text="@string/won_char"
                 app:layout_constraintBottom_toBottomOf="@id/tilde_txt"
                 app:layout_constraintStart_toStartOf="@id/tilde_txt" />
             <com.google.android.material.textfield.TextInputLayout android:id="@+id/less_edit_l"
