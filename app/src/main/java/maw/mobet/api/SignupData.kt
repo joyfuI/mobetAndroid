@@ -1,10 +1,10 @@
 package maw.mobet.api
 
-import retrofit2.http.Query
+import com.google.gson.annotations.SerializedName
 
 data class SignupData(
-    @Query("USERID") val email: String,
-    @Query("NICKNAME") val nick: String,
-    @Query("PHONENUM") val phone: String,
-    @Query("USERUID") var uid: String? = null
+    @SerializedName("USERID") val email: String,
+    @SerializedName("NICKNAME") val nick: String,
+    @SerializedName("PHONENUM") val phone: String,
+    @SerializedName("USERUID") var uid: String? = null
 )
