@@ -5,13 +5,16 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface AppService {
-    @POST("post.php")
+    @POST("sign-up/")
     fun signup(@Body data: SignupData): Call<ResultItem>
 
-    @POST("post.php")
+    @POST("userid-check/")
+    fun emailCheck(@Body data: String): Call<ResultItem>
+
+    @POST("nickname-check/")
     fun nickCheck(@Body data: String): Call<ResultItem>
 
-    @POST("post.php")
+    @POST("phonenum-check/")
     fun phoneCheck(@Body data: String): Call<ResultItem>
 
     @POST("notify.json")

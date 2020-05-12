@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.google.firebase.FirebaseException
@@ -21,12 +19,12 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import splitties.resources.txt
-import splitties.resources.txtArray
 import splitties.toast.toast
 import java.util.concurrent.TimeUnit
 
 class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
     private lateinit var auth: FirebaseAuth
+    private var emailOk = 0  // 0: 확인x, 1: 사용가능, 2: 중복
     private var nickOk = 0  // 0: 확인x, 1: 사용가능, 2: 중복
     private var phoneOk = 0 // 0: 확인x, 1: 사용가능, 2: 중복, 3: 인증완료, 4: 코드전송, 5: 잘못된코드
     private var isClickable = true
@@ -52,30 +50,14 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
             finish()
         }
 
-        // Spinner
-        email_cmb.adapter = ArrayAdapter(
-            this,
-            R.layout.spinner_item2,
-            txtArray(R.array.email)
-        )
-        email_cmb.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                if (p2 == 0) {
-                    email2_edit.isEnabled = true
-                    email1_edit.nextFocusDownId = email2_edit.id
-                } else {
-                    email2_edit.isEnabled = false
-                    val emailArr = txtArray(R.array.email)
-                    email2_edit.setText(emailArr[p2])
-                    email1_edit.nextFocusDownId = passwd_edit.id
-                }
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
+        // EditText
+        email_edit.addTextChangedListener {
+            if (emailOk != 0) {
+                emailOk = 0
+                email_edit_l.error = null
+                email_btn.isClickable = true
             }
         }
-
-        // EditText
         nick_edit.addTextChangedListener {
             if (nickOk != 0) {
                 nickOk = 0
@@ -94,8 +76,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
             }
         }
 
-        email1_edit.onFocusChangeListener = this
-        email2_edit.onFocusChangeListener = this
+        email_edit.onFocusChangeListener = this
         passwd_edit.onFocusChangeListener = this
         passwd2_edit.onFocusChangeListener = this
         nick_edit.onFocusChangeListener = this
@@ -110,6 +91,27 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
             return
         }
         when (p0) {
+            // 이메일
+            email_edit -> {
+                email_edit_l.setErrorTextColor(ColorStateList(
+                    arrayOf(intArrayOf(0)),
+                    intArrayOf(errorColor)
+                ))
+                if (email_edit.text.toString().isEmpty()) {
+                    email_edit_l.error = txt(R.string.not_email)
+                } else if (!Regex.email.matches(email_edit.text.toString())) {
+                    email_edit_l.error = txt(R.string.mis_email)
+                } else if (emailOk == 0) {
+                    email_edit_l.error = txt(R.string.not_email_ok)
+                } else if (emailOk == 2) {
+                    email_edit_l.error = txt(R.string.email_no)
+                } else if (emailOk == 1) {
+                    email_edit_l.setErrorTextColor(getColorStateList(R.color.colorControlNormal))
+                    email_edit_l.error = txt(R.string.email_ok)
+                } else {
+                    email_edit_l.error = null
+                }
+            }
             // 비밀번호
             passwd_edit -> {
                 if (passwd_edit.text.toString().isEmpty()) {
@@ -214,6 +216,52 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                     }
                 })
                 after.startAnimation(inAnim)
+            }
+            // 이메일 중복확인
+            email_btn -> {
+                val email = email_edit.text.toString()
+                if (emailOk != 0) {
+                    return
+                } else if (email.isEmpty()) {
+                    toast(R.string.not_email)
+                    return
+                }
+                email_btn.isClickable = false
+
+                val service = RetrofitClient.getInstance()
+                val dataCall = service.emailCheck(email)
+                dataCall.enqueue(object : Callback<ResultItem> {
+                    override fun onResponse(
+                        call: Call<ResultItem>, response: Response<ResultItem>
+                    ) {
+                        val result = response.body()
+                        when (result?.code) {
+                            // 사용가능
+                            0 -> {
+                                emailOk = 1
+                                email_edit_l.setErrorTextColor(
+                                    getColorStateList(R.color.colorControlNormal)
+                                )
+                                email_edit_l.error = txt(R.string.email_ok)
+                            }
+                            // 중복
+                            1 -> {
+                                emailOk = 2
+                                email_edit_l.error = txt(R.string.email_no)
+                            }
+                            // 오류
+                            else -> {
+                                toast("${txt(R.string.error)} ${result?.code}")
+                                email_btn.isClickable = true
+                            }
+                        }
+                    }
+
+                    override fun onFailure(call: Call<ResultItem>, t: Throwable) {
+                        toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
+                        email_btn.isClickable = true
+                    }
+                })
             }
             // 닉네임 중복확인
             nick_btn -> {
@@ -390,16 +438,14 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
     }
 
     private fun makeDate(): SignupData? {
-        val email = if (email1_edit.text.toString().isEmpty() || email2_edit.text.toString().isEmpty()) {
-            null
-        } else {
-            "${email1_edit.text.toString()}@${email2_edit.text.toString()}"
-        }
+        val email = email_edit.text.toString()
+        val passwd = passwd_edit.text.toString()
+        val passwd2 = passwd2_edit.text.toString()
         val nick = nick_edit.text.toString()
         val phone = phone_edit.text.toString().replace("[^0-9]".toRegex(), "")
 
         when {
-            email == null -> {
+            email.isEmpty() -> {
                 toast(R.string.not_email)
                 return null
             }
@@ -409,17 +455,22 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                 return null
             }
 
-            passwd_edit.text.toString().isEmpty() -> {
+            emailOk != 1 -> {
+                toast(R.string.not_email_ok)
+                return null
+            }
+
+            passwd.isEmpty() -> {
                 toast(R.string.not_passwd)
                 return null
             }
 
-            !passwdCheck(passwd_edit.text.toString()) -> {
+            !passwdCheck(passwd) -> {
                 toast(R.string.wrong_passwd)
                 return null
             }
 
-            passwd_edit.text.toString() != passwd2_edit.text.toString() -> {
+            passwd != passwd2 -> {
                 toast(R.string.mis_passwd)
                 return null
             }
@@ -449,7 +500,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                 return null
             }
         }
-        return SignupData(email!!, nick, phone)
+        return SignupData(email, nick, phone)
     }
 
     private fun passwdCheck(str: String): Boolean {
