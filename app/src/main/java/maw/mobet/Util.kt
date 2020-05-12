@@ -4,6 +4,7 @@ import android.os.Build
 import android.widget.TextView
 import com.google.gson.GsonBuilder
 import maw.mobet.api.AppService
+import maw.mobet.api.AppServiceTest
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -22,7 +23,13 @@ object RetrofitClient {
             .addConverterFactory(GsonConverterFactory.create(gson))
             .client(interceptor)
             .build()
-            .create(AppService::class.java)
+            .create(AppServiceTest::class.java)
+//        Retrofit.Builder()
+//            .baseUrl("https://749a64ee.ngrok.io/")
+//            .addConverterFactory(GsonConverterFactory.create(gson))
+//            .client(interceptor)
+//            .build()
+//            .create(AppService::class.java)
     }
     // 요청할 때마다 Authorization 정보 추가
     private val interceptor by lazy {
