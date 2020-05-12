@@ -9,23 +9,25 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+
         <TextView
-            android:layout_marginTop="13dp"
             android:id="@+id/tv_current_month"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="#5c1488"
-            android:fontFamily="@font/notosanskr_b"
-            android:text="04"/>
-        <TextView
+            android:layout_height="22dp"
             android:layout_marginTop="13dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="#5c1488"
             android:fontFamily="@font/notosanskr_b"
-            android:text=" 월"/>
+            android:textColor="#5c1488"
+            android:textSize="20sp"
+            android:text = "4 "/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:layout_marginTop="13dp"
+            android:fontFamily="@font/notosanskr_b"
+            android:textColor="#5c1488"
+            android:textSize="20sp"
+            android:text = "월 "/>
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -79,6 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
+                android:id="@+id/chart1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="8.5dp"
@@ -93,21 +96,24 @@
                     android:max="100"
                     android:progress="100"
                     android:progressBackgroundTint="#ffffff"
-                    android:progressTint="#5c1488"
+                    android:progressTint="#e0e0e0"
                     />
+
                 <TextView
-                    android:layout_marginTop="12.3dp"
+                    android:id="@+id/month_chart1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="10sp"
-                    android:textColor="#b1b1b1"
-                    android:letterSpacing="0.03"
                     android:layout_gravity="center"
+                    android:layout_marginTop="12.3dp"
                     android:fontFamily="@font/notosanskr_b"
-                    android:text="10월"/>
+                    android:letterSpacing="0.03"
+                    android:text="10 월"
+                    android:textColor="#b1b1b1"
+                    android:textSize="10sp" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/chart2"
                 android:layout_width="47dp"
                 android:layout_height="156dp"
                 android:layout_marginRight="8.5dp"
@@ -122,20 +128,22 @@
                     android:max="100"
                     android:progress="100"
                     android:progressBackgroundTint="#ffffff"
-                    android:progressTint="#5c1488" />
+                    android:progressTint="#e0e0e0 " />
 
                 <TextView
+                    android:id="@+id/month_chart2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="12.3dp"
-                    android:letterSpacing="0.03"
-                    android:text="11월"
-                    android:textColor="#b1b1b1"
                     android:fontFamily="@font/notosanskr_b"
+                    android:letterSpacing="0.03"
+                    android:text="11 월"
+                    android:textColor="#b1b1b1"
                     android:textSize="10sp" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/chart3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="8.5dp"
@@ -148,20 +156,23 @@
                     android:max="100"
                     style="@style/Widget.ProgressBar.Vertical"
                     android:progressBackgroundTint="#ffffff"
-                    android:progressTint="#5c1488"
+                    android:progressTint="#e0e0e0 "
                     />
+
                 <TextView
-                    android:layout_marginTop="12.3dp"
+                    android:id="@+id/month_chart3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="10sp"
-                    android:textColor="#b1b1b1"
-                    android:letterSpacing="0.03"
                     android:layout_gravity="center"
+                    android:layout_marginTop="12.3dp"
                     android:fontFamily="@font/notosanskr_b"
-                    android:text="12월"/>
+                    android:letterSpacing="0.03"
+                    android:text="12 월"
+                    android:textColor="#b1b1b1"
+                    android:textSize="10sp" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/chart4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="8.5dp"
@@ -174,46 +185,53 @@
                     android:max="100"
                     style="@style/Widget.ProgressBar.Vertical"
                     android:progressBackgroundTint="#ffffff"
-                    android:progressTint="#5c1488"
+                    android:progressTint="#e0e0e0 "
                     />
+
                 <TextView
-                    android:layout_marginTop="12.3dp"
+                    android:id="@+id/month_chart4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="10sp"
-                    android:textColor="#b1b1b1"
-                    android:letterSpacing="0.03"
                     android:layout_gravity="center"
+                    android:layout_marginTop="12.3dp"
                     android:fontFamily="@font/notosanskr_b"
-                    android:text="01월"/>
+                    android:letterSpacing="0.03"
+                    android:text="01 월"
+                    android:textColor="#b1b1b1"
+                    android:textSize="10sp" />
             </LinearLayout>
+
             <LinearLayout
+                android:id="@+id/chart5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="8.5dp"
                 android:orientation="vertical">
+
                 <ProgressBar
                     android:id="@+id/progressbar5"
+                    style="@style/Widget.ProgressBar.Vertical"
                     android:layout_width="47dp"
                     android:layout_height="130dp"
-                    android:progress="10"
                     android:max="100"
-                    style="@style/Widget.ProgressBar.Vertical"
+                    android:progress="10"
                     android:progressBackgroundTint="#ffffff"
-                    android:progressTint="#5c1488"
-                    />
+                    android:progressTint="#e0e0e0 " />
+
                 <TextView
-                    android:layout_marginTop="12.3dp"
+                    android:id="@+id/month_chart5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="10sp"
-                    android:textColor="#b1b1b1"
-                    android:letterSpacing="0.03"
                     android:layout_gravity="center"
+                    android:layout_marginTop="12.3dp"
                     android:fontFamily="@font/notosanskr_b"
-                    android:text="02월"/>
+                    android:letterSpacing="0.03"
+                    android:text="02 월"
+                    android:textColor="#b1b1b1"
+                    android:textSize="10sp" />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/chart6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="8.5dp"
@@ -226,44 +244,60 @@
                     android:max="100"
                     style="@style/Widget.ProgressBar.Vertical"
                     android:progressBackgroundTint="#ffffff"
-                    android:progressTint="#5c1488"
+                    android:progressTint="#e0e0e0 "
                     />
+
                 <TextView
-                    android:layout_marginTop="12.3dp"
+                    android:id="@+id/month_chart6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="10sp"
-                    android:textColor="#b1b1b1"
-                    android:letterSpacing="0.03"
                     android:layout_gravity="center"
+                    android:layout_marginTop="12.3dp"
                     android:fontFamily="@font/notosanskr_b"
-                    android:text="03월"/>
+                    android:letterSpacing="0.03"
+                    android:text="03 월"
+                    android:textColor="#b1b1b1"
+                    android:textSize="10sp" />
             </LinearLayout>
+
             <LinearLayout
+                android:id="@+id/chart7"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginRight="8.5dp"
                 android:orientation="vertical">
+
                 <ProgressBar
                     android:id="@+id/progressbar7"
+                    style="@style/Widget.ProgressBar.Vertical"
                     android:layout_width="47dp"
                     android:layout_height="130dp"
-                    android:progress="10"
                     android:max="100"
-                    style="@style/Widget.ProgressBar.Vertical"
+                    android:progress="10"
                     android:progressBackgroundTint="#ffffff"
-                    android:progressTint="#e0e0e0"
-                    />
+                    android:progressTint="#5c1488" />
+
                 <TextView
-                    android:layout_marginTop="12.3dp"
+                    android:id="@+id/month_chart7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="10sp"
-                    android:textColor="#b1b1b1"
-                    android:letterSpacing="0.03"
                     android:layout_gravity="center"
+                    android:layout_marginTop="12.3dp"
                     android:fontFamily="@font/notosanskr_b"
-                    android:text="04월"/>
+                    android:letterSpacing="0.03"
+                    android:text="04 월"
+                    android:textColor="#b1b1b1"
+                    android:textSize="10sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="12.3dp"
+                    android:fontFamily="@font/notosanskr_b"
+                    android:letterSpacing="0.03"
+                    android:text="월"
+                    android:textColor="#b1b1b1"
+                    android:textSize="10sp" />
             </LinearLayout>
         </LinearLayout>
     </HorizontalScrollView>
