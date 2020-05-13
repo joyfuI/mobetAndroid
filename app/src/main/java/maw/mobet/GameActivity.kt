@@ -49,20 +49,19 @@ class GameActivity : AppCompatActivity() {
             if (info.start) {
                 // 경쟁전이 시작했으면 game2 액티비티 실행
                 start<Game2Activity> {
+                    addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                     putExtra("id", info.id)
                     putExtra("data", info)
                 }
+                overridePendingTransition(0, 0)
                 finish()
             }
 
             list_view.adapter = MyAdapter(info.members)
-
             binding.game = info
         })
         val data = intent.getParcelableExtra<GameItem>("data")
-        if (data == null) {
-            viewModel.loadData(id)
-        } else {
+        if (data != null) {
             info = data
             viewModel.loadData(info)
         }
