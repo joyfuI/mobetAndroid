@@ -19,5 +19,7 @@ data class GameItem(
     val endDate: Date,
     val price: Int,
     val category: Int,
-    val members: List<MemberItem>
+    val members: List<MemberItem>,
+    val remain: Int,
+    val place: Int
 ) : Parcelable
