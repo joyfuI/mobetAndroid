@@ -60,7 +60,7 @@ class InviteActivity : AppCompatActivity() {
                 val inviteList = list.filter {
                     it.isChecked
                 }.map {
-                    MemberItem(it.id, it.nick, it.imgUrl)
+                    it.member
                 }
 
                 val service = RetrofitClient.getInstance()

@@ -26,9 +26,9 @@ class MyAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
 
-        Glide.with(holder.itemView).load(item.imgUrl)
+        Glide.with(holder.itemView).load(item.member.imgUrl)
             .into(holder.profile_img)
-        holder.profile_txt.text = item.nick
+        holder.profile_txt.text = item.member.nick
         holder.check_box.setOnCheckedChangeListener(null) // 이거 없으면 사라질때 리스너 실행됨
         holder.check_box.isChecked = item.isChecked
         holder.check_box.setOnCheckedChangeListener { _, b ->
