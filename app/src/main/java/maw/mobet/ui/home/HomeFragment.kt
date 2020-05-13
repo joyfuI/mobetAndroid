@@ -44,13 +44,7 @@ class HomeFragment : Fragment(), MyAdapter.OnClickListener, SwipeRefreshLayout.O
 
         start<GameActivity> {
             putExtra("id", item.id)
-//            putExtra("name", item.name)
-//            putExtra("title", item.title)
-//            putExtra("category", item.category)
-//            putExtra("price", item.price)
-//            putExtra("startDate", item.startDate)
-//            putExtra("endDate", item.endDate)
-//            putExtra("imgUrl", item.imgUrl)
+            putExtra("data", item)
         }
     }
 

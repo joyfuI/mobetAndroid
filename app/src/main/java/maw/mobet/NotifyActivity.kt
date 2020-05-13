@@ -17,6 +17,7 @@ import maw.mobet.notify.MyAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import splitties.activities.start
 import splitties.resources.txt
 import splitties.toast.toast
 
@@ -59,6 +60,8 @@ class NotifyActivity : AppCompatActivity(), MyAdapter.OnClickListener, SwipeRefr
 
     // 리스트 아이템 클릭
     override fun onClick(view: View, position: Int, delete: () -> Unit) {
+        view.isClickable = false
+
         val item = view.tag as NotifyItem
         val type = if (view.id == accept_btn.id) 1 else 0
 
@@ -71,16 +74,24 @@ class NotifyActivity : AppCompatActivity(), MyAdapter.OnClickListener, SwipeRefr
                     // 사용가능
                     0 -> {
                         delete()
+                        if (type == 1) {
+                            start<GameActivity> {
+                                putExtra("id", item.gameId)
+                            }
+                        }
+                        view.isClickable = true
                     }
                     // 오류
                     else -> {
                         toast("${txt(R.string.error)} ${result?.code}")
+                        view.isClickable = true
                     }
                 }
             }
 
             override fun onFailure(call: Call<ResultItem>, t: Throwable) {
                 toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
+                view.isClickable = true
             }
         })
     }

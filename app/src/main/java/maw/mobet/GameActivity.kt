@@ -43,9 +43,6 @@ class GameActivity : AppCompatActivity() {
         }
 
         viewModel = ViewModelProvider(this)[GameViewModel::class.java]
-
-        list_view.layoutManager = GridLayoutManager(this, 3)
-
         viewModel.info.observe(this, Observer {
             info = it
 
@@ -62,6 +59,15 @@ class GameActivity : AppCompatActivity() {
 
             binding.game = info
         })
+        val data = intent.getParcelableExtra<GameItem>("data")
+        if (data == null) {
+            viewModel.loadData(id)
+        } else {
+            info = data
+            viewModel.loadData(info)
+        }
+
+        list_view.layoutManager = GridLayoutManager(this, 3)
         viewModel.loadData(id)
     }
 
@@ -71,12 +77,10 @@ class GameActivity : AppCompatActivity() {
             compete_btn -> {
                 compete_btn.isClickable = false
 
+                val type = if (info.compete) 1 else 0
+
                 val service = RetrofitClient.getInstance()
-                val dataCall = service.joinGame(IdData(info.id, if (info.compete) {
-                    1   // 나가기
-                } else {
-                    0   // 참가
-                }))
+                val dataCall = service.joinGame(IdData(info.id, type))
                 dataCall.enqueue(object : Callback<ResultItem> {
                     override fun onResponse(
                         call: Call<ResultItem>, response: Response<ResultItem>
