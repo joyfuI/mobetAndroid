@@ -1,5 +1,6 @@
 package maw.mobet
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -66,16 +67,15 @@ class GameActivity : AppCompatActivity() {
 
     fun onClick(view: View) {
         when (view) {
+            // 경잰전 참여/나가기
             compete_btn -> {
                 compete_btn.isClickable = false
 
                 val service = RetrofitClient.getInstance()
                 val dataCall = service.joinGame(IdData(info.id, if (info.compete) {
-                    // 나가기
-                    1
+                    1   // 나가기
                 } else {
-                    // 참가
-                    0
+                    0   // 참가
                 }))
                 dataCall.enqueue(object : Callback<ResultItem> {
                     override fun onResponse(
@@ -106,6 +106,11 @@ class GameActivity : AppCompatActivity() {
                         compete_btn.isClickable = true
                     }
                 })
+            }
+            // 친구초대
+            invite_btn -> {
+                val intent = Intent(this, InviteActivity::class.java)
+                startActivityForResult(intent, 0)
             }
         }
     }

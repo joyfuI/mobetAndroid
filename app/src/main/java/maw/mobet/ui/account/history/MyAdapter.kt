@@ -20,16 +20,10 @@ class MyAdapter(
     private val data: List<HistoryListItem>, private val listener: OnClickListener? = null
 ) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
     interface OnClickListener {
-        fun onClick(view: View)
+        fun onClick(view: View, position: Int)
     }
 
-    private val onClickListener = View.OnClickListener {
-        listener?.onClick(it)
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return data[position].getType()
-    }
+    override fun getItemViewType(position: Int): Int = data[position].getType()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return if (viewType == HistoryListItem.TYPE_HEADER) {
@@ -79,6 +73,9 @@ class MyAdapter(
             dataHolder.account_txt.text = intToStr(dataItem.money, suffix = appStr(R.string.won))
         }
 
+        val onClickListener = View.OnClickListener {
+            listener?.onClick(it, position)
+        }
         with (holder.itemView) {
             tag = item
             setOnClickListener(onClickListener)

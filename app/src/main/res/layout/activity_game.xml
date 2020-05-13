@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable name="game" type="maw.mobet.api.GameItem" />
+        <import type="android.view.View" />
     </data>
     <LinearLayout
         android:layout_width="match_parent"
@@ -68,6 +69,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/game_member" />
+        <Button android:id="@+id/invite_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/game_invite_btn"
+            android:visibility="@{game.isAdmin ? View.VISIBLE : View.GONE}"
+            android:onClick="onClick" />
         <androidx.recyclerview.widget.RecyclerView android:id="@+id/list_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

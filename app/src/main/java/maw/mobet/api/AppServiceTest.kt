@@ -40,4 +40,10 @@ interface AppServiceTest : AppService {
 
     @POST("post.php")
     override fun joinGame(@Body data: IdData): Call<ResultItem>
+
+    @POST("friend.json")
+    override fun friend(): Call<List<MemberItem>>
+
+    @POST("post.php")
+    override fun invite(@Body data: List<MemberItem>): Call<ResultItem>
 }

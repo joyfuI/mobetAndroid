@@ -40,4 +40,10 @@ interface AppService {
 
     @POST("post.php")
     fun joinGame(@Body data: IdData): Call<ResultItem>
+
+    @POST("friend.json")
+    fun friend(): Call<List<MemberItem>>
+
+    @POST("post.php")
+    fun invite(@Body data: List<MemberItem>): Call<ResultItem>
 }

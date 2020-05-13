@@ -15,6 +15,10 @@
         android:theme="@style/AppTheme"
         tools:ignore="LockedOrientationActivity">
         <activity
+            android:name=".InviteActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/DialogTheme" />
+        <activity
             android:name=".Game2Activity"
             android:screenOrientation="portrait" />
         <activity
