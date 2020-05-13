@@ -46,4 +46,7 @@ interface AppService {
 
     @POST("post.php")
     fun invite(@Body data: List<MemberItem>): Call<ResultItem>
+
+    @POST("rank.json")
+    fun rankList(): Call<List<MemberItem>>
 }

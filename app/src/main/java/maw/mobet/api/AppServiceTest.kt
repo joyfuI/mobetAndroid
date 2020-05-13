@@ -46,4 +46,7 @@ interface AppServiceTest : AppService {
 
     @POST("post.php")
     override fun invite(@Body data: List<MemberItem>): Call<ResultItem>
+
+    @POST("rank.json")
+    override fun rankList(): Call<List<MemberItem>>
 }

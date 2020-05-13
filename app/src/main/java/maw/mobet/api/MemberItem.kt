@@ -9,5 +9,6 @@ data class MemberItem(
     val nick: String,
     val imgUrl: String,
     val score: Int,
-    val grade: Int
+    val grade: Int,
+    val rank: Int
 ) : Parcelable

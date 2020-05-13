@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView android:id="@+id/rank_txt"
+        android:layout_width="51.5dp"
+        android:layout_height="51.5dp"
+        android:layout_marginStart="13.5dp"
+        android:layout_marginVertical="15dp"
+        android:gravity="center"
+        android:fontFamily="@font/nanumsquare_eb"
+        android:textSize="25sp"
+        android:textColor="@color/colorText"
+        android:letterSpacing="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView android:id="@+id/profile_img"
+        android:layout_width="51.5dp"
+        android:layout_height="51.5dp"
+        android:layout_marginStart="13.5dp"
+        app:civ_border_width="2dp"
+        app:civ_border_color="@color/colorText"
+        app:layout_constraintStart_toEndOf="@id/rank_txt"
+        app:layout_constraintTop_toTopOf="@id/rank_txt"
+        app:layout_constraintBottom_toBottomOf="@id/rank_txt" />
+
+    <TextView android:id="@+id/profile_txt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10.5dp"
+        android:fontFamily="@font/nanumsquare_eb"
+        android:textSize="12.3sp"
+        android:textColor="@color/colorText"
+        android:letterSpacing="0.1"
+        android:singleLine="true"
+        android:ellipsize="end"
+        app:layout_constraintStart_toEndOf="@id/profile_img"
+        app:layout_constraintEnd_toStartOf="@id/grade_btn"
+        app:layout_constraintTop_toTopOf="@id/profile_img"
+        app:layout_constraintBottom_toBottomOf="@id/profile_img" />
+
+    <Button android:id="@+id/grade_btn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_margin="13.5dp"
+        android:background="@drawable/button_signup2"
+        android:fontFamily="@font/notosanskr_m"
+        android:textSize="12.8sp"
+        android:textColor="@color/colorWhiteText"
+        app:layout_constraintEnd_toStartOf="@id/score_txt"
+        app:layout_constraintTop_toTopOf="@id/profile_img"
+        app:layout_constraintBottom_toBottomOf="@id/profile_img" />
+
+    <TextView android:id="@+id/score_txt"
+        android:layout_width="41.5dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:gravity="end"
+        android:fontFamily="@font/notosanskr_m"
+        android:textSize="12.8sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/profile_img"
+        app:layout_constraintBottom_toBottomOf="@id/profile_img" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

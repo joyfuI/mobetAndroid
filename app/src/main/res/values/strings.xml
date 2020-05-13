@@ -72,6 +72,11 @@
     <string name="game_invite_btn">친구초대</string>
     <string name="game_invite">초대</string>
 
+    <!-- 랭크 -->
+    <string name="rank_rank">#</string>
+    <string name="rank_nick">닉네임</string>
+    <string name="rank_score">등급/점수</string>
+
     <!-- 설정 -->
     <string name="setting_logout">로그아웃</string>
     <string name="setting_logout_alert">정말로 로그아웃하시겠습니까?</string>
@@ -91,6 +96,17 @@
     <string name="convenience">편의점</string>
     <string name="lodge">숙박</string>
     <string name="gas_station_parking_lot">차량</string>
+
+    <!-- 등급 -->
+    <string name="grade0">A+</string>
+    <string name="grade1">A0</string>
+    <string name="grade2">A-</string>
+    <string name="grade3">B+</string>
+    <string name="grade4">B0</string>
+    <string name="grade5">B-</string>
+    <string name="grade6">C+</string>
+    <string name="grade7">C0</string>
+    <string name="grade8">C-</string>
 
     <!-- 내역 -->
     <string name="month_day">M월 d일</string>
