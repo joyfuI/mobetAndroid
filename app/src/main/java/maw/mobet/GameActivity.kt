@@ -14,7 +14,6 @@ import maw.mobet.api.IdData
 import maw.mobet.api.ResultItem
 import maw.mobet.databinding.ActivityGameBinding
 import maw.mobet.ui.game.GameViewModel
-import maw.mobet.ui.game.MyAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -47,26 +46,24 @@ class GameActivity : AppCompatActivity() {
             info = it
 
             if (info.start) {
+                viewModel.info.removeObservers(this)
                 // 경쟁전이 시작했으면 game2 액티비티 실행
                 start<Game2Activity> {
                     addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
                     putExtra("id", info.id)
                     putExtra("data", info)
                 }
-                overridePendingTransition(0, 0)
                 finish()
             }
 
-            list_view.adapter = MyAdapter(info.members)
             binding.game = info
         })
         val data = intent.getParcelableExtra<GameItem>("data")
         if (data != null) {
-            info = data
-            viewModel.loadData(info)
+            viewModel.loadData(data)
         }
 
-        list_view.layoutManager = GridLayoutManager(this, 3)
+        binding.listView.layoutManager = GridLayoutManager(this, 3)
         viewModel.loadData(id)
     }
 
