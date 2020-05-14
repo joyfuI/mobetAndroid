@@ -78,6 +78,10 @@
     <string name="rank_rank">#</string>
     <string name="rank_nick">닉네임</string>
     <string name="rank_score">등급/점수</string>
+    <!-- 마이페이지 -->
+    <string name="rest_money">남은 금액 : </string>
+    <string name="playing">진행중</string>
+    <string name="ending">전적</string>
 
     <!-- 설정 -->
     <string name="setting_logout">로그아웃</string>

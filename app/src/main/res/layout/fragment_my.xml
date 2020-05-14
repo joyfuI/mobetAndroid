@@ -52,7 +52,7 @@
     <RadioGroup
         android:layout_width="332.3dp"
         android:layout_height="33.5dp"
-        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
         android:background="@drawable/radio_group"
         android:orientation="horizontal">
         <RadioButton
@@ -62,7 +62,7 @@
             android:gravity="center"
             android:button="@drawable/radio_flat_selected"
             android:checked="true"
-            android:text="진행중"
+            android:text="@string/playing"
             android:textSize="12.5sp"
             />
         <RadioButton
@@ -72,27 +72,14 @@
             android:gravity="center"
             android:button="@drawable/radio_flat_regular"
             android:checked="true"
-            android:text="전적"
+            android:text="@string/ending"
             android:textSize="12.5sp"
             />
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="33.5dp"
-            android:gravity="center"
-            android:button="@drawable/radio_flat_regular"
-            android:checked="true"
-            android:text="통계"
-            android:textSize="12.5sp"
-            />
-    </RadioGroup>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_playing"
-        android:layout_width="350dp"
-        android:layout_height="427dp"
-        >
-    </androidx.recyclerview.widget.RecyclerView>
 
+    </RadioGroup>
+    <androidx.viewpager2.widget.ViewPager2 android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 
 

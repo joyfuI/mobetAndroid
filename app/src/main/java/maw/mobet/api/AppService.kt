@@ -55,5 +55,5 @@ interface AppService {
     fun rankList(): Call<List<MemberItem>>
 
     @POST("my.json")
-    fun my(): Call<myItem>
+    fun my(): Call<MyItem>
 }

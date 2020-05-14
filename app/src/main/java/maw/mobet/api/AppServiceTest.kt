@@ -55,5 +55,5 @@ interface AppServiceTest : AppService {
     override fun rankList(): Call<List<MemberItem>>
 
     @POST("my.json")
-    override fun my(): Call<myItem>
+    override fun my(): Call<MyItem>
 }
