@@ -39,6 +39,7 @@ class GameActivity : AppCompatActivity() {
         if (id == -1) {
             toast(R.string.access_error)
             finish()
+            return
         }
 
         viewModel = ViewModelProvider(this)[GameViewModel::class.java]

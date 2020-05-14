@@ -45,6 +45,6 @@ fun bindCategory(view: TextView, category: Int) {
 }
 
 @BindingAdapter("bind_adapter")
-fun bindAdapter(view: RecyclerView, members: List<MemberItem>) {
-    view.adapter = MyAdapter(members)
+fun bindAdapter(view: RecyclerView, members: List<MemberItem>?) {
+    view.adapter = MyAdapter(members ?: return)
 }

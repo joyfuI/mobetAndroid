@@ -2,6 +2,7 @@ package maw.mobet.api
 
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface AppServiceTest : AppService {
@@ -23,7 +24,7 @@ interface AppServiceTest : AppService {
     @POST("post.php")
     override fun notifyRequest(@Body data: IdData): Call<ResultItem>
 
-    @POST("home.json")
+    @GET("home.json")
     override fun homeList(): Call<List<GameItem>>
 
     @POST("notifylist.json")
