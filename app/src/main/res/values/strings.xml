@@ -72,6 +72,7 @@
     <string name="game_invite_btn">친구초대</string>
     <string name="game_invite">초대</string>
     <string name="game_delete">경쟁전 삭제</string>
+    <string name="game_delete_alert">정말로 삭제하시겠습니까?</string>
 
     <!-- 랭크 -->
     <string name="rank_rank">#</string>

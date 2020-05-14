@@ -19,6 +19,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import splitties.activities.start
 import splitties.alertdialog.appcompat.alertDialog
+import splitties.alertdialog.appcompat.cancelButton
 import splitties.alertdialog.appcompat.messageResource
 import splitties.alertdialog.appcompat.okButton
 import splitties.resources.txt
@@ -75,7 +76,6 @@ class GameActivity : AppCompatActivity() {
                 compete_btn.isClickable = false
 
                 val type = if (info.compete) 1 else 0
-
                 val service = RetrofitClient.getInstance()
                 val dataCall = service.joinGame(IdData(info.id, type))
                 dataCall.enqueue(object : Callback<ResultItem> {
@@ -112,6 +112,37 @@ class GameActivity : AppCompatActivity() {
             invite_btn -> {
                 val intent = Intent(this, InviteActivity::class.java)
                 startActivityForResult(intent, 0)
+            }
+            // 경쟁전 삭제
+            delete_btn -> {
+                alertDialog {
+                    messageResource = R.string.game_delete_alert
+                    okButton {
+                        delete_btn.isClickable = false
+
+                        val service = RetrofitClient.getInstance()
+                        val dataCall = service.deleteGame(IdData(info.id, 0))
+                        dataCall.enqueue(object : Callback<ResultItem> {
+                            override fun onResponse(
+                                call: Call<ResultItem>, response: Response<ResultItem>
+                            ) {
+                                val result = response.body()
+                                if (result?.code == 0) {
+                                    finish()
+                                    return
+                                }
+                                toast("${txt(R.string.error)} ${result?.code}")
+                                delete_btn.isClickable = true
+                            }
+
+                            override fun onFailure(call: Call<ResultItem>, t: Throwable) {
+                                toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
+                                delete_btn.isClickable = true
+                            }
+                        })
+                    }
+                    cancelButton()
+                }.show()
             }
         }
     }
