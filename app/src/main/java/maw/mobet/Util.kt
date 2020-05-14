@@ -1,6 +1,8 @@
 package maw.mobet
 
 import android.os.Build
+import android.text.Html
+import android.text.Spanned
 import android.widget.TextView
 import com.google.gson.GsonBuilder
 import maw.mobet.api.AppService
@@ -52,6 +54,10 @@ object RetrofitClient {
     }
 }
 
+object User {
+    var id: Int? = null
+}
+
 object Regex {
     val email = """^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$"""
         .toRegex()
@@ -64,6 +70,14 @@ object Regex {
 
 fun String.toDate(): Date? {
     return SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).parse(this)
+}
+
+fun String.fromHtml(): Spanned {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        Html.fromHtml(this, Html.FROM_HTML_MODE_COMPACT)
+    } else {
+        Html.fromHtml(this)
+    }
 }
 
 fun Date.toString(format: String): String {

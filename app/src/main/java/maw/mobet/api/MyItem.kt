@@ -1,7 +1,7 @@
 package maw.mobet.api
 
 data class MyItem(
-    val my: MemberItem,
-    val playing: List<GameItem>,
-    val ending: List<GameItem>
+    val my: MemberItem,             // 내 정보
+    val playing: List<GameItem>,    // 진행중인 게임 리스트
+    val ending: List<GameItem>      // 종료된 게임 리스트
 )

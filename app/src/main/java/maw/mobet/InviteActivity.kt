@@ -18,6 +18,7 @@ import splitties.toast.toast
 
 class InviteActivity : AppCompatActivity() {
     private lateinit var list: List<MemberItem2>
+    private var isClickable = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,17 +53,19 @@ class InviteActivity : AppCompatActivity() {
     }
 
     fun onClick(view: View) {
+        if (!isClickable) {
+            return
+        }
         when (view) {
             // 확인 버튼
             ok_btn -> {
-                ok_btn.isClickable = false
-
                 val inviteList = list.filter {
                     it.isChecked
                 }.map {
                     it.member
                 }
 
+                isClickable = false
                 val service = RetrofitClient.getInstance()
                 val dataCall = service.invite(inviteList)
                 dataCall.enqueue(object : Callback<ResultItem> {
@@ -76,12 +79,12 @@ class InviteActivity : AppCompatActivity() {
                             return
                         }
                         toast("${txt(R.string.error)} ${result?.code}")
-                        ok_btn.isClickable = true
+                        isClickable = true
                     }
 
                     override fun onFailure(call: Call<ResultItem>, t: Throwable) {
                         toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
-                        ok_btn.isClickable = true
+                        isClickable = true
                     }
                 })
             }

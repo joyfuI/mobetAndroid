@@ -6,6 +6,9 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface AppService {
+    @GET("login/")
+    fun login(): Call<ResultItem>
+
     @POST("sign-up/")
     fun signup(@Body data: SignupData): Call<ResultItem>
 

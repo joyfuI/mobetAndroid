@@ -10,5 +10,7 @@ data class MemberItem(
     val imgUrl: String, // 프로필이미지 url
     val score: Int,     // 점수
     val grade: Int,     // 등급
-    val rank: Int       // 전체 순위
+    val rank: Int,      // 전체 순위
+    val remain: Int?,   // 남은금액 (정보가 없으면 null)
+    val place: Int?     // 등수 (정보가 없으면 null)
 ) : Parcelable

@@ -21,6 +21,7 @@ import java.util.*
 
 class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
     private val today = Date()
+    private var isClickable = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -129,6 +130,9 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
     }
 
     fun onClick(view: View) {
+        if (!isClickable) {
+            return
+        }
         when (view) {
             // 시작날짜, 종료날짜
             start_edit, end_edit -> {
@@ -173,8 +177,7 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
             }
             // 생성
             create_btn -> {
-                create_btn.isClickable = false
-
+                isClickable = false
                 val service = RetrofitClient.getInstance()
                 val data = makeDate() ?: return
                 val dataCall = service.createGame(data)
@@ -188,12 +191,12 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
                             return
                         }
                         toast("${txt(R.string.error)} ${result?.code}")
-                        create_btn.isClickable = true
+                        isClickable = true
                     }
 
                     override fun onFailure(call: Call<ResultItem>, t: Throwable) {
                         toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
-                        create_btn.isClickable = true
+                        isClickable = true
                     }
                 })
             }

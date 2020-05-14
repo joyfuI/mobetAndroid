@@ -19,7 +19,5 @@ data class GameItem(
     val endDate: Date,              // 종료날짜 (형식: yyyy-MM-dd)
     val price: Int,                 // 금액 (음수면 이하, 양수면 이상)
     val category: Int,              // 카테고리
-    val members: List<MemberItem>,  // 참가자 정보 (리스트)
-    val remain: Int?,               // 남은금액 (정보가 없으면 null)
-    val place: Int?                 // 등수 (정보가 없으면 null)
+    val members: List<MemberItem>   // 참가자 정보 (리스트)
 ) : Parcelable

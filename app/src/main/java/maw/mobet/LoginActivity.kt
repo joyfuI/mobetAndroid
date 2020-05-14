@@ -5,7 +5,12 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
+import maw.mobet.api.ResultItem
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import splitties.activities.start
+import splitties.resources.txt
 import splitties.toast.toast
 
 class LoginActivity : AppCompatActivity() {
@@ -33,6 +38,26 @@ class LoginActivity : AppCompatActivity() {
         if (user != null) {
             // 자동로그인
             RetrofitClient.setKey(user.uid)
+
+            // 로그인 요청
+            val service = RetrofitClient.getInstance()
+            val dataCall = service.login()
+            dataCall.enqueue(object : Callback<ResultItem> {
+                override fun onResponse(call: Call<ResultItem>, response: Response<ResultItem>) {
+                    val result = response.body()
+                    if (result == null) {
+                        toast("${txt(R.string.error)} ${result?.code}")
+                        isClickable = true
+                    }
+                    User.id = result?.code
+                }
+
+                override fun onFailure(call: Call<ResultItem>, t: Throwable) {
+                    toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
+                    isClickable = true
+                }
+            })
+
             start<MainActivity>()
             finish()
         }
@@ -56,13 +81,12 @@ class LoginActivity : AppCompatActivity() {
                         return
                     }
                 }
-
                 isClickable = false
-                // 로그인 처리
+
                 auth.signInWithEmailAndPassword(
                     email_edit.text.toString(),
                     passwd_edit.text.toString()
-                ).addOnCompleteListener(this) { task ->
+                ).addOnCompleteListener(this@LoginActivity) { task ->
                     if (task.isSuccessful) {
                         onStart()
                     } else {
