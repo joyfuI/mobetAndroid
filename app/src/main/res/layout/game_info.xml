@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="game" type="maw.mobet.api.GameItem" />
+        <import type="android.view.View" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/game_condition" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:bind_greater="@{game.greater}"
+            app:bind_less="@{game.less}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/game_count" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{game.members.size + @string/game_count_unit}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/game_price" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:bind_price="@{game.price}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/game_category" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:bind_category="@{game.category}" />
+
+        <Button android:id="@+id/compete_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{game.compete ? @string/game_compete_out : @string/game_compete}"
+            android:visibility="@{(!game.start &amp;&amp; !game.isAdmin) ? View.VISIBLE : View.GONE}"
+            android:onClick="onClick" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/game_member" />
+        <Button android:id="@+id/invite_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/game_invite_btn"
+            android:visibility="@{(!game.start &amp;&amp; game.isAdmin) ? View.VISIBLE : View.GONE}"
+            android:onClick="onClick" />
+        <androidx.recyclerview.widget.RecyclerView android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            app:bind_adapter="@{game.members}" />
+
+        <Button android:id="@+id/delete_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/game_delete"
+            android:visibility="@{(!game.start &amp;&amp; !game.isAdmin) ? View.VISIBLE : View.GONE}"
+            android:onClick="onClick" />
+
+    </LinearLayout>
+</layout>

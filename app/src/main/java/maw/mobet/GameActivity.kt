@@ -8,7 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import kotlinx.android.synthetic.main.activity_game.*
+import kotlinx.android.synthetic.main.game_info.*
 import maw.mobet.api.GameItem
 import maw.mobet.api.IdData
 import maw.mobet.api.ResultItem
@@ -64,7 +64,7 @@ class GameActivity : AppCompatActivity() {
             viewModel.loadData(data)
         }
 
-        binding.listView.layoutManager = GridLayoutManager(this, 3)
+        list_view.layoutManager = GridLayoutManager(this, 3)
         viewModel.loadData(id)
     }
 

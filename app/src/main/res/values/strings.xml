@@ -71,6 +71,7 @@
     <string name="game_member">맴버 목록</string>
     <string name="game_invite_btn">친구초대</string>
     <string name="game_invite">초대</string>
+    <string name="game_delete">경쟁전 삭제</string>
 
     <!-- 랭크 -->
     <string name="rank_rank">#</string>

@@ -2,11 +2,12 @@ package maw.mobet
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.activity_game2.*
 import maw.mobet.api.GameItem
+import maw.mobet.databinding.ActivityGame2Binding
 import maw.mobet.ui.game.GameViewModel
 import maw.mobet.ui.game.MyPagerAdapter
 import maw.mobet.ui.game.info.InfoFragment
@@ -22,17 +23,22 @@ class Game2Activity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_game2)
+//        setContentView(R.layout.activity_game2)
+        val binding: ActivityGame2Binding = DataBindingUtil.setContentView(
+            this, R.layout.activity_game2
+        )
 
         val id = intent.getIntExtra("id", -1)
         if (id == -1) {
             toast(R.string.access_error)
             finish()
+            return
         }
 
         viewModel = ViewModelProvider(this)[GameViewModel::class.java]
         viewModel.info.observe(this, Observer {
             info = it
+            binding.game = info
         })
         val data = intent.getParcelableExtra<GameItem>("data")
         if (data == null) {
@@ -47,13 +53,13 @@ class Game2Activity : AppCompatActivity() {
             txt(R.string.tab_game_info)
         )
 
-        view_pager.adapter = MyPagerAdapter(
+        binding.viewPager.adapter = MyPagerAdapter(
             this, listOf(
                 statisticsFragment,
                 infoFragment
             )
         )
-        TabLayoutMediator(tab_layout, view_pager) { tab, position ->
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = tabText[position]
         }.attach()
     }
