@@ -78,6 +78,15 @@
     <string name="rank_rank">#</string>
     <string name="rank_nick">닉네임</string>
     <string name="rank_score">등급/점수</string>
+    <!-- 개인 랭크 -->
+    <string name="personal_grade">현재등급</string>
+    <string name="personal_rank">현재순위</string>
+
+    <string name="personal_win">승리횟수</string>
+    <string name="personal_first">1등비율</string>
+    <string name="personal_play">경쟁전수</string>
+
+
     <!-- 마이페이지 -->
     <string name="rest_money">남은 금액 : </string>
     <string name="playing">진행중</string>
