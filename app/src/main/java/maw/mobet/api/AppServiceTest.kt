@@ -6,6 +6,9 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface AppServiceTest : AppService {
+    @GET("post.php")
+    override fun login(): Call<ResultItem>
+
     @POST("post.php")
     override fun signup(@Body data: SignupData): Call<ResultItem>
 

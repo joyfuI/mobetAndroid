@@ -8,12 +8,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import maw.mobet.Game2Activity
-import maw.mobet.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import maw.mobet.*
 import maw.mobet.api.GameItem
+import maw.mobet.api.MemberItem
 import maw.mobet.databinding.FragmentGameStatisticsBinding
-import maw.mobet.diffDate
-import maw.mobet.fromHtml
 import maw.mobet.ui.game.GameViewModel
 import splitties.resources.str
 import java.util.*
@@ -44,6 +43,16 @@ class StatisticsFragment : Fragment() {
         viewModel.info.observe(viewLifecycleOwner, Observer {
             info = it
 
+            lateinit var my: MemberItem
+            val your: MutableList<Info> = mutableListOf()
+            for (i in info.members) {
+                if (i.id == User.id) {
+                    my = i
+                } else {
+                    your.add(Info(i.imgUrl, i.nick, i.remain!!, info.price))
+                }
+            }
+
             val cal = Calendar.getInstance().apply {
                 time = info.endDate
             }
@@ -53,8 +62,18 @@ class StatisticsFragment : Fragment() {
             html = html.replace("{2}", diffDate(today, info.endDate).toString())
             binding.remainTxt.text = html.fromHtml()
 
-            binding.game = info
+            binding.info = Info(my.imgUrl, my.nick, my.remain!!, info.price, your)
         })
         viewModel.loadData(info)
+
+        binding.listView.layoutManager = LinearLayoutManager(context)
     }
+
+    inner class Info(
+        val imgUrl: String,
+        val nick: String,
+        val amount: Int,
+        val price: Int,
+        val members: List<Info>? = null
+    )
 }
