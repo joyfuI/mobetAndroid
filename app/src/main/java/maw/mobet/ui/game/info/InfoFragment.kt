@@ -42,8 +42,8 @@ class InfoFragment : Fragment() {
             info = it
             binding.game = info
         })
+        viewModel.loadData(info)
 
         list_view.layoutManager = GridLayoutManager(context, 3)
-        binding.game = info
     }
 }
