@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:background="@color/colorAccent"
-                android:layout_gravity="bottom"/>
+                android:layout_gravity="bottom" />
         </FrameLayout>
 
         <include layout="@layout/game_info"

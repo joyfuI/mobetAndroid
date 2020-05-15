@@ -23,25 +23,34 @@
     <style name="TextView" />
     <style name="TextView.TitleGame">
         <item name="android:fontFamily">@font/nanumsquare_eb</item>
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/colorWhiteText</item>
         <item name="android:singleLine">true</item>
         <item name="android:ellipsize">end</item>
+        <item name="android:letterSpacing">0.1</item>
     </style>
     <style name="TextView.ColumnHead">
         <item name="android:fontFamily">@font/nanumsquare_eb</item>
-        <item name="android:textSize">12.5sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/colorCyan</item>
+        <item name="android:letterSpacing">0.1</item>
     </style>
     <style name="TextView.Text">
         <item name="android:fontFamily">@font/nanumsquare_eb</item>
-        <item name="android:textSize">12.5sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/colorBlackText</item>
+        <item name="android:letterSpacing">0.1</item>
+    </style>
+    <style name="TextView.Profile">
+        <item name="android:fontFamily">@font/nanumsquare_eb</item>
+        <item name="android:textSize">12.5sp</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:letterSpacing">0.1</item>
     </style>
 
     <style name="Button">
         <item name="android:fontFamily">@font/nanumsquare_b</item>
-        <item name="android:textSize">13.8sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/colorBlackText</item>
     </style>
     <style name="Button.White" parent="Button">
@@ -69,7 +78,7 @@
         <item name="android:layout_weight">1</item>
         <item name="android:layout_margin">2dp</item>
         <item name="android:fontFamily">@font/nanumsquare_eb</item>
-        <item name="android:textSize">11.3sp</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:textColor">@drawable/rdo_text_selector</item>
         <item name="android:letterSpacing">0.05</item>
         <item name="android:gravity">center</item>

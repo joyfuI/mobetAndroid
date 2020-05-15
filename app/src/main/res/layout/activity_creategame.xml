@@ -306,7 +306,7 @@
                 app:layout_constraintTop_toTopOf="@id/category_img"
                 app:layout_constraintBottom_toBottomOf="@id/category_img"
                 app:layout_constraintStart_toEndOf="@id/category_img"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

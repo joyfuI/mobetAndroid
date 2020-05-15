@@ -5,7 +5,7 @@
     <data>
         <variable name="game" type="maw.mobet.api.GameItem" />
     </data>
-    <androidx.core.widget.NestedScrollView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.game.info.InfoFragment">
@@ -13,5 +13,5 @@
         <include layout="@layout/game_info"
             app:game="@{game}" />
 
-    </androidx.core.widget.NestedScrollView>
+    </FrameLayout>
 </layout>
