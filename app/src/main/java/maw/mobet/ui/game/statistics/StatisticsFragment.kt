@@ -49,7 +49,7 @@ class StatisticsFragment : Fragment() {
                 if (i.id == User.id) {
                     my = i
                 } else {
-                    your.add(Info(i.imgUrl, i.nick, i.remain!!, info.price))
+                    your.add(Info(i.imgUrl, i.nick, i.remain ?: 0, info.price))
                 }
             }
 
@@ -62,7 +62,7 @@ class StatisticsFragment : Fragment() {
             html = html.replace("{2}", diffDate(today, info.endDate).toString())
             binding.remainTxt.text = html.fromHtml()
 
-            binding.info = Info(my.imgUrl, my.nick, my.remain!!, info.price, your)
+            binding.info = Info(my.imgUrl, my.nick, my.remain ?: 0, info.price, your)
         })
         viewModel.loadData(info)
 
