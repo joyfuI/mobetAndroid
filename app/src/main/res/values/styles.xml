@@ -47,6 +47,18 @@
         <item name="android:textColor">@color/colorText</item>
         <item name="android:letterSpacing">0.1</item>
     </style>
+    <style name="TextView.Title">
+        <item name="android:fontFamily">@font/nanumsquare_eb</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:letterSpacing">0.1</item>
+    </style>
+    <style name="TextView.Title2">
+        <item name="android:fontFamily">@font/nanumsquare_eb</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:letterSpacing">0.1</item>
+    </style>
 
     <style name="Button">
         <item name="android:fontFamily">@font/nanumsquare_b</item>
@@ -63,6 +75,10 @@
     <style name="Button.Orange.Hole" parent="Button">
         <item name="android:background">@drawable/button_orange_hole</item>
         <item name="android:textSize">12.5sp</item>
+    </style>
+    <style name="Button.Gradation" parent="Button">
+        <item name="android:background">@drawable/button_gradation</item>
+        <item name="android:textColor">@color/colorWhiteText</item>
     </style>
 
     <style name="EditText">

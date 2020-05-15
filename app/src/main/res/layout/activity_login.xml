@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="85.8dp"
             android:layout_marginHorizontal="8dp"
-            android:background="@drawable/button_login"
+            android:background="@drawable/button_gradation"
             android:fontFamily="@font/notosanskr_b"
             android:text="@string/login_button"
             android:textSize="14.8sp"
