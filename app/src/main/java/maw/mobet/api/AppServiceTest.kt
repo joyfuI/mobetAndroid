@@ -54,7 +54,7 @@ interface AppServiceTest : AppService {
     @POST("post.php")
     override fun deleteGame(@Body data: IdData): Call<ResultItem>
 
-    @POST("rank.json")
+    @POST("friend.json")
     override fun rankList(): Call<List<MemberItem>>
 
     @POST("my.json")

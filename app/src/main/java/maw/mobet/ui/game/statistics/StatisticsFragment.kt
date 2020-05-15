@@ -15,6 +15,7 @@ import maw.mobet.api.MemberItem
 import maw.mobet.databinding.FragmentGameStatisticsBinding
 import maw.mobet.ui.game.GameViewModel
 import splitties.resources.str
+import splitties.toast.toast
 import java.util.*
 
 class StatisticsFragment : Fragment() {
@@ -43,7 +44,7 @@ class StatisticsFragment : Fragment() {
         viewModel.info.observe(viewLifecycleOwner, Observer {
             info = it
 
-            lateinit var my: MemberItem
+            var my: MemberItem? = null
             val your: MutableList<Info> = mutableListOf()
             for (i in info.members) {
                 if (i.id == User.id) {
@@ -51,6 +52,11 @@ class StatisticsFragment : Fragment() {
                 } else {
                     your.add(Info(i.imgUrl, i.nick, i.remain ?: 0, info.price))
                 }
+            }
+
+            if (my == null) {
+                toast(R.string.access_error)
+                requireActivity().finish()
             }
 
             val cal = Calendar.getInstance().apply {
@@ -62,7 +68,7 @@ class StatisticsFragment : Fragment() {
             html = html.replace("{2}", diffDate(today, info.endDate).toString())
             binding.remainTxt.text = html.fromHtml()
 
-            binding.info = Info(my.imgUrl, my.nick, my.remain ?: 0, info.price, your)
+            binding.info = Info(my?.imgUrl ?: "", my?.nick ?: "", my?.remain ?: 0, info.price, your)
         })
         viewModel.loadData(info)
 
