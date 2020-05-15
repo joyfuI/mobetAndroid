@@ -1,7 +1,6 @@
 package maw.mobet.ui.my.playing
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,7 +36,6 @@ class FragmentPlaying  : Fragment(), MyplayingAdapter.OnClickListener {
 
         rv_playing.layoutManager = LinearLayoutManager(activity)
         viewModel.list.observe(viewLifecycleOwner, Observer {
-            Log.d("joyfuI", it.playing.size.toString())
             rv_playing.adapter = MyplayingAdapter(it.playing, this)
         })
     }

@@ -3,16 +3,19 @@ package maw.mobet
 import android.os.Build
 import android.text.Html
 import android.text.Spanned
+import android.util.Log
 import android.widget.TextView
 import com.google.gson.GsonBuilder
 import maw.mobet.api.AppService
 import maw.mobet.api.AppServiceTest
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.TimeUnit
 import kotlin.math.ceil
 
 object RetrofitClient {
@@ -27,7 +30,7 @@ object RetrofitClient {
             .build()
             .create(AppServiceTest::class.java)
 //        Retrofit.Builder()
-//            .baseUrl("https://749a64ee.ngrok.io/")
+//            .baseUrl("https://3d02c3ab.ngrok.io/")
 //            .addConverterFactory(GsonConverterFactory.create(gson))
 //            .client(interceptor)
 //            .build()
@@ -35,22 +38,35 @@ object RetrofitClient {
     }
     // 요청할 때마다 Authorization 정보 추가
     private val interceptor by lazy {
-        OkHttpClient.Builder().addInterceptor {
-            val request = if (key != null) {
-                it.request().newBuilder()
-                    .addHeader("Authorization", "Bearer $key")
-                    .build()
-            } else {
-                it.request()
+        OkHttpClient.Builder()
+            .connectTimeout(10, TimeUnit.SECONDS)    // 요청을 시작한 후 서버와 TCP handshake가 완료되기까지의 시간 제한
+            .readTimeout(30, TimeUnit.SECONDS)       // 연결이 설정되고 서버로부터의 응답까지의 시간 제한
+            .addInterceptor {
+                val request = if (key != null) {
+                    it.request().newBuilder()
+                        .addHeader("Authorization", "$key")
+                        .build()
+                } else {
+                    it.request()
+                }
+                it.proceed(request)
             }
-            it.proceed(request)
-        }.build()
+            .addInterceptor(logging)
+            .build()
     }
 
     fun getInstance(): AppService = service
 
     fun setKey(value: String) {
         key = value
+    }
+
+    private val logging = HttpLoggingInterceptor(object : HttpLoggingInterceptor.Logger {
+        override fun log(message: String) {
+            Log.d("joyfuI", message)
+        }
+    }).apply {
+        this.level = HttpLoggingInterceptor.Level.BODY
     }
 }
 

@@ -114,17 +114,6 @@
     <string name="lodging">숙박</string>
     <string name="car">자동차</string>
 
-    <!-- 등급 -->
-    <string name="grade0">A+</string>
-    <string name="grade1">A0</string>
-    <string name="grade2">A-</string>
-    <string name="grade3">B+</string>
-    <string name="grade4">B0</string>
-    <string name="grade5">B-</string>
-    <string name="grade6">C+</string>
-    <string name="grade7">C0</string>
-    <string name="grade8">C-</string>
-
     <!-- 내역 -->
     <string name="month_day">M월 d일</string>
     <string name="deposit">입금</string>

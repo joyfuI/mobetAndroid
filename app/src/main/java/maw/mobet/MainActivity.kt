@@ -5,6 +5,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.custom_actionbar.*
 import maw.mobet.api.ResultItem
@@ -16,6 +17,8 @@ import splitties.resources.txt
 import splitties.toast.toast
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -37,10 +40,18 @@ class MainActivity : AppCompatActivity() {
         nav_view.setupWithNavController(navController)
 
         fab.alpha = 0.5f
+
+        auth = FirebaseAuth.getInstance()
     }
 
     override fun onStart() {
         super.onStart()
+
+        if (auth.currentUser == null) {
+            toast(R.string.access_error)
+            finish()
+            return
+        }
 
         val service = RetrofitClient.getInstance()
         val dataCall = service.notify()

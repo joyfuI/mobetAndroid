@@ -30,7 +30,7 @@ interface AppServiceTest : AppService {
     @GET("home.json")
     override fun homeList(): Call<List<GameItem>>
 
-    @POST("notifylist.json")
+    @GET("notifylist.json")
     override fun notifyList(): Call<List<NotifyItem>>
 
     @POST("account.json")
