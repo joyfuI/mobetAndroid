@@ -9,8 +9,8 @@ import com.bumptech.glide.Glide
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.list_item_my.*
 import maw.mobet.R
+import maw.mobet.User
 import maw.mobet.api.GameItem
-import maw.mobet.api.MyItem
 import splitties.resources.appTxtArray
 
 class MyfinishAdapter (
@@ -31,6 +31,10 @@ class MyfinishAdapter (
 
     override fun onBindViewHolder(holder: MyfinishAdapter.ViewHolder, position: Int) {
         val item = data[position]
+        val my = item.members.find {
+            it.id == User.id
+        }!!
+
         Log.d("dodo","adapter_finish + ${item.admin.nick}")
         Glide.with(holder.itemView).load(item.admin.imgUrl)
             .into(holder.profile_img)
@@ -40,9 +44,9 @@ class MyfinishAdapter (
         val text = "[${category[item.category]}]" +
                 " D - ${item.endDate.time  - item.startDate.time}"
         holder.category_txt.text = text
-        val text2= "남은 금액 : " + "${item.remain}"
+        val text2= "남은 금액 : " + "${my.remain}"
         holder.amount.text =text2
-        holder.rank_txt.text = item.place.toString()
+        holder.rank_txt.text = my.place.toString()
 
         val onClickListener = View.OnClickListener {
             listener?.onClick(it, position)
