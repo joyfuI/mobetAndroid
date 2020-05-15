@@ -5,83 +5,137 @@
         <variable name="game" type="maw.mobet.api.GameItem" />
         <import type="android.view.View" />
     </data>
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:paddingHorizontal="25dp">
 
-        <TextView
+        <TextView android:id="@+id/condition_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/game_condition" />
-        <TextView
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="25dp"
+            android:text="@string/game_condition"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/TextView.ColumnHead" />
+        <TextView android:id="@+id/condition_data_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
             app:bind_greater="@{game.greater}"
-            app:bind_less="@{game.less}" />
+            app:bind_less="@{game.less}"
+            app:layout_constraintBottom_toBottomOf="@id/condition_txt"
+            app:layout_constraintStart_toEndOf="@id/condition_txt"
+            style="@style/TextView.Text" />
 
+        <TextView android:id="@+id/count_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:text="@string/game_count"
+            app:layout_constraintTop_toBottomOf="@id/condition_txt"
+            app:layout_constraintStart_toStartOf="@id/condition_txt"
+            style="@style/TextView.ColumnHead" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/game_count" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{game.members.size + @string/game_count_unit}" />
+            android:text="@{game.members.size + @string/game_count_unit}"
+            app:layout_constraintBottom_toBottomOf="@id/count_txt"
+            app:layout_constraintStart_toStartOf="@id/condition_data_txt"
+            style="@style/TextView.Text" />
 
+        <TextView android:id="@+id/price_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:text="@string/game_price"
+            app:layout_constraintTop_toBottomOf="@id/count_txt"
+            app:layout_constraintStart_toStartOf="@id/condition_txt"
+            style="@style/TextView.ColumnHead" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/game_price" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:bind_price="@{game.price}" />
+            app:bind_price="@{game.price}"
+            app:layout_constraintBottom_toBottomOf="@id/price_txt"
+            app:layout_constraintStart_toStartOf="@id/condition_data_txt"
+            style="@style/TextView.Text" />
 
+        <TextView android:id="@+id/category_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:text="@string/game_category"
+            app:layout_constraintTop_toBottomOf="@id/price_txt"
+            app:layout_constraintStart_toStartOf="@id/condition_txt"
+            style="@style/TextView.ColumnHead" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/game_category" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:bind_category="@{game.category}" />
+            app:bind_category="@{game.category}"
+            app:layout_constraintBottom_toBottomOf="@id/category_txt"
+            app:layout_constraintStart_toStartOf="@id/condition_data_txt"
+            style="@style/TextView.Text" />
 
         <Button android:id="@+id/compete_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginHorizontal="13.6dp"
             android:text="@{game.compete ? @string/game_compete_out : @string/game_compete}"
             android:visibility="@{(!game.start &amp;&amp; !game.isAdmin) ? View.VISIBLE : View.GONE}"
-            android:onClick="onClick" />
+            android:onClick="onClick"
+            app:layout_constraintTop_toBottomOf="@id/category_txt" />
 
-        <View
+        <View android:id="@+id/bar"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="#B1B1B1" />
+            android:background="#B1B1B1"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/compete_btn" />
 
-        <TextView
+        <TextView android:id="@+id/member_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/game_member" />
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="15dp"
+            android:text="@string/game_member"
+            app:layout_constraintTop_toBottomOf="@id/bar"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/TextView.Text" />
         <Button android:id="@+id/invite_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="55dp"
+            android:layout_height="30dp"
             android:text="@string/game_invite_btn"
             android:visibility="@{(!game.start &amp;&amp; game.isAdmin) ? View.VISIBLE : View.GONE}"
-            android:onClick="onClick" />
+            android:onClick="onClick"
+            app:layout_constraintTop_toTopOf="@id/member_txt"
+            app:layout_constraintBottom_toBottomOf="@id/member_txt"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/Button.Orange.Hole" />
         <androidx.recyclerview.widget.RecyclerView android:id="@+id/list_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="25dp"
             android:clipToPadding="false"
+            android:overScrollMode="never"
             android:nestedScrollingEnabled="false"
-            app:bind_adapter="@{game.members}" />
+            app:bind_adapter="@{game.members}"
+            app:layout_constraintTop_toBottomOf="@id/member_txt"
+            app:layout_constraintBottom_toTopOf="@id/delete_btn"
+            app:layout_goneMarginBottom="0dp" />
 
         <Button android:id="@+id/delete_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="25dp"
+            android:layout_marginHorizontal="13.6dp"
             android:text="@string/game_delete"
-            android:visibility="@{(!game.start &amp;&amp; !game.isAdmin) ? View.VISIBLE : View.GONE}"
-            android:onClick="onClick" />
+            android:visibility="@{(!game.start &amp;&amp; game.isAdmin) ? View.VISIBLE : View.GONE}"
+            android:onClick="onClick"
+            app:layout_constraintBottom_toBottomOf="parent"
+            style="@style/Button.White" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

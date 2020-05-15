@@ -20,6 +20,42 @@
         <item name="android:textSize">15sp</item>
     </style>
 
+    <style name="TextView" />
+    <style name="TextView.TitleGame">
+        <item name="android:fontFamily">@font/nanumsquare_eb</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/colorWhiteText</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+    <style name="TextView.ColumnHead">
+        <item name="android:fontFamily">@font/nanumsquare_eb</item>
+        <item name="android:textSize">12.5sp</item>
+        <item name="android:textColor">@color/colorCyan</item>
+    </style>
+    <style name="TextView.Text">
+        <item name="android:fontFamily">@font/nanumsquare_eb</item>
+        <item name="android:textSize">12.5sp</item>
+        <item name="android:textColor">@color/colorBlackText</item>
+    </style>
+
+    <style name="Button">
+        <item name="android:fontFamily">@font/nanumsquare_b</item>
+        <item name="android:textSize">13.8sp</item>
+        <item name="android:textColor">@color/colorBlackText</item>
+    </style>
+    <style name="Button.White" parent="Button">
+        <item name="android:background">@drawable/button_white</item>
+    </style>
+    <style name="Button.Orange" parent="Button">
+        <item name="android:background">@drawable/button_orange</item>
+        <item name="android:textColor">@color/colorWhiteText</item>
+    </style>
+    <style name="Button.Orange.Hole" parent="Button">
+        <item name="android:background">@drawable/button_orange_hole</item>
+        <item name="android:textSize">12.5sp</item>
+    </style>
+
     <style name="EditText">
         <item name="android:fontFamily">@font/nanumsquare_b</item>
         <item name="android:textColor">@color/colorText</item>

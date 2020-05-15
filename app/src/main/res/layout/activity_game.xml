@@ -11,15 +11,29 @@
         android:orientation="vertical"
         tools:context=".GameActivity">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{game.title}" />
+        <include layout="@layout/game_title"
+            app:game="@{game}" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tab_game_info" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.tabs.TabLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabSelectedTextColor="@color/colorAccent"
+                app:tabGravity="fill"
+                app:tabTextAppearance="@style/TabLayoutText">
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tab_game_info" />
+            </com.google.android.material.tabs.TabLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/colorAccent"
+                android:layout_gravity="bottom"/>
+        </FrameLayout>
 
         <include layout="@layout/game_info"
             app:game="@{game}" />

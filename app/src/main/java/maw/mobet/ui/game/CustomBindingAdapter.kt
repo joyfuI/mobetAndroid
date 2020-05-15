@@ -1,5 +1,6 @@
 package maw.mobet.ui.game
 
+import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -17,6 +18,7 @@ import kotlin.math.absoluteValue
 @BindingAdapter("bind_greater", "bind_less")
 fun bindCondition(view: TextView, greater: Int?, less: Int?) {
     if (greater == null || less == null) {
+        view.text = appStr(R.string.game_no_condition)
         return
     }
     val str = intToStr(greater, prefix = appStr(R.string.won_char)) +
@@ -46,6 +48,13 @@ fun bindPrice(view: TextView, price: Int) {
 fun bindCategory(view: TextView, category: Int) {
     val categoryArr = appStrArray(R.array.category)
     view.text = categoryArr[category]
+}
+
+@BindingAdapter("bind_category")
+fun bindCategory(view: ImageView, category: Int) {
+    val backgroundArr = view.resources.obtainTypedArray(R.array.category_background)
+    view.setImageResource(backgroundArr.getResourceId(category, 0))
+    backgroundArr.recycle()
 }
 
 @BindingAdapter("bind_adapter")
