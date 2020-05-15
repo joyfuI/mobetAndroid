@@ -211,12 +211,12 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
             if (resultCode == RESULT_OK) {
                 val drawableArr = resources.obtainTypedArray(R.array.category_drawable)
                 val titleArr = txtArray(R.array.category)
-                val position = data!!.getIntExtra("result", -1)
+                val position = data!!.getIntExtra("result", 0)
 
 //                category_txt.visibility = View.GONE
                 category_txt.text = titleArr[position]
                 category_img.tag = position
-                category_img.setImageResource(drawableArr.getResourceId(position, -1))
+                category_img.setImageResource(drawableArr.getResourceId(position, 0))
 
                 drawableArr.recycle()
             }

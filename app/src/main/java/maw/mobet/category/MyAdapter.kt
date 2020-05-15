@@ -33,7 +33,7 @@ class MyAdapter(
 
         with (holder.itemView) {
             // position 저장
-            tag = position
+            tag = position + 1
             setOnClickListener(onClickListener)
         }
     }

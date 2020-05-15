@@ -104,14 +104,14 @@
     <string name="cafe">카페</string>
     <string name="dessert">간식</string>
     <string name="life_style">생활</string>
-    <string name="entertainment">문화/예술</string>
-    <string name="cv_mart">마트</string>
-    <string name="hospital">의료/건강</string>
+    <string name="culture">문화/예술</string>
+    <string name="mart">마트</string>
+    <string name="health">의료/건강</string>
     <string name="movie">영화</string>
-    <string name="public_transportation">교통</string>
-    <string name="convenience">편의점</string>
-    <string name="lodge">숙박</string>
-    <string name="gas_station_parking_lot">차량</string>
+    <string name="transportation">교통</string>
+    <string name="cvs">편의점</string>
+    <string name="lodging">숙박</string>
+    <string name="car">자동차</string>
 
     <!-- 등급 -->
     <string name="grade0">A+</string>
