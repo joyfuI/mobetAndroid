@@ -44,7 +44,7 @@
                 android:inputType="textEmailAddress"
                 android:textSize="15sp"
                 android:hint="@string/login_email_hint"
-                style="@style/EditTheme" />
+                style="@style/EditText" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -67,7 +67,7 @@
                 android:inputType="textPassword"
                 android:textSize="15sp"
                 android:hint="@string/login_passwd_hint"
-                style="@style/EditTheme" />
+                style="@style/EditText" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button android:id="@+id/login_btn"

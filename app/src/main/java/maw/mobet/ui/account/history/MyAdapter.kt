@@ -61,13 +61,13 @@ class MyAdapter(
 
             val shape = dataHolder.data_btn.background as GradientDrawable
             if (dataItem.money > 0) {
-                shape.color = appColorSL(R.color.colorDeposit)
+                shape.color = appColorSL(R.color.colorCyan)
                 dataHolder.data_btn.text = appTxt(R.string.deposit)
-                dataHolder.account_txt.setTextColor(appColor(R.color.colorDeposit))
+                dataHolder.account_txt.setTextColor(appColor(R.color.colorCyan))
             } else {
-                shape.color = appColorSL(R.color.colorWithdrawal)
+                shape.color = appColorSL(R.color.colorOrange)
                 dataHolder.data_btn.text = appTxt(R.string.withdrawal)
-                dataHolder.account_txt.setTextColor(appColor(R.color.colorWithdrawal))
+                dataHolder.account_txt.setTextColor(appColor(R.color.colorOrange))
             }
             dataHolder.name_txt.text = dataItem.name
             dataHolder.account_txt.text = intToStr(dataItem.money, suffix = appStr(R.string.won))

@@ -76,7 +76,7 @@
                         android:inputType="text"
                         android:textSize="13.8sp"
                         android:nextFocusDown="@id/passwd_edit"
-                        style="@style/EditTheme" />
+                        style="@style/EditText" />
                 </com.google.android.material.textfield.TextInputLayout>
                 <Button android:id="@+id/email_btn"
                     android:layout_width="wrap_content"
@@ -126,7 +126,7 @@
                         android:inputType="textPassword"
                         android:textSize="13.8sp"
                         android:nextFocusDown="@id/passwd2_edit"
-                        style="@style/EditTheme" />
+                        style="@style/EditText" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <View
@@ -160,7 +160,7 @@
                         android:inputType="textPassword"
                         android:textSize="13.8sp"
                         android:nextFocusDown="@id/nick_edit"
-                        style="@style/EditTheme" />
+                        style="@style/EditText" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <View
@@ -195,7 +195,7 @@
                         android:inputType="text"
                         android:textSize="13.8sp"
                         android:nextFocusDown="@id/code_edit"
-                        style="@style/EditTheme" />
+                        style="@style/EditText" />
                 </com.google.android.material.textfield.TextInputLayout>
                 <Button android:id="@+id/nick_btn"
                     android:layout_width="wrap_content"
@@ -246,7 +246,7 @@
                         android:inputType="phone"
                         android:textSize="13.8sp"
                         android:nextFocusDown="@id/nick_edit"
-                        style="@style/EditTheme" />
+                        style="@style/EditText" />
                 </com.google.android.material.textfield.TextInputLayout>
                 <Button android:id="@+id/phone_btn"
                     android:layout_width="wrap_content"
@@ -257,7 +257,7 @@
                     android:background="@drawable/button_signup3"
                     android:fontFamily="@font/notosanskr_m"
                     android:textSize="12.8sp"
-                    android:textColor="@color/colorWithdrawal"
+                    android:textColor="@color/colorOrange"
                     android:text="@string/signup_send"
                     app:layout_constraintTop_toTopOf="@id/phone_edit_l"
                     app:layout_constraintBottom_toBottomOf="@id/phone_edit_l"
@@ -295,7 +295,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="number"
                             android:textSize="13.8sp"
-                            style="@style/EditTheme" />
+                            style="@style/EditText" />
                     </com.google.android.material.textfield.TextInputLayout>
                     <Button android:id="@+id/code_btn"
                         android:layout_width="wrap_content"

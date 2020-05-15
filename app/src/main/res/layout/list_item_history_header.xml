@@ -22,7 +22,7 @@
         android:visibility="gone"
         android:fontFamily="@font/notosanskr_m"
         android:textSize="12sp"
-        android:textColor="@color/colorDeposit"
+        android:textColor="@color/colorCyan"
         app:layout_constraintStart_toEndOf="@id/date_txt"
         app:layout_constraintBottom_toBottomOf="@id/date_txt" />
 
@@ -33,7 +33,7 @@
         android:visibility="gone"
         android:fontFamily="@font/notosanskr_m"
         android:textSize="12sp"
-        android:textColor="@color/colorWithdrawal"
+        android:textColor="@color/colorOrange"
         app:layout_constraintStart_toEndOf="@id/plus_txt"
         app:layout_constraintBottom_toBottomOf="@id/date_txt" />
     

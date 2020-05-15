@@ -59,7 +59,7 @@
                     android:textSize="16.3sp"
                     android:hint="@string/creategame_title_hint"
                     android:nextFocusDown="@id/greater_edit"
-                    style="@style/EditTheme" />
+                    style="@style/EditText" />
             </com.google.android.material.textfield.TextInputLayout>
             <RadioGroup android:id="@+id/toggle"
                 android:layout_width="match_parent"
@@ -118,7 +118,7 @@
                     android:textSize="16.3sp"
                     android:hint="@string/creategame_condition_greater"
                     android:nextFocusDown="@id/less_edit"
-                    style="@style/EditTheme" />
+                    style="@style/EditText" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView android:id="@+id/tilde_txt"
@@ -161,7 +161,7 @@
                     android:textSize="16.3sp"
                     android:hint="@string/creategame_condition_less"
                     android:nextFocusDown="@id/start_edit"
-                    style="@style/EditTheme" />
+                    style="@style/EditText" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView android:id="@+id/start_txt"
@@ -194,7 +194,7 @@
                     android:hint="YYYY-MM-DD"
                     android:nextFocusDown="@id/end_edit"
                     android:onClick="onClick"
-                    style="@style/EditTheme" />
+                    style="@style/EditText" />
             </com.google.android.material.textfield.TextInputLayout>
             <TextView android:id="@+id/end_txt"
                 android:layout_width="wrap_content"
@@ -225,7 +225,7 @@
                     android:hint="YYYY-MM-DD"
                     android:nextFocusDown="@id/price_edit"
                     android:onClick="onClick"
-                    style="@style/EditTheme" />
+                    style="@style/EditText" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView android:id="@+id/price_txt"
@@ -256,7 +256,7 @@
                     android:inputType="number"
                     android:textSize="16.3sp"
                     android:hint="@string/creategame_price_hint"
-                    style="@style/EditTheme" />
+                    style="@style/EditText" />
             </com.google.android.material.textfield.TextInputLayout>
             <Spinner android:id="@+id/price_cmb"
                 android:layout_width="wrap_content"

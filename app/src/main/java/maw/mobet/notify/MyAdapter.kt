@@ -27,9 +27,9 @@ class MyAdapter(
         var shape: GradientDrawable
 
         shape = view.accept_btn.background as GradientDrawable
-        shape.color = appColorSL(R.color.colorDeposit)
+        shape.color = appColorSL(R.color.colorCyan)
         shape = view.reject_btn.background as GradientDrawable
-        shape.color = appColorSL(R.color.colorWithdrawal)
+        shape.color = appColorSL(R.color.colorOrange)
 
         return ViewHolder(view)
     }
