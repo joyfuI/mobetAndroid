@@ -84,7 +84,8 @@
             android:text="@{game.compete ? @string/game_compete_out : @string/game_compete}"
             android:visibility="@{(!game.start &amp;&amp; !game.isAdmin) ? View.VISIBLE : View.GONE}"
             android:onClick="onClick"
-            app:layout_constraintTop_toBottomOf="@id/category_txt" />
+            app:layout_constraintTop_toBottomOf="@id/category_txt"
+            style="@style/Button.Orange" />
 
         <View android:id="@+id/bar"
             android:layout_width="match_parent"
