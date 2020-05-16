@@ -72,7 +72,7 @@ class HistoryFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
                 list.add(header)
             }
             header?.add(i.money)
-            list.add(HistoryListDataItem(i.name, i.money))
+            list.add(HistoryListDataItem(i.category, i.name, i.money))
         }
         return list
     }

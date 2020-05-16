@@ -1,5 +1,7 @@
-package maw.mobet.ui.game
+package maw.mobet
 
+import android.graphics.drawable.GradientDrawable
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -7,12 +9,15 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import de.hdodenhof.circleimageview.CircleImageView
-import maw.mobet.R
 import maw.mobet.api.MemberItem
-import maw.mobet.intToStr
+import maw.mobet.ui.game.MyAdapter
+import maw.mobet.ui.game.MyAdapter2
 import maw.mobet.ui.game.statistics.StatisticsFragment
+import splitties.resources.appColor
+import splitties.resources.appColorSL
 import splitties.resources.appStr
 import splitties.resources.appStrArray
+import java.util.*
 import kotlin.math.absoluteValue
 
 @BindingAdapter("bind_greater", "bind_less")
@@ -81,4 +86,27 @@ fun bindRemain(view: TextView, remain: Int) {
 @BindingAdapter("bind_current", "bind_max")
 fun bindProgress(view: ProgressBar, current: Int, max: Int = 100) {
     view.progress = (current.toDouble() / max.absoluteValue * 100).toInt()
+}
+
+@BindingAdapter("bind_date")
+fun bindDate(view: TextView, date: Date) {
+    view.text = date.toString(appStr(R.string.month_day))
+}
+
+@BindingAdapter("bind_money")
+fun bindMoney(view: TextView, price: Int) {
+    view.text = intToStr(-price, suffix = appStr(R.string.won))
+}
+
+@BindingAdapter("bind_category")
+fun bindCategory(view: Button, category: Int) {
+    val categoryArr = appStrArray(R.array.category)
+    val shape = view.background as GradientDrawable
+    shape.color = appColorSL(R.color.colorCyan)
+    view.text = categoryArr[category]
+}
+
+@BindingAdapter("bind_categoryColor")
+fun bindCategoryColor(view: TextView, category: Int) {
+    view.setTextColor(appColor(R.color.colorCyan))
 }
