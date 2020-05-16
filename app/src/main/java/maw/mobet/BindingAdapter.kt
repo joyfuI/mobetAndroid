@@ -102,11 +102,6 @@ fun bindMoney(view: TextView, price: Int) {
 fun bindCategory(view: Button, category: Int) {
     val categoryArr = appStrArray(R.array.category)
     val shape = view.background as GradientDrawable
-    shape.color = appColorSL(R.color.colorCyan)
+    shape.color = appColorSL(R.color.colorPrimary)
     view.text = categoryArr[category]
-}
-
-@BindingAdapter("bind_categoryColor")
-fun bindCategoryColor(view: TextView, category: Int) {
-    view.setTextColor(appColor(R.color.colorCyan))
 }

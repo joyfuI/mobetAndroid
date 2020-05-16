@@ -38,9 +38,9 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="25.5dp"
             android:fontFamily="@font/notosanskr_b"
+            android:textColor="@color/colorOrange"
             android:textSize="13.8sp"
             app:bind_money="@{item.money}"
-            app:bind_categoryColor="@{item.category}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/data_btn"
             app:layout_constraintBottom_toBottomOf="@id/data_btn" />
