@@ -17,6 +17,7 @@
             android:textSize="15sp"
             android:textColor="@color/colorText"
             app:bind_date="@{item.date}"
+            app:bind_dateFormat="@{@string/month_day}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

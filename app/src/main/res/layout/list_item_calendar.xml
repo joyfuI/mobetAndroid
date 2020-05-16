@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="day" type="Integer" />
+        <variable name="sum" type="Integer" />
+    </data>
+    <LinearLayout
+        android:layout_width="49.5dp"
+        android:layout_height="86dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_money"
+            android:layout_width="49.5dp"
+            android:layout_height="18dp"
+            android:textSize="12sp"
+            android:textColor="#70b8ad"
+            android:lineSpacingExtra="2.5sp" />
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13.5sp"
+            android:textColor="#a5a2e8"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tv_earn"
+            android:layout_marginTop="30.8dp"
+            android:layout_marginRight="6.8dp"
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="7.8sp"
+            android:textColor="#70b8ad"
+            android:text="32000" />
+        <TextView
+            android:id="@+id/tv_pay"
+            android:layout_gravity="right"
+            android:layout_marginRight="6.8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="7.8sp"
+            android:textColor="#ffa300"
+            android:text="-6000" />
+    </LinearLayout>
+</layout>

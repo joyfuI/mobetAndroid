@@ -1,288 +1,88 @@
 package maw.mobet.ui.account.statistics
 
-import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
-import kotlinx.android.synthetic.main.activity_main.*
-import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.fragment_account_statistics.*
-import kotlinx.android.synthetic.main.fragment_account_statistics.view.*
-import maw.mobet.MainActivity
 import maw.mobet.R
+import maw.mobet.api.AccountItem
+import maw.mobet.databinding.FragmentAccountStatisticsBinding
+import maw.mobet.ui.account.AccountFragment
 import maw.mobet.ui.account.AccountViewModel
-import java.text.SimpleDateFormat
-import java.util.*
 
-
-class StatisticsFragment : Fragment() {
+class StatisticsFragment : Fragment(), View.OnClickListener {
     companion object {
         fun newInstance() = StatisticsFragment()
     }
-    var d : Int= 7
 
+    private lateinit var binding: FragmentAccountStatisticsBinding
     private lateinit var viewModel: AccountViewModel
-    lateinit var scheduleRecyclerViewAdapter: RecyclerViewAdapter
+    private lateinit var data: AccountItem2
+    private var position = 5
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(activity ?: this)[AccountViewModel::class.java]
-        return inflater.inflate(R.layout.fragment_account_statistics, container, false)
+        viewModel = ViewModelProvider(parentFragment as AccountFragment)[AccountViewModel::class.java]
+//        return inflater.inflate(R.layout.fragment_account_statistics, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_account_statistics, container, false)
+        return binding.root
     }
-    fun initView() {
-        Log.d("dodo", "fragment_init")
 
-        scheduleRecyclerViewAdapter = RecyclerViewAdapter(this)
-        progressbar1.setProgress(80)
-        progressbar1.tag = 1
-        progressbar2.setProgress(70)
-        progressbar2.tag = 2
-        progressbar3.setProgress(60)
-        progressbar3.tag = 3
-        progressbar4.setProgress(50)
-        progressbar4.tag = 4
-        progressbar5.setProgress(40)
-        progressbar5.tag = 5
-        progressbar6.setProgress(30)
-        progressbar6.tag = 6
-        progressbar7.setProgress(20)
-        progressbar7.tag = 7
-        rv_schedule.layoutManager = GridLayoutManager(
-                activity,
-                BaseCalendar.DAYS_OF_WEEK
-        )
-        rv_schedule.adapter = scheduleRecyclerViewAdapter
-//        rv_schedule.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.HORIZONTAL))
-//        rv_schedule.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-
-    }
-    fun refreshCurrentMonth(calendar: Calendar) {
-        Log.d("dodo", "fragment_currentmonth")
-        val sdf = SimpleDateFormat("MM", Locale.KOREAN)
-        tv_current_month.text = sdf.format(calendar.time)
-    }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        initView()
-        chart1.progressbar1.setOnClickListener{
-            chart1.progressbar1.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(92,20,136)))
-            chart2.progressbar2.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart3.progressbar3.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart4.progressbar4.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart5.progressbar5.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart6.progressbar6.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart7.progressbar7.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            val differ = d - (progressbar1.tag as Int)
-            Log.d("dodo", differ.toString())
-            d = (progressbar1.tag as Int)
-            if( differ < 0){
-                for(i in 0..(Math.abs(differ) -1))
-                    scheduleRecyclerViewAdapter.changeToNextMonth()
-            }
-            else{
-                for(i in 0..(differ-1))
-                    scheduleRecyclerViewAdapter.changeToPrevMonth()
-            }
-            val a = tv_current_month.text.toString() + " 월"
-            month_chart1.text = a
-            Log.d("dodo", "chart1")
-        }
-        chart2.progressbar2.setOnClickListener{
-            chart1.progressbar1.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart2.progressbar2.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(92,20,136)))
-            chart3.progressbar3.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart4.progressbar4.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart5.progressbar5.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart6.progressbar6.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart7.progressbar7.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            val differ = d - (progressbar2.tag as Int)
-            Log.d("dodo", differ.toString())
-            d = (progressbar2.tag as Int)
-            if( differ < 0){
-                for(i in 0..(Math.abs(differ) -1))
-                    scheduleRecyclerViewAdapter.changeToNextMonth()
-            }
-            else{
-                for(i in 0..(differ-1))
-                    scheduleRecyclerViewAdapter.changeToPrevMonth()
-            }
-            val a = tv_current_month.text.toString() + " 월"
-            month_chart2.text = a
-            Log.d("dodo", "chart2")
-        }
-        chart3.progressbar3.setOnClickListener{
-            chart1.progressbar1.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart2.progressbar2.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart3.progressbar3.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(92,20,136)))
-            chart4.progressbar4.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart5.progressbar5.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart6.progressbar6.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart7.progressbar7.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            val differ = d - (progressbar3.tag as Int)
-            Log.d("dodo", differ.toString())
-            d = (progressbar3.tag as Int)
-            if( differ < 0){
-                for(i in 0..(Math.abs(differ) -1))
-                    scheduleRecyclerViewAdapter.changeToNextMonth()
-            }
-            else{
-                for(i in 0..(differ-1))
-                    scheduleRecyclerViewAdapter.changeToPrevMonth()
-            }
-            val a = tv_current_month.text.toString() + " 월"
-            month_chart3.text = a
-            Log.d("dodo", "chart3")
-        }
-        chart4.progressbar4.setOnClickListener{
-            chart1.progressbar1.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart2.progressbar2.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart3.progressbar3.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart4.progressbar4.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(92,20,136)))
-            chart5.progressbar5.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart6.progressbar6.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart7.progressbar7.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            val differ = d - (progressbar4.tag as Int)
-            Log.d("dodo", differ.toString())
 
-            d = (progressbar4.tag as Int)
-            if( differ < 0){
-                for(i in 0..(Math.abs(differ) -1))
-                    scheduleRecyclerViewAdapter.changeToNextMonth()
+//        list_view.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.HORIZONTAL))
+//        list_view.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
+        viewModel.list.observe(viewLifecycleOwner, Observer {
+            data = createList(it)
+
+//            binding.listView.adapter = MyAdapter(data)
+            binding.data = data
+        })
+
+        list_view.layoutManager = GridLayoutManager(activity, 7)
+
+        graph0.setOnClickListener(this)
+        graph1.setOnClickListener(this)
+        graph2.setOnClickListener(this)
+        graph3.setOnClickListener(this)
+        graph4.setOnClickListener(this)
+        graph5.setOnClickListener(this)
+    }
+
+    private fun createList(data: AccountItem): AccountItem2 {
+        var max = 0
+        var sum = 0
+
+        for (i in data.month) {
+            if (max < i.sum) {
+                max = i.sum
             }
-            else{
-                for(i in 0..(differ-1))
-                    scheduleRecyclerViewAdapter.changeToPrevMonth()
-            }
-            val a = tv_current_month.text.toString() + " 월"
-            month_chart4.text = a
-            Log.d("dodo", "chart4")
+            sum += i.sum
         }
-        chart5.progressbar5.setOnClickListener{
-            chart1.progressbar1.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart2.progressbar2.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart3.progressbar3.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart5.progressbar5.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(92,20,136)))
-            chart4.progressbar4.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart6.progressbar6.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart7.progressbar7.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            val differ = d - (progressbar5.tag as Int)
-            Log.d("dodo", differ.toString())
-            d = (progressbar5.tag as Int)
-            if( differ < 0){
-                for(i in 0..(Math.abs(differ) -1))
-                    scheduleRecyclerViewAdapter.changeToNextMonth()
-            }
-            else{
-                for(i in 0..(differ-1))
-                    scheduleRecyclerViewAdapter.changeToPrevMonth()
-            }
-            val a = tv_current_month.text.toString() + " 월"
-            month_chart5.text = a
-            Log.d("dodo", "chart5")
+
+        return AccountItem2(position, data, max, sum / 6)
+    }
+
+    override fun onClick(p0: View?) {
+        position = when (p0) {
+            graph0 -> 0
+            graph1 -> 1
+            graph2 -> 2
+            graph3 -> 3
+            graph4 -> 4
+            graph5 -> 5
+            else -> 5
         }
-        chart6.progressbar6.setOnClickListener{
-            chart1.progressbar1.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart2.progressbar2.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart3.progressbar3.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart6.progressbar6.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(92,20,136)))
-            chart5.progressbar5.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart4.progressbar4.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart7.progressbar7.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            val differ = d - (progressbar6.tag as Int)
-            Log.d("dodo", differ.toString())
-            d = (progressbar6.tag as Int)
-            if( differ < 0){
-                for(i in 0..(Math.abs(differ) -1))
-                    scheduleRecyclerViewAdapter.changeToNextMonth()
-            }
-            else{
-                for(i in 0..(differ-1))
-                    scheduleRecyclerViewAdapter.changeToPrevMonth()
-            }
-            val a = tv_current_month.text.toString() + " 월"
-            month_chart6.text = a
-            Log.d("dodo", "chart6")
+        binding.data = data.apply {
+            position = this@StatisticsFragment.position
         }
-        chart7.progressbar7.setOnClickListener{
-            chart1.progressbar1.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart2.progressbar2.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart3.progressbar3.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart7.progressbar7.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(92,20,136)))
-            chart5.progressbar5.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart6.progressbar6.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            chart4.progressbar4.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
-                Color.rgb(224,224,224)))
-            val differ = d - (progressbar7.tag as Int)
-            Log.d("dodo", differ.toString())
-            d = (progressbar7.tag as Int)
-            if( differ < 0){
-                for(i in 0..(Math.abs(differ) -1))
-                    scheduleRecyclerViewAdapter.changeToNextMonth()
-            }
-            else{
-                for(i in 0..(differ-1))
-                    scheduleRecyclerViewAdapter.changeToPrevMonth()
-            }
-            val a = tv_current_month.text.toString() + " 월"
-            month_chart7.text = a
-            Log.d("dodo", "chart7")
-        }
-        // TODO: Use the ViewModel
     }
 }

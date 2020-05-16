@@ -65,6 +65,11 @@
         <item name="android:textColor">@color/colorText</item>
         <item name="android:letterSpacing">0.1</item>
     </style>
+    <style name="TextView.Calender" parent="TextView">
+        <item name="android:fontFamily">@font/notosanskr_m</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/colorWeekday</item>
+    </style>
 
     <style name="Button">
         <item name="android:fontFamily">@font/nanumsquare_b</item>

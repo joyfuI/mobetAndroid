@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="month" type="maw.mobet.api.MonthItem" />
+        <variable name="max" type="Integer" />
+        <variable name="select" type="Boolean" />
+    </data>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="8dp">
+
+        <ProgressBar
+            android:layout_width="47dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:progressBackgroundTint="@android:color/transparent"
+            android:progressTint="@{select ? @color/colorPrimary : @color/colorControlNormal}"
+            app:bind_current="@{month.sum}"
+            app:bind_max="@{max}"
+            style="@style/Widget.ProgressBar.Vertical" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginVertical="12.3dp"
+            android:fontFamily="@font/notosanskr_b"
+            android:textSize="12sp"
+            android:textColor="@{select ? @color/colorPrimary : @color/colorControlNormal}"
+            android:letterSpacing="0.03"
+            app:bind_date="@{month.month}"
+            app:bind_dateFormat="@{@string/month}" />
+
+    </LinearLayout>
+</layout>

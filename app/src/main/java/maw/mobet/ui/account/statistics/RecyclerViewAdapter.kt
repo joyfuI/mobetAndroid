@@ -4,12 +4,9 @@ package maw.mobet.ui.account.statistics
 import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_schedule.*
-import kotlinx.android.synthetic.main.item_schedule.view.*
+import kotlinx.android.synthetic.main.list_item_calendar.*
 import maw.mobet.R
 import java.util.*
 
@@ -27,7 +24,7 @@ class RecyclerViewAdapter(val StaticActivity: StatisticsFragment) : RecyclerView
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderHelper {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_schedule, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item_calendar, parent, false)
         return ViewHolderHelper(view)
     }
 
@@ -65,6 +62,6 @@ class RecyclerViewAdapter(val StaticActivity: StatisticsFragment) : RecyclerView
 
     private fun refreshView(calendar: Calendar) {
         notifyDataSetChanged()
-        StaticActivity.refreshCurrentMonth(calendar)
+//        StaticActivity.refreshCurrentMonth(calendar)
     }
 }
