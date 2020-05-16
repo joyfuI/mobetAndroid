@@ -41,11 +41,8 @@ class Game2Activity : AppCompatActivity() {
             binding.game = info
         })
         val data = intent.getParcelableExtra<GameItem>("data")
-        if (data == null) {
-            viewModel.loadData(id)
-        } else {
-            info = data
-            viewModel.loadData(info)
+        if (data != null) {
+            viewModel.loadData(data)
         }
 
         val tabText = listOf(
@@ -62,5 +59,7 @@ class Game2Activity : AppCompatActivity() {
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = tabText[position]
         }.attach()
+
+        viewModel.loadData(id)
     }
 }

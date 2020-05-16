@@ -11,10 +11,8 @@
         android:orientation="vertical"
         tools:context=".Game2Activity">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{game.title}" />
+        <include layout="@layout/game_title"
+            app:game="@{game}" />
 
         <com.google.android.material.tabs.TabLayout android:id="@+id/tab_layout"
             android:layout_width="match_parent"

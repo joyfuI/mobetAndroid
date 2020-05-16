@@ -6,6 +6,9 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface AppServiceTest : AppService {
+    @GET("post.php")
+    override fun login(): Call<ResultItem>
+
     @POST("post.php")
     override fun signup(@Body data: SignupData): Call<ResultItem>
 
@@ -27,7 +30,7 @@ interface AppServiceTest : AppService {
     @GET("home.json")
     override fun homeList(): Call<List<GameItem>>
 
-    @POST("notifylist.json")
+    @GET("notifylist.json")
     override fun notifyList(): Call<List<NotifyItem>>
 
     @POST("account.json")
@@ -51,7 +54,7 @@ interface AppServiceTest : AppService {
     @POST("post.php")
     override fun deleteGame(@Body data: IdData): Call<ResultItem>
 
-    @POST("rank.json")
+    @POST("friend.json")
     override fun rankList(): Call<List<MemberItem>>
 
     @POST("my.json")

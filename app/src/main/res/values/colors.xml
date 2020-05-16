@@ -7,7 +7,9 @@
 
     <color name="colorText">#3C027B</color>
     <color name="colorWhiteText">#FAFAFA</color>
+    <color name="colorBlackText">#151026</color>
+    <color name="colorGreyText">#7C7C7C</color>
 
-    <color name="colorDeposit">#70B8AD</color>
-    <color name="colorWithdrawal">#FFA300</color>
+    <color name="colorCyan">#70B8AD</color>
+    <color name="colorOrange">#FFA300</color>
 </resources>

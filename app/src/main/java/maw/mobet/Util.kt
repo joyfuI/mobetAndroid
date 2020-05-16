@@ -1,48 +1,57 @@
 package maw.mobet
 
 import android.os.Build
+import android.text.Html
+import android.text.Spanned
+import android.util.Log
 import android.widget.TextView
 import com.google.gson.GsonBuilder
 import maw.mobet.api.AppService
 import maw.mobet.api.AppServiceTest
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.TimeUnit
 import kotlin.math.ceil
 
+const val TEST = true
+
 object RetrofitClient {
+    val realServer = "https://3d02c3ab.ngrok.io/"
+    val testServer = "https://ljm.wo.tc/test/"
+
     private var key: String? = null
 
     private val service by lazy {
         val gson = GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create()
         Retrofit.Builder()
-            .baseUrl("https://ljm.wo.tc/test/")
+            .baseUrl(if (TEST) testServer else realServer)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .client(interceptor)
             .build()
-            .create(AppServiceTest::class.java)
-//        Retrofit.Builder()
-//            .baseUrl("https://749a64ee.ngrok.io/")
-//            .addConverterFactory(GsonConverterFactory.create(gson))
-//            .client(interceptor)
-//            .build()
-//            .create(AppService::class.java)
+            .create(if (TEST) AppServiceTest::class.java else AppService::class.java)
     }
     // 요청할 때마다 Authorization 정보 추가
     private val interceptor by lazy {
-        OkHttpClient.Builder().addInterceptor {
-            val request = if (key != null) {
-                it.request().newBuilder()
-                    .addHeader("Authorization", "Bearer $key")
-                    .build()
-            } else {
-                it.request()
+        OkHttpClient.Builder()
+            .connectTimeout(10, TimeUnit.SECONDS)    // 요청을 시작한 후 서버와 TCP handshake가 완료되기까지의 시간 제한
+            .readTimeout(30, TimeUnit.SECONDS)       // 연결이 설정되고 서버로부터의 응답까지의 시간 제한
+            .addInterceptor {
+                val request = if (key != null) {
+                    it.request().newBuilder()
+                        .addHeader("Authorization", "$key")
+                        .build()
+                } else {
+                    it.request()
+                }
+                it.proceed(request)
             }
-            it.proceed(request)
-        }.build()
+            .addInterceptor(logging)
+            .build()
     }
 
     fun getInstance(): AppService = service
@@ -50,6 +59,18 @@ object RetrofitClient {
     fun setKey(value: String) {
         key = value
     }
+
+    private val logging = HttpLoggingInterceptor(object : HttpLoggingInterceptor.Logger {
+        override fun log(message: String) {
+            Log.d("httplog", message)
+        }
+    }).apply {
+        this.level = HttpLoggingInterceptor.Level.BODY
+    }
+}
+
+object User {
+    var id: Int? = null
 }
 
 object Regex {
@@ -64,6 +85,14 @@ object Regex {
 
 fun String.toDate(): Date? {
     return SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).parse(this)
+}
+
+fun String.fromHtml(): Spanned {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        Html.fromHtml(this, Html.FROM_HTML_MODE_COMPACT)
+    } else {
+        Html.fromHtml(this)
+    }
 }
 
 fun Date.toString(format: String): String {

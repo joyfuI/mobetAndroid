@@ -1,46 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="category">
-        <item>@string/category_all</item>
+        <item>@null</item>
         <item>@string/restaurant</item>
         <item>@string/cafe</item>
         <item>@string/dessert</item>
         <item>@string/life_style</item>
-        <item>@string/entertainment</item>
-        <item>@string/cv_mart</item>
-        <item>@string/hospital</item>
+        <item>@string/culture</item>
+        <item>@string/mart</item>
+        <item>@string/health</item>
         <item>@string/movie</item>
-        <item>@string/public_transportation</item>
-        <item>@string/convenience</item>
-        <item>@string/lodge</item>
-        <item>@string/gas_station_parking_lot</item>
+        <item>@string/transportation</item>
+        <item>@string/cvs</item>
+        <item>@string/lodging</item>
+        <item>@string/car</item>
+        <item>@string/category_all</item>
     </string-array>
 
     <array name="category_drawable">
-        <item>@drawable/restaurant</item>
+        <item>@null</item>
         <item>@drawable/restaurant</item>
         <item>@drawable/cafe</item>
         <item>@drawable/dessert</item>
         <item>@drawable/life_style</item>
-        <item>@drawable/entertainment</item>
-        <item>@drawable/cv_mart</item>
-        <item>@drawable/hospital</item>
+        <item>@drawable/culture</item>
+        <item>@drawable/mart</item>
+        <item>@drawable/health</item>
         <item>@drawable/movie</item>
-        <item>@drawable/public_transportation</item>
-        <item>@drawable/convenience</item>
-        <item>@drawable/lodge</item>
-        <item>@drawable/gas_station_parking_lot</item>
+        <item>@drawable/transportation</item>
+        <item>@drawable/cvs</item>
+        <item>@drawable/lodging</item>
+        <item>@drawable/car</item>
+        <item>@drawable/all</item>
     </array>
 
-    <string-array name="grade">
-        <item>@string/grade0</item>
-        <item>@string/grade1</item>
-        <item>@string/grade2</item>
-        <item>@string/grade3</item>
-        <item>@string/grade4</item>
-        <item>@string/grade5</item>
-        <item>@string/grade6</item>
-        <item>@string/grade7</item>
-        <item>@string/grade8</item>
-    </string-array>
+    <array name="category_background">
+        <item>@null</item>
+        <item>@drawable/ic_launcher_background</item>
+        <item>@drawable/ic_launcher_background</item>
+        <item>@drawable/ic_launcher_background</item>
+        <item>@drawable/ic_launcher_background</item>
+        <item>@drawable/ic_launcher_background</item>
+        <item>@drawable/ic_launcher_background</item>
+        <item>@drawable/ic_launcher_background</item>
+        <item>@drawable/ic_launcher_background</item>
+        <item>@drawable/ic_launcher_background</item>
+        <item>@drawable/ic_launcher_background</item>
+        <item>@drawable/ic_launcher_background</item>
+        <item>@drawable/ic_launcher_background</item>
+        <item>@drawable/ic_launcher_background</item>
+    </array>
 </resources>

@@ -1,19 +1,18 @@
 package maw.mobet.ui.account.history
 
 import java.util.*
+import kotlin.math.absoluteValue
 
 class HistoryListHeaderItem (
-    val date: Date,
-    var plus: Int = 0,
-    var minus: Int = 0
+    val date: Date
 ) : HistoryListItem() {
     override fun getType() = TYPE_HEADER
 
+    private var _sum = 0
+    val sum: Int
+        get() = _sum
+
     fun add(num: Int) {
-        if (num > 0) {
-            plus += num
-        } else {
-            minus += num
-        }
+        _sum += num.absoluteValue
     }
 }

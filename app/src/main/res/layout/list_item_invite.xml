@@ -21,14 +21,11 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10.5dp"
         android:layout_gravity="center"
-        android:fontFamily="@font/nanumsquare_eb"
-        android:textSize="12.3sp"
-        android:textColor="@color/colorText"
-        android:letterSpacing="0.1"
         app:layout_constraintStart_toEndOf="@id/profile_img"
         app:layout_constraintEnd_toStartOf="@id/check_box"
         app:layout_constraintTop_toTopOf="@id/profile_img"
-        app:layout_constraintBottom_toBottomOf="@id/profile_img" />
+        app:layout_constraintBottom_toBottomOf="@id/profile_img"
+        style="@style/TextView.Profile" />
 
     <CheckBox android:id="@+id/check_box"
         android:layout_width="wrap_content"

@@ -21,6 +21,7 @@ import java.util.*
 
 class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
     private val today = Date()
+    private var isClickable = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -129,6 +130,9 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
     }
 
     fun onClick(view: View) {
+        if (!isClickable) {
+            return
+        }
         when (view) {
             // 시작날짜, 종료날짜
             start_edit, end_edit -> {
@@ -173,8 +177,7 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
             }
             // 생성
             create_btn -> {
-                create_btn.isClickable = false
-
+                isClickable = false
                 val service = RetrofitClient.getInstance()
                 val data = makeDate() ?: return
                 val dataCall = service.createGame(data)
@@ -184,16 +187,19 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
                     ) {
                         val result = response.body()
                         if (result?.code == 0) {
+                            val intent = Intent()
+                            intent.putExtra("result", true)
+                            setResult(RESULT_OK, intent)
                             finish()
                             return
                         }
                         toast("${txt(R.string.error)} ${result?.code}")
-                        create_btn.isClickable = true
+                        isClickable = true
                     }
 
                     override fun onFailure(call: Call<ResultItem>, t: Throwable) {
                         toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
-                        create_btn.isClickable = true
+                        isClickable = true
                     }
                 })
             }
@@ -208,12 +214,12 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
             if (resultCode == RESULT_OK) {
                 val drawableArr = resources.obtainTypedArray(R.array.category_drawable)
                 val titleArr = txtArray(R.array.category)
-                val position = data!!.getIntExtra("result", -1)
+                val position = data!!.getIntExtra("result", 0)
 
 //                category_txt.visibility = View.GONE
                 category_txt.text = titleArr[position]
                 category_img.tag = position
-                category_img.setImageResource(drawableArr.getResourceId(position, -1))
+                category_img.setImageResource(drawableArr.getResourceId(position, 0))
 
                 drawableArr.recycle()
             }

@@ -28,6 +28,7 @@ import splitties.toast.toast
 class GameActivity : AppCompatActivity() {
     private lateinit var viewModel: GameViewModel
     private lateinit var info: GameItem
+    private var isClickable = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,11 +71,13 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun onClick(view: View) {
+        if (!isClickable) {
+            return
+        }
         when (view) {
             // 경잰전 참여/나가기
             compete_btn -> {
-                compete_btn.isClickable = false
-
+                isClickable = false
                 val type = if (info.compete) 1 else 0
                 val service = RetrofitClient.getInstance()
                 val dataCall = service.joinGame(IdData(info.id, type))
@@ -95,16 +98,16 @@ class GameActivity : AppCompatActivity() {
                                 okButton()
                             }.show()
                             viewModel.loadData(info.id)
-                            compete_btn.isClickable = true
+                            isClickable = true
                             return
                         }
                         toast("${txt(R.string.error)} ${result?.code}")
-                        compete_btn.isClickable = true
+                        isClickable = true
                     }
 
                     override fun onFailure(call: Call<ResultItem>, t: Throwable) {
                         toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
-                        compete_btn.isClickable = true
+                        isClickable = true
                     }
                 })
             }
@@ -118,8 +121,7 @@ class GameActivity : AppCompatActivity() {
                 alertDialog {
                     messageResource = R.string.game_delete_alert
                     okButton {
-                        delete_btn.isClickable = false
-
+                        isClickable = false
                         val service = RetrofitClient.getInstance()
                         val dataCall = service.deleteGame(IdData(info.id, 0))
                         dataCall.enqueue(object : Callback<ResultItem> {
@@ -132,12 +134,12 @@ class GameActivity : AppCompatActivity() {
                                     return
                                 }
                                 toast("${txt(R.string.error)} ${result?.code}")
-                                delete_btn.isClickable = true
+                                isClickable = true
                             }
 
                             override fun onFailure(call: Call<ResultItem>, t: Throwable) {
                                 toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
-                                delete_btn.isClickable = true
+                                isClickable = true
                             }
                         })
                     }

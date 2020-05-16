@@ -4,11 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.list_item_member.*
-import maw.mobet.R
 import maw.mobet.api.MemberItem
+import maw.mobet.databinding.ListItemMemberBinding
 
 class MyAdapter(
     private val data: List<MemberItem>, private val listener: OnClickListener? = null
@@ -18,17 +15,14 @@ class MyAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_item_member, parent, false)
+        val view = ListItemMemberBinding
+            .inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
-
-        Glide.with(holder.itemView).load(item.imgUrl)
-            .into(holder.profile_img)
-        holder.profile_txt.text = item.nick
+        holder.bind(item)
 
         val onClickListener = View.OnClickListener {
             listener?.onClick(it, position)
@@ -42,6 +36,13 @@ class MyAdapter(
     override fun getItemCount(): Int = data.size
 
     inner class ViewHolder(
-        override val containerView: View
-    ) : RecyclerView.ViewHolder(containerView), LayoutContainer
+        val binding: ListItemMemberBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(data: MemberItem) {
+            binding.apply {
+                item = data
+                executePendingBindings()
+            }
+        }
+    }
 }

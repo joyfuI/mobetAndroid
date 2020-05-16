@@ -52,4 +52,9 @@ class HomeFragment : Fragment(), MyAdapter.OnClickListener, SwipeRefreshLayout.O
     override fun onRefresh() {
         viewModel.loadData()
     }
+
+    fun refresh() {
+        swipe_l.isRefreshing = true
+        viewModel.loadData()
+    }
 }

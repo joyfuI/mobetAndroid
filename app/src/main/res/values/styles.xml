@@ -20,7 +20,87 @@
         <item name="android:textSize">15sp</item>
     </style>
 
-    <style name="EditTheme">
+    <style name="TextView" />
+    <style name="TextView.TitleGame" parent="TextView">
+        <item name="android:fontFamily">@font/nanumsquare_eb</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/colorWhiteText</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:letterSpacing">0.1</item>
+    </style>
+    <style name="TextView.ColumnHead" parent="TextView">
+        <item name="android:fontFamily">@font/nanumsquare_eb</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorCyan</item>
+        <item name="android:letterSpacing">0.1</item>
+    </style>
+    <style name="TextView.Text" parent="TextView">
+        <item name="android:fontFamily">@font/nanumsquare_eb</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorGreyText</item>
+        <item name="android:letterSpacing">0.1</item>
+    </style>
+    <style name="TextView.Profile" parent="TextView">
+        <item name="android:fontFamily">@font/nanumsquare_eb</item>
+        <item name="android:textSize">12.5sp</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:letterSpacing">0.1</item>
+    </style>
+    <style name="TextView.Title" parent="TextView">
+        <item name="android:fontFamily">@font/nanumsquare_eb</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:letterSpacing">0.1</item>
+    </style>
+    <style name="TextView.Title2" parent="TextView">
+        <item name="android:fontFamily">@font/nanumsquare_eb</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:letterSpacing">0.1</item>
+    </style>
+    <style name="TextView.Small" parent="TextView">
+        <item name="android:fontFamily">@font/nanumsquare_r</item>
+        <item name="android:textSize">12.3sp</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:letterSpacing">0.1</item>
+    </style>
+
+    <style name="Button">
+        <item name="android:fontFamily">@font/nanumsquare_b</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/colorGreyText</item>
+    </style>
+    <style name="Button.White" parent="Button">
+        <item name="android:background">@drawable/button_white</item>
+    </style>
+    <style name="Button.Orange" parent="Button">
+        <item name="android:background">@drawable/button_orange</item>
+        <item name="android:textColor">@color/colorWhiteText</item>
+    </style>
+    <style name="Button.Orange.Hole" parent="Button">
+        <item name="android:background">@drawable/button_orange_hole</item>
+        <item name="android:fontFamily">@font/notosanskr_m</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+    <style name="Button.Cyan" parent="Button">
+        <item name="android:background">@drawable/button_cyan</item>
+        <item name="android:fontFamily">@font/notosanskr_m</item>
+        <item name="android:textColor">@color/colorWhiteText</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+    <style name="Button.Gradation" parent="Button">
+        <item name="android:background">@drawable/button_gradation</item>
+        <item name="android:textColor">@color/colorWhiteText</item>
+    </style>
+    <style name="Button.RoundShape" parent="Button">
+        <item name="android:background">@drawable/round_shape</item>
+        <item name="android:fontFamily">@font/notosanskr_m</item>
+        <item name="android:textSize">12.8sp</item>
+        <item name="android:textColor">@color/colorWhiteText</item>
+    </style>
+
+    <style name="EditText">
         <item name="android:fontFamily">@font/nanumsquare_b</item>
         <item name="android:textColor">@color/colorText</item>
         <item name="android:letterSpacing">0.05</item>
@@ -33,15 +113,15 @@
         <item name="android:layout_weight">1</item>
         <item name="android:layout_margin">2dp</item>
         <item name="android:fontFamily">@font/nanumsquare_eb</item>
-        <item name="android:textSize">11.3sp</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:textColor">@drawable/rdo_text_selector</item>
         <item name="android:letterSpacing">0.05</item>
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/rdo_selector</item>
         <item name="android:button">@null</item>
     </style>
-    <style name="Widget">
-    </style>
+
+    <style name="Widget" />
     <style name="Widget.ProgressBar">
         <item name="android:indeterminateOnly">true</item>
         <item name="android:indeterminateBehavior">repeat</item>

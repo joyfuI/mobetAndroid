@@ -10,7 +10,6 @@ import kotlinx.android.synthetic.main.list_item_rank.*
 import maw.mobet.R
 import maw.mobet.api.MemberItem
 import maw.mobet.intToStr
-import splitties.resources.appStrArray
 
 class MyAdapter(
     private val data: List<MemberItem>, private val listener: OnClickListener? = null
@@ -32,7 +31,7 @@ class MyAdapter(
         Glide.with(holder.itemView).load(item.imgUrl)
             .into(holder.profile_img)
         holder.profile_txt.text = item.nick
-        holder.grade_btn.text = appStrArray(R.array.grade)[item.grade]
+        holder.grade_btn.text = item.grade
         holder.score_txt.text = intToStr(item.score)
 
         val onClickListener = View.OnClickListener {

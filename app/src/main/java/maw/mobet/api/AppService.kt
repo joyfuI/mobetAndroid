@@ -6,6 +6,9 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface AppService {
+    @GET("login/")
+    fun login(): Call<ResultItem>
+
     @POST("sign-up/")
     fun signup(@Body data: SignupData): Call<ResultItem>
 
@@ -18,34 +21,34 @@ interface AppService {
     @POST("phonenum-check/")
     fun phoneCheck(@Body data: String): Call<ResultItem>
 
-    @POST("notify.json")
+    @POST("alarm-check/")
     fun notify(): Call<ResultItem>
 
-    @POST("post.php")
+    @POST("delete-alarm/")
     fun notifyRequest(@Body data: IdData): Call<ResultItem>
 
-    @GET("home.json")
+    @GET("game/")
     fun homeList(): Call<List<GameItem>>
 
-    @POST("notifylist.json")
+    @GET("notification/")
     fun notifyList(): Call<List<NotifyItem>>
 
     @POST("account.json")
     fun account(): Call<AccountItem>
 
-    @POST("post.php")
+    @POST("game/")
     fun createGame(@Body data: CreategameData): Call<ResultItem>
 
-    @POST("game.json")
+    @POST("game-inform/")
     fun game(@Body data: IdData): Call<GameItem>
 
-    @POST("post.php")
+    @POST("participate/")
     fun joinGame(@Body data: IdData): Call<ResultItem>
 
     @POST("friend.json")
     fun friend(): Call<List<MemberItem>>
 
-    @POST("post.php")
+    @POST("notification/")
     fun invite(@Body data: List<MemberItem>): Call<ResultItem>
 
     @POST("post.php")

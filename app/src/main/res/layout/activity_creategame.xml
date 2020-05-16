@@ -22,25 +22,19 @@
             <TextView android:id="@+id/title_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nanumsquare_eb"
-                android:textSize="20sp"
-                android:textColor="@color/colorText"
                 android:text="@string/creategame_title1"
-                android:letterSpacing="0.1"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                style="@style/TextView.Title" />
 
             <TextView android:id="@+id/title2_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28.3dp"
-                android:fontFamily="@font/nanumsquare_eb"
-                android:textSize="15sp"
-                android:textColor="@color/colorText"
                 android:text="@string/creategame_title"
-                android:letterSpacing="0.05"
                 app:layout_constraintTop_toBottomOf="@id/title_txt"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                style="@style/TextView.Title2" />
             <com.google.android.material.textfield.TextInputLayout android:id="@+id/title_edit_l"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -59,7 +53,7 @@
                     android:textSize="16.3sp"
                     android:hint="@string/creategame_title_hint"
                     android:nextFocusDown="@id/greater_edit"
-                    style="@style/EditTheme" />
+                    style="@style/EditText" />
             </com.google.android.material.textfield.TextInputLayout>
             <RadioGroup android:id="@+id/toggle"
                 android:layout_width="match_parent"
@@ -82,13 +76,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28.3dp"
-                android:fontFamily="@font/nanumsquare_eb"
-                android:textSize="15sp"
-                android:textColor="@color/colorText"
                 android:text="@string/creategame_condition"
-                android:letterSpacing="0.05"
                 app:layout_constraintTop_toBottomOf="@id/toggle"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                style="@style/TextView.Title2" />
             <TextView android:id="@+id/won1_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -118,7 +109,7 @@
                     android:textSize="16.3sp"
                     android:hint="@string/creategame_condition_greater"
                     android:nextFocusDown="@id/less_edit"
-                    style="@style/EditTheme" />
+                    style="@style/EditText" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView android:id="@+id/tilde_txt"
@@ -161,20 +152,17 @@
                     android:textSize="16.3sp"
                     android:hint="@string/creategame_condition_less"
                     android:nextFocusDown="@id/start_edit"
-                    style="@style/EditTheme" />
+                    style="@style/EditText" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView android:id="@+id/start_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28.3dp"
-                android:fontFamily="@font/nanumsquare_eb"
-                android:textSize="15sp"
-                android:textColor="@color/colorText"
                 android:text="@string/creategame_date_start"
-                android:letterSpacing="0.05"
                 app:layout_constraintTop_toBottomOf="@id/greater_edit_l"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                style="@style/TextView.Title2" />
             <com.google.android.material.textfield.TextInputLayout android:id="@+id/start_edit_l"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -194,18 +182,15 @@
                     android:hint="YYYY-MM-DD"
                     android:nextFocusDown="@id/end_edit"
                     android:onClick="onClick"
-                    style="@style/EditTheme" />
+                    style="@style/EditText" />
             </com.google.android.material.textfield.TextInputLayout>
             <TextView android:id="@+id/end_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nanumsquare_eb"
-                android:textSize="15sp"
-                android:textColor="@color/colorText"
                 android:text="@string/creategame_date_end"
-                android:letterSpacing="0.05"
                 app:layout_constraintTop_toTopOf="@id/start_txt"
-                app:layout_constraintStart_toStartOf="@id/tilde_txt" />
+                app:layout_constraintStart_toStartOf="@id/tilde_txt"
+                style="@style/TextView.Title2" />
             <com.google.android.material.textfield.TextInputLayout android:id="@+id/end_edit_l"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -225,20 +210,17 @@
                     android:hint="YYYY-MM-DD"
                     android:nextFocusDown="@id/price_edit"
                     android:onClick="onClick"
-                    style="@style/EditTheme" />
+                    style="@style/EditText" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView android:id="@+id/price_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28.3dp"
-                android:fontFamily="@font/nanumsquare_eb"
-                android:textSize="15sp"
-                android:textColor="@color/colorText"
                 android:text="@string/creategame_price"
-                android:letterSpacing="0.05"
                 app:layout_constraintTop_toBottomOf="@id/start_edit_l"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                style="@style/TextView.Title2" />
             <com.google.android.material.textfield.TextInputLayout android:id="@+id/price_edit_l"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -256,7 +238,7 @@
                     android:inputType="number"
                     android:textSize="16.3sp"
                     android:hint="@string/creategame_price_hint"
-                    style="@style/EditTheme" />
+                    style="@style/EditText" />
             </com.google.android.material.textfield.TextInputLayout>
             <Spinner android:id="@+id/price_cmb"
                 android:layout_width="wrap_content"
@@ -296,17 +278,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="30dp"
-                android:minHeight="30dp"
-                android:background="@drawable/button_create"
-                android:fontFamily="@font/nanumsquare_b"
-                android:textSize="13.8sp"
-                android:textColor="#FFFFFF"
+                android:minHeight="40dp"
                 android:text="@string/creategame_button"
                 android:onClick="onClick"
                 app:layout_constraintTop_toTopOf="@id/category_img"
                 app:layout_constraintBottom_toBottomOf="@id/category_img"
                 app:layout_constraintStart_toEndOf="@id/category_img"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                style="@style/Button.Gradation" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

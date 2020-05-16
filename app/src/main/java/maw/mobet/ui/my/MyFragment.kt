@@ -7,18 +7,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.viewpager.widget.PagerAdapter
 import kotlinx.android.synthetic.main.fragment_my.*
 import maw.mobet.R
 import maw.mobet.api.MyItem
-import maw.mobet.ui.my.finish.Fragment_finish
-import maw.mobet.ui.my.playing.Fragment_playing
-import androidx.fragment.app.FragmentManager as FragmentManager
+import maw.mobet.ui.my.finish.FragmentFinish
+import maw.mobet.ui.my.playing.FragmentPlaying
 
 class MyFragment : Fragment() {
     private lateinit var viewModel: MyViewModel
-    private val fragmentPlaying = Fragment_playing.newInstance()
-    private val fragmentFinish = Fragment_finish.newInstance()
+    private val fragmentPlaying = FragmentPlaying.newInstance()
+    private val fragmentFinish = FragmentFinish.newInstance()
     private lateinit var myItem: MyItem
 
     override fun onCreateView(
