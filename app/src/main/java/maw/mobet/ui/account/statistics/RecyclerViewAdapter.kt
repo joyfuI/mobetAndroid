@@ -48,8 +48,10 @@ class RecyclerViewAdapter(private val data: AccountItem, val StaticActivity: Sta
             holder.tv_date.setTextColor(Color.parseColor("#f29494"))
         }
         else if (position % BaseCalendar.DAYS_OF_WEEK == 6){
-
-            holder.tv_money.text = item[position/6-1].sum.toString()
+            var paydate = position/6 -1
+//            if(paydate != 0){
+                holder.tv_money.text = item[paydate].sum.toString()
+//            }
             holder.tv_date.setTextColor(Color.parseColor("#a5a2e8"))
         }
         else holder.tv_date.setTextColor(Color.parseColor("#bf151026"))
