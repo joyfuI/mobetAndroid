@@ -13,16 +13,23 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import kotlinx.android.synthetic.main.fragment_account_statistics.*
 import kotlinx.android.synthetic.main.fragment_account_statistics.view.*
 import maw.mobet.MainActivity
 import maw.mobet.R
+import maw.mobet.api.AccountItem
+import maw.mobet.api.HistoryItem
 import maw.mobet.ui.account.AccountViewModel
+import maw.mobet.ui.account.history.HistoryListDataItem
+import maw.mobet.ui.account.history.HistoryListHeaderItem
+import maw.mobet.ui.account.history.HistoryListItem
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class StatisticsFragment : Fragment() {
+class StatisticsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
     companion object {
         fun newInstance() = StatisticsFragment()
     }
@@ -30,6 +37,7 @@ class StatisticsFragment : Fragment() {
 
     private lateinit var viewModel: AccountViewModel
     lateinit var scheduleRecyclerViewAdapter: RecyclerViewAdapter
+    private lateinit var listDate: AccountItem
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -40,7 +48,6 @@ class StatisticsFragment : Fragment() {
     fun initView() {
         Log.d("dodo", "fragment_init")
 
-        scheduleRecyclerViewAdapter = RecyclerViewAdapter(this)
         progressbar1.setProgress(80)
         progressbar1.tag = 1
         progressbar2.setProgress(70)
@@ -67,11 +74,16 @@ class StatisticsFragment : Fragment() {
     fun refreshCurrentMonth(calendar: Calendar) {
         Log.d("dodo", "fragment_currentmonth")
         val sdf = SimpleDateFormat("MM", Locale.KOREAN)
-        tv_current_month.text = sdf.format(calendar.time)
+        val text_test = sdf.format(calendar.time) +" 월"
+        tv_current_month.text = text_test
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        initView()
+        viewModel.list.observe(viewLifecycleOwner, Observer {
+            listDate = it
+            scheduleRecyclerViewAdapter = RecyclerViewAdapter(listDate, this)
+            initView()
+        })
         chart1.progressbar1.setOnClickListener{
             chart1.progressbar1.progressTintList = ColorStateList(arrayOf(intArrayOf(0)), intArrayOf(
                 Color.rgb(92,20,136)))
@@ -284,5 +296,8 @@ class StatisticsFragment : Fragment() {
             Log.d("dodo", "chart7")
         }
         // TODO: Use the ViewModel
+    }
+    override fun onRefresh() {
+        viewModel.loadData()
     }
 }
