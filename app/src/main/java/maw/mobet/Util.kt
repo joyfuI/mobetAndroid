@@ -18,23 +18,22 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.math.ceil
 
+const val TEST = true
+
 object RetrofitClient {
+    val realServer = "https://3d02c3ab.ngrok.io/"
+    val testServer = "https://ljm.wo.tc/test/"
+
     private var key: String? = null
 
     private val service by lazy {
         val gson = GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss").create()
         Retrofit.Builder()
-            .baseUrl("https://ljm.wo.tc/test/")
+            .baseUrl(if (TEST) testServer else realServer)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .client(interceptor)
             .build()
-            .create(AppServiceTest::class.java)
-//        Retrofit.Builder()
-//            .baseUrl("https://3d02c3ab.ngrok.io/")
-//            .addConverterFactory(GsonConverterFactory.create(gson))
-//            .client(interceptor)
-//            .build()
-//            .create(AppService::class.java)
+            .create(if (TEST) AppServiceTest::class.java else AppService::class.java)
     }
     // 요청할 때마다 Authorization 정보 추가
     private val interceptor by lazy {
