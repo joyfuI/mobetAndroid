@@ -187,6 +187,9 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
                     ) {
                         val result = response.body()
                         if (result?.code == 0) {
+                            val intent = Intent()
+                            intent.putExtra("result", true)
+                            setResult(RESULT_OK, intent)
                             finish()
                             return
                         }

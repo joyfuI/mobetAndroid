@@ -62,7 +62,7 @@ object RetrofitClient {
 
     private val logging = HttpLoggingInterceptor(object : HttpLoggingInterceptor.Logger {
         override fun log(message: String) {
-            Log.d("joyfuI", message)
+            Log.d("httplog", message)
         }
     }).apply {
         this.level = HttpLoggingInterceptor.Level.BODY

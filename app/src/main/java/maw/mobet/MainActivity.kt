@@ -1,5 +1,6 @@
 package maw.mobet
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.custom_actionbar.*
 import maw.mobet.api.ResultItem
+import maw.mobet.ui.home.HomeFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,6 +20,7 @@ import splitties.toast.toast
 
 class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
+    private lateinit var navHostFragment: NavHostFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +31,7 @@ class MainActivity : AppCompatActivity() {
             start<NotifyActivity>()
         }
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == R.id.navigation_home) {
@@ -77,7 +80,23 @@ class MainActivity : AppCompatActivity() {
         when (view) {
             // 플러스 버튼
             fab -> {
-                start<CreategameActivity>()
+                val intent = Intent(this, CreategameActivity::class.java)
+                startActivityForResult(intent, 0)
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 0) {
+            // 경쟁전 생성
+            if (resultCode == RESULT_OK) {
+                val refresh = data!!.getBooleanExtra("result", false)
+                if (refresh) {
+                    val home = navHostFragment.childFragmentManager.fragments[0] as HomeFragment
+                    home.refresh()
+                }
             }
         }
     }
