@@ -39,7 +39,7 @@ interface AppService {
     @POST("game/")
     fun createGame(@Body data: CreategameData): Call<ResultItem>
 
-    @POST("game.json")
+    @POST("game-inform/")
     fun game(@Body data: IdData): Call<GameItem>
 
     @POST("participate/")
