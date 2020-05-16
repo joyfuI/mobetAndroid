@@ -24,7 +24,7 @@
         tools:ignore="MissingConstraints">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_img"
+            android:id="@+id/profile_my_img"
             android:layout_width="20.5dp"
             android:layout_height="20.8dp"
             android:layout_marginStart="13.5dp"

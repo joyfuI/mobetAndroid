@@ -37,7 +37,7 @@ class MyfinishAdapter (
 
         Log.d("dodo","adapter_finish + ${item.admin.nick}")
         Glide.with(holder.itemView).load(item.admin.imgUrl)
-            .into(holder.profile_img)
+            .into(holder.profile_my_img)
         holder.profile_nick.text = item.admin.nick
         holder.title_txt.text = item.title
         val category = appTxtArray(R.array.category)
