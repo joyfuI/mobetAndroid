@@ -17,16 +17,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"
-        android:fontFamily="@font/nanumsquare_eb"
-        android:textSize="12.3sp"
-        android:textColor="@color/colorText"
-        android:letterSpacing="0.1"
         android:singleLine="true"
         android:ellipsize="end"
         app:layout_constraintStart_toEndOf="@id/profile_img"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/profile_img"
-        app:layout_constraintBottom_toBottomOf="@id/profile_img" />
+        app:layout_constraintBottom_toBottomOf="@id/profile_img"
+        style="@style/TextView.Profile" />
 
     <ImageView android:id="@+id/title_img"
         android:layout_width="match_parent"
@@ -46,26 +43,19 @@
         <TextView android:id="@+id/title_top_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/nanumsquare_r"
-            android:textSize="12sp"
             android:textColor="@color/colorWhiteText"
-            android:letterSpacing="0.1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/TextView.Small" />
 
         <TextView android:id="@+id/title_txt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:fontFamily="@font/nanumsquare_eb"
-            android:textSize="17sp"
-            android:textColor="@color/colorWhiteText"
-            android:letterSpacing="0.1"
-            android:singleLine="true"
-            android:ellipsize="end"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/title_top_txt" />
+            app:layout_constraintTop_toTopOf="@id/title_top_txt"
+            style="@style/TextView.TitleGame" />
 
         <TextView android:id="@+id/title_bottom_txt"
             android:layout_width="wrap_content"

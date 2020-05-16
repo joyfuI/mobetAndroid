@@ -21,41 +21,47 @@
     </style>
 
     <style name="TextView" />
-    <style name="TextView.TitleGame">
+    <style name="TextView.TitleGame" parent="TextView">
         <item name="android:fontFamily">@font/nanumsquare_eb</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">17sp</item>
         <item name="android:textColor">@color/colorWhiteText</item>
         <item name="android:singleLine">true</item>
         <item name="android:ellipsize">end</item>
         <item name="android:letterSpacing">0.1</item>
     </style>
-    <style name="TextView.ColumnHead">
+    <style name="TextView.ColumnHead" parent="TextView">
         <item name="android:fontFamily">@font/nanumsquare_eb</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/colorCyan</item>
         <item name="android:letterSpacing">0.1</item>
     </style>
-    <style name="TextView.Text">
+    <style name="TextView.Text" parent="TextView">
         <item name="android:fontFamily">@font/nanumsquare_eb</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/colorBlackText</item>
+        <item name="android:textColor">@color/colorGreyText</item>
         <item name="android:letterSpacing">0.1</item>
     </style>
-    <style name="TextView.Profile">
+    <style name="TextView.Profile" parent="TextView">
         <item name="android:fontFamily">@font/nanumsquare_eb</item>
         <item name="android:textSize">12.5sp</item>
         <item name="android:textColor">@color/colorText</item>
         <item name="android:letterSpacing">0.1</item>
     </style>
-    <style name="TextView.Title">
+    <style name="TextView.Title" parent="TextView">
         <item name="android:fontFamily">@font/nanumsquare_eb</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/colorText</item>
         <item name="android:letterSpacing">0.1</item>
     </style>
-    <style name="TextView.Title2">
+    <style name="TextView.Title2" parent="TextView">
         <item name="android:fontFamily">@font/nanumsquare_eb</item>
         <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:letterSpacing">0.1</item>
+    </style>
+    <style name="TextView.Small" parent="TextView">
+        <item name="android:fontFamily">@font/nanumsquare_r</item>
+        <item name="android:textSize">12.3sp</item>
         <item name="android:textColor">@color/colorText</item>
         <item name="android:letterSpacing">0.1</item>
     </style>
@@ -63,7 +69,7 @@
     <style name="Button">
         <item name="android:fontFamily">@font/nanumsquare_b</item>
         <item name="android:textSize">15sp</item>
-        <item name="android:textColor">@color/colorBlackText</item>
+        <item name="android:textColor">@color/colorGreyText</item>
     </style>
     <style name="Button.White" parent="Button">
         <item name="android:background">@drawable/button_white</item>
@@ -74,10 +80,23 @@
     </style>
     <style name="Button.Orange.Hole" parent="Button">
         <item name="android:background">@drawable/button_orange_hole</item>
-        <item name="android:textSize">12.5sp</item>
+        <item name="android:fontFamily">@font/notosanskr_m</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+    <style name="Button.Cyan" parent="Button">
+        <item name="android:background">@drawable/button_cyan</item>
+        <item name="android:fontFamily">@font/notosanskr_m</item>
+        <item name="android:textColor">@color/colorWhiteText</item>
+        <item name="android:textSize">13sp</item>
     </style>
     <style name="Button.Gradation" parent="Button">
         <item name="android:background">@drawable/button_gradation</item>
+        <item name="android:textColor">@color/colorWhiteText</item>
+    </style>
+    <style name="Button.RoundShape" parent="Button">
+        <item name="android:background">@drawable/round_shape</item>
+        <item name="android:fontFamily">@font/notosanskr_m</item>
+        <item name="android:textSize">12.8sp</item>
         <item name="android:textColor">@color/colorWhiteText</item>
     </style>
 
