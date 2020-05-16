@@ -4,11 +4,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import maw.mobet.api.GameItem
+import maw.mobet.api.MemberItem
 import maw.mobet.databinding.ListItemMemberStatisticsBinding
-import maw.mobet.ui.game.statistics.StatisticsFragment
 
 class MyAdapter2(
-    private val data: List<StatisticsFragment.Info>, private val listener: OnClickListener? = null
+    private val data: List<MemberItem>,
+    private val game: GameItem,
+    private val listener: OnClickListener? = null
 ) : RecyclerView.Adapter<MyAdapter2.ViewHolder>() {
     interface OnClickListener {
         fun onClick(view: View, position: Int)
@@ -22,7 +25,7 @@ class MyAdapter2(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
-        holder.bind(item)
+        holder.bind(item, game)
 
         val onClickListener = View.OnClickListener {
             listener?.onClick(it, position)
@@ -38,9 +41,10 @@ class MyAdapter2(
     inner class ViewHolder(
         val binding: ListItemMemberStatisticsBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: StatisticsFragment.Info) {
+        fun bind(member: MemberItem, game: GameItem) {
             binding.apply {
-                info = data
+                this.member = member
+                this.game = game
                 executePendingBindings()
             }
         }

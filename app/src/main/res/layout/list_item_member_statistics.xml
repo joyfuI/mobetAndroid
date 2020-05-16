@@ -2,7 +2,8 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-        <variable name="info" type="maw.mobet.ui.game.statistics.StatisticsFragment.Info" />
+        <variable name="member" type="maw.mobet.api.MemberItem" />
+        <variable name="game" type="maw.mobet.api.GameItem" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,7 +16,7 @@
             android:layout_height="72.5dp"
             app:civ_border_width="2dp"
             app:civ_border_color="@color/colorText"
-            app:bind_imgUrl="@{info.imgUrl}"
+            app:bind_imgUrl="@{member.imgUrl}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -25,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10.5dp"
             android:layout_marginEnd="25dp"
-            android:text="@{info.nick}"
+            android:text="@{member.nick}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/profile_img"
@@ -37,7 +38,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            app:bind_remain="@{info.amount}"
+            app:bind_remain="@{member.remain}"
             app:layout_constraintTop_toTopOf="@id/profile_img"
             app:layout_constraintBottom_toTopOf="@id/remain_pb"
             app:layout_constraintStart_toStartOf="@id/remain_pb"
@@ -47,8 +48,8 @@
         <ProgressBar android:id="@+id/remain_pb"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:bind_current="@{info.amount}"
-            app:bind_max="@{info.price}"
+            app:bind_current="@{member.remain}"
+            app:bind_max="@{game.price}"
             app:layout_constraintTop_toBottomOf="@id/remain_txt"
             app:layout_constraintBottom_toBottomOf="@id/profile_img"
             app:layout_constraintStart_toEndOf="@id/profile_txt"

@@ -6,14 +6,8 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import de.hdodenhof.circleimageview.CircleImageView
-import maw.mobet.api.MemberItem
-import maw.mobet.ui.game.MyAdapter
-import maw.mobet.ui.game.MyAdapter2
-import maw.mobet.ui.game.statistics.StatisticsFragment
-import splitties.resources.appColor
 import splitties.resources.appColorSL
 import splitties.resources.appStr
 import splitties.resources.appStrArray
@@ -33,7 +27,10 @@ fun bindCondition(view: TextView, greater: Int?, less: Int?) {
 }
 
 @BindingAdapter("bind_price")
-fun bindPrice(view: TextView, price: Int) {
+fun bindPrice(view: TextView, price: Int?) {
+    if (price == null) {
+        return
+    }
     view.text = if (price > 0) {
         intToStr(
             price.absoluteValue,
@@ -50,56 +47,70 @@ fun bindPrice(view: TextView, price: Int) {
 }
 
 @BindingAdapter("bind_category")
-fun bindCategory(view: TextView, category: Int) {
+fun bindCategory(view: TextView, category: Int?) {
+    if (category == null) {
+        return
+    }
     val categoryArr = appStrArray(R.array.category)
     view.text = categoryArr[category]
 }
 
 @BindingAdapter("bind_category")
-fun bindCategory(view: ImageView, category: Int) {
+fun bindCategory(view: ImageView, category: Int?) {
+    if (category == null) {
+        return
+    }
     val backgroundArr = view.resources.obtainTypedArray(R.array.category_background)
     view.setImageResource(backgroundArr.getResourceId(category, 0))
     backgroundArr.recycle()
 }
 
-@BindingAdapter("bind_adapter")
-fun bindAdapter(view: RecyclerView, members: List<MemberItem>?) {
-    view.adapter = MyAdapter(members ?: return)
-}
-
-@BindingAdapter("bind_adapter2")
-fun bindAdapter2(view: RecyclerView, members: List<StatisticsFragment.Info>?) {
-    view.adapter = MyAdapter2(members ?: return)
-}
-
 @BindingAdapter("bind_imgUrl")
-fun bindImgUrl(view: CircleImageView, url: String) {
+fun bindImgUrl(view: CircleImageView, url: String?) {
+    if (url == null) {
+        return
+    }
     Glide.with(view.context).load(url)
         .into(view)
 }
 
 @BindingAdapter("bind_remain")
-fun bindRemain(view: TextView, remain: Int) {
+fun bindRemain(view: TextView, remain: Int?) {
+    if (remain == null) {
+        return
+    }
     view.text = intToStr(remain, prefix = appStr(R.string.won_char) + " ")
 }
 
 @BindingAdapter("bind_current", "bind_max")
-fun bindProgress(view: ProgressBar, current: Int, max: Int = 100) {
+fun bindProgress(view: ProgressBar, current: Int?, max: Int? = 100) {
+    if (current == null || max == null) {
+        return
+    }
     view.progress = (current.toDouble() / max.absoluteValue * 100).toInt()
 }
 
 @BindingAdapter("bind_date")
-fun bindDate(view: TextView, date: Date) {
+fun bindDate(view: TextView, date: Date?) {
+    if (date == null) {
+        return
+    }
     view.text = date.toString(appStr(R.string.month_day))
 }
 
 @BindingAdapter("bind_money")
-fun bindMoney(view: TextView, price: Int) {
+fun bindMoney(view: TextView, price: Int?) {
+    if (price == null) {
+        return
+    }
     view.text = intToStr(-price, suffix = appStr(R.string.won))
 }
 
 @BindingAdapter("bind_category")
-fun bindCategory(view: Button, category: Int) {
+fun bindCategory(view: Button, category: Int?) {
+    if (category == null) {
+        return
+    }
     val categoryArr = appStrArray(R.array.category)
     val shape = view.background as GradientDrawable
     shape.color = appColorSL(R.color.colorPrimary)

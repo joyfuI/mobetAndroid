@@ -14,6 +14,7 @@ import maw.mobet.api.GameItem
 import maw.mobet.api.MemberItem
 import maw.mobet.databinding.FragmentGameStatisticsBinding
 import maw.mobet.ui.game.GameViewModel
+import maw.mobet.ui.game.MyAdapter2
 import splitties.resources.str
 import splitties.toast.toast
 import java.util.*
@@ -45,12 +46,12 @@ class StatisticsFragment : Fragment() {
             info = it
 
             var my: MemberItem? = null
-            val your: MutableList<Info> = mutableListOf()
+            val your: MutableList<MemberItem> = mutableListOf()
             for (i in info.members) {
                 if (i.id == User.id) {
                     my = i
                 } else {
-                    your.add(Info(i.imgUrl, i.nick, i.remain ?: 0, info.price))
+                    your.add(i)
                 }
             }
 
@@ -68,18 +69,12 @@ class StatisticsFragment : Fragment() {
             html = html.replace("{2}", diffDate(today, info.endDate).toString())
             binding.remainTxt.text = html.fromHtml()
 
-            binding.info = Info(my?.imgUrl ?: "", my?.nick ?: "", my?.remain ?: 0, info.price, your)
+            binding.listView.adapter = MyAdapter2(your, info)
+            binding.my = my
+            binding.game = info
         })
         viewModel.loadData(info)
 
         binding.listView.layoutManager = LinearLayoutManager(context)
     }
-
-    inner class Info(
-        val imgUrl: String,
-        val nick: String,
-        val amount: Int,
-        val price: Int,
-        val members: List<Info>? = null
-    )
 }

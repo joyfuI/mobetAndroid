@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <variable name="info" type="maw.mobet.ui.game.statistics.StatisticsFragment.Info" />
+        <variable name="my" type="maw.mobet.api.MemberItem" />
+        <variable name="game" type="maw.mobet.api.GameItem" />
     </data>
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -27,7 +28,8 @@
                 android:lineSpacingExtra="8sp" />
 
             <include layout="@layout/list_item_member_statistics"
-                app:info="@{info}" />
+                app:member="@{my}"
+                app:game="@{game}" />
 
             <View
                 android:layout_width="match_parent"
@@ -47,8 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:clipToPadding="false"
-                android:nestedScrollingEnabled="false"
-                app:bind_adapter2="@{info.members}" />
+                android:nestedScrollingEnabled="false" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

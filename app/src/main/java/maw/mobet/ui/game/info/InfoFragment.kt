@@ -15,6 +15,7 @@ import maw.mobet.R
 import maw.mobet.api.GameItem
 import maw.mobet.databinding.FragmentGameInfoBinding
 import maw.mobet.ui.game.GameViewModel
+import maw.mobet.ui.game.MyAdapter
 
 class InfoFragment : Fragment() {
     companion object {
@@ -40,6 +41,8 @@ class InfoFragment : Fragment() {
 
         viewModel.info.observe(viewLifecycleOwner, Observer {
             info = it
+
+            list_view.adapter = MyAdapter(info.members)
             binding.game = info
         })
         viewModel.loadData(info)
