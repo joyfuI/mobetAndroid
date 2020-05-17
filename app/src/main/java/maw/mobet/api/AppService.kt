@@ -49,7 +49,7 @@ interface AppService {
     fun friend(): Call<List<MemberItem>>
 
     @POST("notification/")
-    fun invite(@Body data: List<MemberItem>): Call<ResultItem>
+    fun invite(@Body data: List<IdData>): Call<ResultItem>
 
     @POST("post.php")
     fun deleteGame(@Body data: IdData): Call<ResultItem>
