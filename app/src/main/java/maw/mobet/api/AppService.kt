@@ -45,7 +45,7 @@ interface AppService {
     @POST("participate/")
     fun joinGame(@Body data: IdData): Call<ResultItem>
 
-    @POST("friend.json")
+    @GET("friend-list/")
     fun friend(): Call<List<MemberItem>>
 
     @POST("notification/")
