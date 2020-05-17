@@ -14,6 +14,7 @@ import maw.mobet.api.IdData
 import maw.mobet.api.ResultItem
 import maw.mobet.databinding.ActivityGameBinding
 import maw.mobet.ui.game.GameViewModel
+import maw.mobet.ui.game.MyAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -59,6 +60,7 @@ class GameActivity : AppCompatActivity() {
                 finish()
             }
 
+            list_view.adapter = MyAdapter(info.members)
             binding.game = info
         })
         val data = intent.getParcelableExtra<GameItem>("data")

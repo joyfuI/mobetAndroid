@@ -15,6 +15,7 @@ import maw.mobet.api.AccountItem
 import maw.mobet.databinding.FragmentAccountStatisticsBinding
 import maw.mobet.ui.account.AccountFragment
 import maw.mobet.ui.account.AccountViewModel
+import java.util.*
 
 class StatisticsFragment : Fragment(), View.OnClickListener {
     companion object {
@@ -24,6 +25,7 @@ class StatisticsFragment : Fragment(), View.OnClickListener {
     private lateinit var binding: FragmentAccountStatisticsBinding
     private lateinit var viewModel: AccountViewModel
     private lateinit var data: AccountItem2
+    private lateinit var historyData: MutableMap<Date, Int>
     private var position = 5
 
     override fun onCreateView(
@@ -38,16 +40,40 @@ class StatisticsFragment : Fragment(), View.OnClickListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-//        list_view.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.HORIZONTAL))
-//        list_view.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
         viewModel.list.observe(viewLifecycleOwner, Observer {
-            data = createList(it)
+            data = createItem(it)
 
-//            binding.listView.adapter = MyAdapter(data)
+            historyData = mutableMapOf()
+            val dateTmp = Calendar.getInstance().apply {
+                set(0, 0, 0)
+            }
+            for (i in data.account.history) {
+                val date = Calendar.getInstance().apply {
+                    time = i.date
+                    set(Calendar.HOUR_OF_DAY, 0)
+                    set(Calendar.MINUTE, 0)
+                    set(Calendar.SECOND, 0)
+                    set(Calendar.MILLISECOND, 0)
+                }
+                if (
+                    date.get(Calendar.YEAR) != dateTmp.get(Calendar.YEAR) ||
+                    date.get(Calendar.MONTH) != dateTmp.get(Calendar.MONTH) ||
+                    date.get(Calendar.DATE) != dateTmp.get(Calendar.DATE)
+                ) {
+                    dateTmp.time = i.date
+                    historyData[date.time] = i.money
+                } else {
+                    historyData[date.time] = historyData[date.time]!! + i.money
+                }
+            }
+
+            binding.listView.adapter = MyAdapter(createList(data.account.month[data.position].month))
             binding.data = data
         })
 
         list_view.layoutManager = GridLayoutManager(activity, 7)
+//        list_view.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.HORIZONTAL))
+//        list_view.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
 
         graph0.setOnClickListener(this)
         graph1.setOnClickListener(this)
@@ -57,7 +83,7 @@ class StatisticsFragment : Fragment(), View.OnClickListener {
         graph5.setOnClickListener(this)
     }
 
-    private fun createList(data: AccountItem): AccountItem2 {
+    private fun createItem(data: AccountItem): AccountItem2 {
         var max = 0
         var sum = 0
 
@@ -69,6 +95,49 @@ class StatisticsFragment : Fragment(), View.OnClickListener {
         }
 
         return AccountItem2(position, data, max, sum / 6)
+    }
+
+    private fun createList(data: Date): List<CalendarItem> {
+        val calendarList = mutableListOf<CalendarItem>()
+        val cal = Calendar.getInstance().apply {
+            time = data
+            set(Calendar.DAY_OF_MONTH, 1)
+        }
+
+        var start = cal.get(Calendar.DAY_OF_WEEK)
+        val end = cal.getActualMaximum(Calendar.DAY_OF_MONTH)
+        var sum = 0
+        for (i in 1 until start) {
+            calendarList.add(CalendarItem())
+        }
+        for (i in 1 .. end) {
+            val dateSum = historyData[cal.time]
+            if (cal.get(Calendar.DAY_OF_WEEK) == 1) {
+                sum = 0
+            }
+            sum += dateSum ?: 0
+            calendarList.add(CalendarItem(
+                cal.time,
+                dateSum,
+                if (cal.get(Calendar.DAY_OF_WEEK) == 7) sum else null)
+            )
+            cal.add(Calendar.DAY_OF_MONTH, 1)
+        }
+        start = cal.run {
+            add(Calendar.MONTH, -1)
+            set(Calendar.DAY_OF_MONTH, end)
+            get(Calendar.DAY_OF_WEEK)
+        }
+        for (i in 1 .. 7 - start) {
+            cal.add(Calendar.DAY_OF_MONTH, 1)
+            calendarList.add(CalendarItem(
+                null,
+                null,
+                if (cal.get(Calendar.DAY_OF_WEEK) == 7) sum else null
+            ))
+        }
+
+        return calendarList
     }
 
     override fun onClick(p0: View?) {
@@ -84,5 +153,6 @@ class StatisticsFragment : Fragment(), View.OnClickListener {
         binding.data = data.apply {
             position = this@StatisticsFragment.position
         }
+        binding.listView.adapter = MyAdapter(createList(data.account.month[data.position].month))
     }
 }

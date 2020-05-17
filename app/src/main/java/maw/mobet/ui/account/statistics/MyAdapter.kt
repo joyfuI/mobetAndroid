@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import maw.mobet.databinding.ListItemCalendarBinding
 
 class MyAdapter(
-    private val data: AccountItem2, private val listener: OnClickListener? = null
+    private val data: List<CalendarItem>, private val listener: OnClickListener? = null
 ) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
     interface OnClickListener {
         fun onClick(view: View, position: Int)
@@ -20,8 +20,8 @@ class MyAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = data
-        holder.bind(0, 0)
+        val item = data[position]
+        holder.bind(item)
 
         val onClickListener = View.OnClickListener {
             listener?.onClick(it, position)
@@ -32,15 +32,14 @@ class MyAdapter(
         }
     }
 
-    override fun getItemCount(): Int = 0
+    override fun getItemCount(): Int = data.size
 
     inner class ViewHolder(
         val binding: ListItemCalendarBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(day: Int, sum: Int) {
+        fun bind(data: CalendarItem) {
             binding.apply {
-                this.day = day
-                this.sum = sum
+                this.item = data
                 executePendingBindings()
             }
         }

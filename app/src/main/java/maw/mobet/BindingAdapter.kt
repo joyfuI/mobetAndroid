@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import de.hdodenhof.circleimageview.CircleImageView
+import splitties.resources.appColor
 import splitties.resources.appColorSL
 import splitties.resources.appStr
 import splitties.resources.appStrArray
@@ -135,4 +136,21 @@ fun bindAverage(view: TextView, average: Int?) {
     view.text = intToStr(
         average, prefix = appStr(R.string.account_average) + " " + appStr(R.string.won_char)
     )
+}
+
+@BindingAdapter("bind_date")
+fun bindDate(view: TextView, date: Date?) {
+    if (date == null) {
+//        view.text = ""
+        return
+    }
+    val cal = Calendar.getInstance().apply {
+        time = date
+    }
+    view.text = date.toString("d")
+    when (cal.get(Calendar.DAY_OF_WEEK)) {
+        1 -> view.setTextColor(appColor(R.color.colorSunday))
+        7 -> view.setTextColor(appColor(R.color.colorSaturday))
+        else -> view.setTextColor(appColor(R.color.colorWeekday))
+    }
 }
