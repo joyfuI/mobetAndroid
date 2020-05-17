@@ -12,10 +12,11 @@ import retrofit2.Response
 import splitties.resources.txt
 import splitties.toast.toast
 
-class RankActivity : AppCompatActivity(), MyAdapter.OnClickListener {
+class RankActivity : AppCompatActivity(), MyAdapter.OnItemClickListener {
     private val list = MutableLiveData<List<NotifyItem>>().apply {
         loadData()
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rank_personal)
@@ -37,8 +38,6 @@ class RankActivity : AppCompatActivity(), MyAdapter.OnClickListener {
         })
     }
 
-
-    override fun onClick(view: View, position: Int, delete: () -> Unit) {
-        TODO("Not yet implemented")
+    override fun onItemClick(view: View, position: Int, delete: () -> Unit) {
     }
 }
