@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import de.hdodenhof.circleimageview.CircleImageView
+import splitties.resources.appColor
 import splitties.resources.appColorSL
 import splitties.resources.appStr
 import splitties.resources.appStrArray
@@ -66,11 +67,11 @@ fun bindCategory(view: ImageView, category: Int?) {
 }
 
 @BindingAdapter("bind_imgUrl")
-fun bindImgUrl(view: CircleImageView, url: String?) {
-    if (url == null) {
+fun bindImgUrl(view: CircleImageView, imgUrl: String?) {
+    if (imgUrl == null) {
         return
     }
-    Glide.with(view.context).load(url)
+    Glide.with(view.context).load(imgUrl)
         .into(view)
 }
 
@@ -90,20 +91,20 @@ fun bindProgress(view: ProgressBar, current: Int?, max: Int? = 100) {
     view.progress = (current.toDouble() / max.absoluteValue * 100).toInt()
 }
 
-@BindingAdapter("bind_date")
-fun bindDate(view: TextView, date: Date?) {
-    if (date == null) {
+@BindingAdapter("bind_date", "bind_dateFormat")
+fun bindDate(view: TextView, date: Date?, dateFormat: String?) {
+    if (date == null || dateFormat == null) {
         return
     }
-    view.text = date.toString(appStr(R.string.month_day))
+    view.text = date.toString(dateFormat)
 }
 
 @BindingAdapter("bind_money")
-fun bindMoney(view: TextView, price: Int?) {
-    if (price == null) {
+fun bindMoney(view: TextView, money: Int?) {
+    if (money == null) {
         return
     }
-    view.text = intToStr(-price, suffix = appStr(R.string.won))
+    view.text = intToStr(-money, suffix = appStr(R.string.won))
 }
 
 @BindingAdapter("bind_category")
@@ -115,4 +116,41 @@ fun bindCategory(view: Button, category: Int?) {
     val shape = view.background as GradientDrawable
     shape.color = appColorSL(R.color.colorPrimary)
     view.text = categoryArr[category]
+}
+
+@BindingAdapter("bind_expense")
+fun bindExpense(view: TextView, expense: Int?) {
+    if (expense == null) {
+        return
+    }
+    view.text = intToStr(
+        expense, suffix = " " + appStr(R.string.account_expense), prefix = appStr(R.string.won_char)
+    )
+}
+
+@BindingAdapter("bind_average")
+fun bindAverage(view: TextView, average: Int?) {
+    if (average == null) {
+        return
+    }
+    view.text = intToStr(
+        average, prefix = appStr(R.string.account_average) + " " + appStr(R.string.won_char)
+    )
+}
+
+@BindingAdapter("bind_date")
+fun bindDate(view: TextView, date: Date?) {
+    if (date == null) {
+//        view.text = ""
+        return
+    }
+    val cal = Calendar.getInstance().apply {
+        time = date
+    }
+    view.text = date.toString("d")
+    when (cal.get(Calendar.DAY_OF_WEEK)) {
+        1 -> view.setTextColor(appColor(R.color.colorSunday))
+        7 -> view.setTextColor(appColor(R.color.colorSaturday))
+        else -> view.setTextColor(appColor(R.color.colorWeekday))
+    }
 }

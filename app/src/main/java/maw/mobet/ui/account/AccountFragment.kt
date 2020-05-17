@@ -41,7 +41,7 @@ class AccountFragment : Fragment() {
     }
 
     fun selectDate(date: Date) {
+        historyFragment.scrollToDate(date) ?: return
         view_pager.currentItem = 0
-        historyFragment.scrollToDate(date)
     }
 }

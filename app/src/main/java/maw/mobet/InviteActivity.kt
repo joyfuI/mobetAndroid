@@ -5,6 +5,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_invite.*
+import maw.mobet.api.IdData
 import maw.mobet.api.MemberItem
 import maw.mobet.api.ResultItem
 import maw.mobet.invite.MemberItem2
@@ -59,10 +60,11 @@ class InviteActivity : AppCompatActivity() {
         when (view) {
             // 확인 버튼
             ok_btn -> {
+                val id = intent.getIntExtra("id", 0)
                 val inviteList = list.filter {
                     it.isChecked
                 }.map {
-                    it.member
+                    IdData(it.member.id, id)
                 }
 
                 isClickable = false

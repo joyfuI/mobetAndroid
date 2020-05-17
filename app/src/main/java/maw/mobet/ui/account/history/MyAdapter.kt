@@ -9,10 +9,10 @@ import maw.mobet.databinding.ListItemHistoryDataBinding
 import maw.mobet.databinding.ListItemHistoryHeaderBinding
 
 class MyAdapter(
-    private val data: List<HistoryListItem>, private val listener: OnClickListener? = null
+    private val data: List<HistoryListItem>, private val listener: OnItemClickListener? = null
 ) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
-    interface OnClickListener {
-        fun onClick(view: View, position: Int)
+    interface OnItemClickListener {
+        fun onItemClick(view: View, position: Int)
     }
 
     override fun getItemViewType(position: Int): Int = data[position].getType()
@@ -34,7 +34,7 @@ class MyAdapter(
         holder.bind(item)
 
         val onClickListener = View.OnClickListener {
-            listener?.onClick(it, position)
+            listener?.onItemClick(it, position)
         }
         with (holder.itemView) {
             tag = item

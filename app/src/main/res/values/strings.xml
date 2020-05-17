@@ -80,6 +80,7 @@
     <string name="rank_rank">#</string>
     <string name="rank_nick">닉네임</string>
     <string name="rank_score">등급/점수</string>
+
     <!-- 개인 랭크 -->
     <string name="personal_grade">현재등급</string>
     <string name="personal_rank">현재순위</string>
@@ -87,7 +88,6 @@
     <string name="personal_win">승리횟수</string>
     <string name="personal_first">1등비율</string>
     <string name="personal_play">경쟁전수</string>
-
 
     <!-- 마이페이지 -->
     <string name="rest_money">남은 금액 : </string>
@@ -114,10 +114,18 @@
     <string name="lodging">숙박</string>
     <string name="car">자동차</string>
 
-    <!-- 내역 -->
+    <!-- 소비내역 -->
     <string name="month_day">M월 d일</string>
-    <string name="deposit">입금</string>
-    <string name="withdrawal">출금</string>
+    <string name="month">M월</string>
+    <string name="account_expense">지출</string>
+    <string name="account_average">지난 6개월간 월 평균:</string>
+    <string name="monday">MON</string>
+    <string name="tuesday">TUE</string>
+    <string name="wednesday">WED</string>
+    <string name="thursday">THU</string>
+    <string name="friday">FRI</string>
+    <string name="saturday">SAT</string>
+    <string name="sunday">SUN</string>
 
     <!-- 토스트 메시지 -->
     <string name="error">오류!!!</string>

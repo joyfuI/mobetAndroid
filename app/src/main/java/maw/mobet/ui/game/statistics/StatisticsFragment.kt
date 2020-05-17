@@ -46,7 +46,7 @@ class StatisticsFragment : Fragment() {
             info = it
 
             var my: MemberItem? = null
-            val your: MutableList<MemberItem> = mutableListOf()
+            val your = mutableListOf<MemberItem>()
             for (i in info.members) {
                 if (i.id == User.id) {
                     my = i

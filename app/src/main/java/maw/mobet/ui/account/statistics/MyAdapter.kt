@@ -1,21 +1,21 @@
-package maw.mobet.ui.game
+package maw.mobet.ui.account.statistics
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import maw.mobet.api.MemberItem
-import maw.mobet.databinding.ListItemMemberBinding
+import maw.mobet.databinding.ListItemCalendarBinding
+import java.util.*
 
 class MyAdapter(
-    private val data: List<MemberItem>, private val listener: OnItemClickListener? = null
+    private val data: List<CalendarItem>, private val listener: OnItemClickListener? = null
 ) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
     interface OnItemClickListener {
-        fun onItemClick(view: View, position: Int)
+        fun onItemClick(view: View, date: Date?)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = ListItemMemberBinding
+        val view = ListItemCalendarBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(view)
     }
@@ -25,7 +25,7 @@ class MyAdapter(
         holder.bind(item)
 
         val onClickListener = View.OnClickListener {
-            listener?.onItemClick(it, position)
+            listener?.onItemClick(it, item.day)
         }
         with (holder.itemView) {
             tag = item
@@ -36,11 +36,11 @@ class MyAdapter(
     override fun getItemCount(): Int = data.size
 
     inner class ViewHolder(
-        val binding: ListItemMemberBinding
+        val binding: ListItemCalendarBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: MemberItem) {
+        fun bind(data: CalendarItem) {
             binding.apply {
-                item = data
+                this.item = data
                 executePendingBindings()
             }
         }

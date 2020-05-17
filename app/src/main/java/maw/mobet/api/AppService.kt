@@ -45,11 +45,11 @@ interface AppService {
     @POST("participate/")
     fun joinGame(@Body data: IdData): Call<ResultItem>
 
-    @POST("friend.json")
+    @GET("friend-list/")
     fun friend(): Call<List<MemberItem>>
 
     @POST("notification/")
-    fun invite(@Body data: List<MemberItem>): Call<ResultItem>
+    fun invite(@Body data: List<IdData>): Call<ResultItem>
 
     @POST("post.php")
     fun deleteGame(@Body data: IdData): Call<ResultItem>

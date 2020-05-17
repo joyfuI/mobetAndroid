@@ -15,7 +15,7 @@ import maw.mobet.R
 import maw.mobet.api.GameItem
 import splitties.fragments.start
 
-class HomeFragment : Fragment(), MyAdapter.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
+class HomeFragment : Fragment(), MyAdapter.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
     private lateinit var viewModel: HomeViewModel
 
     override fun onCreateView(
@@ -39,7 +39,7 @@ class HomeFragment : Fragment(), MyAdapter.OnClickListener, SwipeRefreshLayout.O
     }
 
     // 리스트 아이템 클릭
-    override fun onClick(view: View, position: Int) {
+    override fun onItemClick(view: View, position: Int) {
         val item = view.tag as GameItem
 
         start<GameActivity> {

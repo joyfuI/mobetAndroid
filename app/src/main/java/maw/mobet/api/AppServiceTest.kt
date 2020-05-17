@@ -49,7 +49,7 @@ interface AppServiceTest : AppService {
     override fun friend(): Call<List<MemberItem>>
 
     @POST("post.php")
-    override fun invite(@Body data: List<MemberItem>): Call<ResultItem>
+    override fun invite(@Body data: List<IdData>): Call<ResultItem>
 
     @POST("post.php")
     override fun deleteGame(@Body data: IdData): Call<ResultItem>

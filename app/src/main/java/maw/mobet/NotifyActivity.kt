@@ -21,7 +21,7 @@ import splitties.activities.start
 import splitties.resources.txt
 import splitties.toast.toast
 
-class NotifyActivity : AppCompatActivity(), MyAdapter.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
+class NotifyActivity : AppCompatActivity(), MyAdapter.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
     private val list = MutableLiveData<List<NotifyItem>>().apply {
         loadData()
     }
@@ -59,7 +59,7 @@ class NotifyActivity : AppCompatActivity(), MyAdapter.OnClickListener, SwipeRefr
     }
 
     // 리스트 아이템 클릭
-    override fun onClick(view: View, position: Int, delete: () -> Unit) {
+    override fun onItemClick(view: View, position: Int, delete: () -> Unit) {
         view.isClickable = false
 
         val item = view.tag as NotifyItem

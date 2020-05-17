@@ -12,10 +12,10 @@ import maw.mobet.api.MemberItem
 import maw.mobet.intToStr
 
 class MyAdapter(
-    private val data: List<MemberItem>, private val listener: OnClickListener? = null
+    private val data: List<MemberItem>, private val listener: OnItemClickListener? = null
 ) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
-    interface OnClickListener {
-        fun onClick(view: View, position: Int)
+    interface OnItemClickListener {
+        fun onItemClick(view: View, position: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -35,7 +35,7 @@ class MyAdapter(
         holder.score_txt.text = intToStr(item.score)
 
         val onClickListener = View.OnClickListener {
-            listener?.onClick(it, position)
+            listener?.onItemClick(it, position)
         }
         with(holder.itemView) {
             tag = item
