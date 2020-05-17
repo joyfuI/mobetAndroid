@@ -74,9 +74,12 @@ class StatisticsFragment : Fragment(), View.OnClickListener, MyAdapter.OnItemCli
             binding.data = data
         })
 
-        list_view.layoutManager = GridLayoutManager(activity, 7)
-//        list_view.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.HORIZONTAL))
-//        list_view.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
+        binding.scrollView.post {
+            binding.scrollView.scrollX = binding.scrollView.getChildAt(0).width
+        }
+        binding.listView.layoutManager = GridLayoutManager(activity, 7)
+//        binding.listView.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.HORIZONTAL))
+//        binding.listView.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
 
         graph0.setOnClickListener(this)
         graph1.setOnClickListener(this)
