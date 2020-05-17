@@ -60,10 +60,11 @@ class InviteActivity : AppCompatActivity() {
         when (view) {
             // 확인 버튼
             ok_btn -> {
+                val id = intent.getIntExtra("id", 0)
                 val inviteList = list.filter {
                     it.isChecked
                 }.map {
-                    IdData(it.member.id, 0)
+                    IdData(it.member.id, id)
                 }
 
                 isClickable = false
