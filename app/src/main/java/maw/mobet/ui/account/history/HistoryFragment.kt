@@ -77,7 +77,7 @@ class HistoryFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         return list
     }
 
-    fun scrollToDate(date: Date) {
+    fun scrollToDate(date: Date): Int? {
         val cal = Calendar.getInstance().apply {
             time = date
         }
@@ -104,5 +104,7 @@ class HistoryFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
                 list_view.scrollToPosition(position)
             }
         }
+
+        return position
     }
 }

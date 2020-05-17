@@ -5,12 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import maw.mobet.databinding.ListItemCalendarBinding
+import java.util.*
 
 class MyAdapter(
     private val data: List<CalendarItem>, private val listener: OnItemClickListener? = null
 ) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
     interface OnItemClickListener {
-        fun onItemClick(view: View, position: Int)
+        fun onItemClick(view: View, date: Date?)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,7 +25,7 @@ class MyAdapter(
         holder.bind(item)
 
         val onClickListener = View.OnClickListener {
-            listener?.onItemClick(it, position)
+            listener?.onItemClick(it, item.day)
         }
         with (holder.itemView) {
             tag = item

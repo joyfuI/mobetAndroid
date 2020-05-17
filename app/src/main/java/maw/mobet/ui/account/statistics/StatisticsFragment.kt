@@ -17,7 +17,7 @@ import maw.mobet.ui.account.AccountFragment
 import maw.mobet.ui.account.AccountViewModel
 import java.util.*
 
-class StatisticsFragment : Fragment(), View.OnClickListener {
+class StatisticsFragment : Fragment(), View.OnClickListener, MyAdapter.OnItemClickListener {
     companion object {
         fun newInstance() = StatisticsFragment()
     }
@@ -67,7 +67,10 @@ class StatisticsFragment : Fragment(), View.OnClickListener {
                 }
             }
 
-            binding.listView.adapter = MyAdapter(createList(data.account.month[data.position].month))
+            binding.listView.adapter = MyAdapter(
+                createList(data.account.month[data.position].month),
+                this
+            )
             binding.data = data
         })
 
@@ -153,6 +156,16 @@ class StatisticsFragment : Fragment(), View.OnClickListener {
         binding.data = data.apply {
             position = this@StatisticsFragment.position
         }
-        binding.listView.adapter = MyAdapter(createList(data.account.month[data.position].month))
+        binding.listView.adapter = MyAdapter(
+            createList(data.account.month[data.position].month),
+            this
+        )
+    }
+
+    override fun onItemClick(view: View, date: Date?) {
+        if (date == null) {
+            return
+        }
+        (parentFragment as AccountFragment).selectDate(date)
     }
 }
