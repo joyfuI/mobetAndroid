@@ -17,7 +17,7 @@ import maw.mobet.ui.my.MyFragment
 import maw.mobet.ui.my.MyViewModel
 import splitties.fragments.start
 
-class FragmentFinish : Fragment(), MyfinishAdapter.OnClickListener {
+class FragmentFinish : Fragment(), MyfinishAdapter.OnItemClickListener {
     companion object {
         fun newInstance() = FragmentFinish()
     }
@@ -40,7 +40,7 @@ class FragmentFinish : Fragment(), MyfinishAdapter.OnClickListener {
         })
 
     }
-    override fun onClick(view: View, position: Int) {
+    override fun onItemClick(view: View, position: Int) {
         val item = view.tag as GameItem
 
         start<GameActivity> {

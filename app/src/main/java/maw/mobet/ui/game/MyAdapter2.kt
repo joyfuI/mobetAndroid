@@ -11,10 +11,10 @@ import maw.mobet.databinding.ListItemMemberStatisticsBinding
 class MyAdapter2(
     private val data: List<MemberItem>,
     private val game: GameItem,
-    private val listener: OnClickListener? = null
+    private val listener: OnItemClickListener? = null
 ) : RecyclerView.Adapter<MyAdapter2.ViewHolder>() {
-    interface OnClickListener {
-        fun onClick(view: View, position: Int)
+    interface OnItemClickListener {
+        fun onItemClick(view: View, position: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -28,7 +28,7 @@ class MyAdapter2(
         holder.bind(item, game)
 
         val onClickListener = View.OnClickListener {
-            listener?.onClick(it, position)
+            listener?.onItemClick(it, position)
         }
         with (holder.itemView) {
             tag = item

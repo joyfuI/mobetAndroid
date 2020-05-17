@@ -14,11 +14,12 @@ import maw.mobet.api.GameItem
 import splitties.resources.appTxtArray
 
 class MyplayingAdapter(
-    private val data: List<GameItem>, private val listener: OnClickListener? = null
+    private val data: List<GameItem>, private val listener: OnItemClickListener? = null
 ) : RecyclerView.Adapter<MyplayingAdapter.ViewHolder>() {
-    interface OnClickListener {
-        fun onClick(view: View, position: Int)
+    interface OnItemClickListener {
+        fun onItemClick(view: View, position: Int)
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.list_item_my, parent, false)
@@ -50,7 +51,7 @@ class MyplayingAdapter(
         holder.rank_txt.text = my.place.toString()
 
         val onClickListener = View.OnClickListener {
-            listener?.onClick(it, position)
+            listener?.onItemClick(it, position)
         }
         with (holder.itemView) {
             tag = item

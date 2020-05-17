@@ -15,10 +15,10 @@ import splitties.resources.appColorSL
 import splitties.resources.appStr
 
 class MyAdapter(
-    private val data: MutableList<NotifyItem>, private val listener: OnClickListener? = null
+    private val data: MutableList<NotifyItem>, private val listener: OnItemClickListener? = null
 ) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
-    interface OnClickListener {
-        fun onClick(view: View, position: Int, delete: () -> Unit)
+    interface OnItemClickListener {
+        fun onItemClick(view: View, position: Int, delete: () -> Unit)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -46,7 +46,7 @@ class MyAdapter(
         holder.msg_txt.text = msg
 
         val onClickListener = View.OnClickListener {
-            listener?.onClick(it, position) {
+            listener?.onItemClick(it, position) {
                 holder.delete()
             }
         }

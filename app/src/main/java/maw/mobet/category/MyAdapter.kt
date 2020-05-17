@@ -9,14 +9,14 @@ import kotlinx.android.synthetic.main.list_item_category.*
 import maw.mobet.R
 
 class MyAdapter(
-    private val data: List<CategoryListItem>, private val listener: OnClickListener? = null
+    private val data: List<CategoryListItem>, private val listener: OnItemClickListener? = null
 ) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
-    interface OnClickListener {
-        fun onClick(view: View)
+    interface OnItemClickListener {
+        fun onItemClick(view: View)
     }
 
     private val onClickListener = View.OnClickListener {
-        listener?.onClick(it)
+        listener?.onItemClick(it)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

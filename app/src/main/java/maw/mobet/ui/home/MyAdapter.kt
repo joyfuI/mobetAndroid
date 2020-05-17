@@ -16,10 +16,10 @@ import splitties.resources.appTxtArray
 import kotlin.math.absoluteValue
 
 class MyAdapter(
-    private val data: List<GameItem>, private val listener: OnClickListener? = null
+    private val data: List<GameItem>, private val listener: OnItemClickListener? = null
 ) : RecyclerView.Adapter<MyAdapter.ViewHolder>() {
-    interface OnClickListener {
-        fun onClick(view: View, position: Int)
+    interface OnItemClickListener {
+        fun onItemClick(view: View, position: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -51,7 +51,7 @@ class MyAdapter(
         })
 
         val onClickListener = View.OnClickListener {
-            listener?.onClick(it, position)
+            listener?.onItemClick(it, position)
         }
         with (holder.itemView) {
             tag = item

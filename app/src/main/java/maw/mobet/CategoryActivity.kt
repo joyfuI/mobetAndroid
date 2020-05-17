@@ -11,7 +11,7 @@ import maw.mobet.category.MyAdapter
 import maw.mobet.category.MyItemDecoration
 import splitties.resources.strArray
 
-class CategoryActivity : AppCompatActivity(), MyAdapter.OnClickListener {
+class CategoryActivity : AppCompatActivity(), MyAdapter.OnItemClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
@@ -35,7 +35,7 @@ class CategoryActivity : AppCompatActivity(), MyAdapter.OnClickListener {
         drawableArr.recycle()
     }
 
-    override fun onClick(view: View) {
+    override fun onItemClick(view: View) {
         val intent = Intent()
         intent.putExtra("result", view.tag as Int)
         setResult(RESULT_OK, intent)
