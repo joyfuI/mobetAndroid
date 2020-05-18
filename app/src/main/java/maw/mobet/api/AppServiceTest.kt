@@ -1,9 +1,8 @@
 package maw.mobet.api
 
+import okhttp3.MultipartBody
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface AppServiceTest : AppService {
     @GET("post.php")
@@ -59,4 +58,8 @@ interface AppServiceTest : AppService {
 
     @POST("my.json")
     override fun my(): Call<MyItem>
+
+    @Multipart
+    @POST("upload.php")
+    override fun uploadImg(@Part file: MultipartBody.Part): Call<ResultItem>
 }

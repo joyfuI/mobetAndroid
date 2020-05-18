@@ -1,6 +1,11 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <Preference
+        app:key="profileImg"
+        app:title="@string/setting_profile_img"
+        app:iconSpaceReserved="false">
+    </Preference>
+    <Preference
         app:key="logout"
         app:title="@string/setting_logout"
         app:iconSpaceReserved="false">

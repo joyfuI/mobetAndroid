@@ -115,9 +115,9 @@ class GameActivity : AppCompatActivity() {
             }
             // 친구초대
             invite_btn -> {
-                val intent = Intent(this, InviteActivity::class.java)
-                intent.putExtra("id", info.id)
-                startActivityForResult(intent, 0)
+                start<InviteActivity> {
+                    putExtra("id", info.id)
+                }
             }
             // 경쟁전 삭제
             delete_btn -> {
