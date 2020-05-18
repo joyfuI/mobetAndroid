@@ -40,7 +40,7 @@ class MyAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: CalendarItem) {
             binding.apply {
-                this.item = data
+                item = data
                 executePendingBindings()
             }
         }

@@ -65,7 +65,7 @@ object RetrofitClient {
             Log.d("httplog", message)
         }
     }).apply {
-        this.level = HttpLoggingInterceptor.Level.BODY
+        level = HttpLoggingInterceptor.Level.BODY
     }
 }
 
