@@ -59,4 +59,7 @@ interface AppService {
 
     @POST("my.json")
     fun my(): Call<MyItem>
+
+    @POST("rank.json")
+    fun personal(): Call<RankItem>
 }
