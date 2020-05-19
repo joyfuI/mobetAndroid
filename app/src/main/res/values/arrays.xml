@@ -4,12 +4,12 @@
         <item>@null</item>
         <item>@string/restaurant</item>
         <item>@string/cafe</item>
-        <item>@string/dessert</item>
+        <item>@null</item>
         <item>@string/life_style</item>
         <item>@string/culture</item>
         <item>@string/mart</item>
         <item>@string/health</item>
-        <item>@string/movie</item>
+        <item>@null</item>
         <item>@string/transportation</item>
         <item>@string/cvs</item>
         <item>@string/lodging</item>
@@ -21,12 +21,12 @@
         <item>@null</item>
         <item>@drawable/restaurant</item>
         <item>@drawable/cafe</item>
-        <item>@drawable/dessert</item>
+        <item>@null</item>
         <item>@drawable/life_style</item>
         <item>@drawable/culture</item>
         <item>@drawable/mart</item>
         <item>@drawable/health</item>
-        <item>@drawable/movie</item>
+        <item>@null</item>
         <item>@drawable/transportation</item>
         <item>@drawable/cvs</item>
         <item>@drawable/lodging</item>

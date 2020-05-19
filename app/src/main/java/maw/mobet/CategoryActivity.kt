@@ -21,7 +21,7 @@ class CategoryActivity : AppCompatActivity(), MyAdapter.OnItemClickListener {
 
         val categoryList = mutableListOf<CategoryListItem>()
         for (i in titleArr.indices) {
-            if (i == 0) {
+            if (titleArr[i] == null) {
                 continue
             }
             val item = CategoryListItem(titleArr[i], drawableArr.getResourceId(i, 0))
