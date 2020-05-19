@@ -62,4 +62,7 @@ interface AppService {
     @Multipart
     @POST("upload.php")
     fun uploadImg(@Part file: MultipartBody.Part): Call<ResultItem>
+
+    @POST("rank.json")
+    fun personal(): Call<RankItem>
 }

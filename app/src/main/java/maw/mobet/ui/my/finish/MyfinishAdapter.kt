@@ -1,5 +1,6 @@
 package maw.mobet.ui.my.finish
 
+import android.graphics.drawable.GradientDrawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,13 @@ import kotlinx.android.synthetic.main.list_item_my.*
 import maw.mobet.R
 import maw.mobet.User
 import maw.mobet.api.GameItem
+import maw.mobet.diffDate
+import maw.mobet.intToStr
+import splitties.resources.appColor
+import splitties.resources.appColorSL
 import splitties.resources.appTxtArray
+import java.util.*
+import kotlin.math.absoluteValue
 
 class MyfinishAdapter (
     private val data: List<GameItem>, private val listener: OnItemClickListener? = null
@@ -42,13 +49,25 @@ class MyfinishAdapter (
         holder.profile_nick.text = item.admin.nick
         holder.title_txt.text = item.title
         val category = appTxtArray(R.array.category)
-        val text = "[${category[item.category]}]" +
-                " D - ${item.endDate.time  - item.startDate.time}"
+        val text = "[${category[item.category]}] " + diffDate(item.startDate,item.endDate) + " 일"
         holder.category_txt.text = text
-        val text2= "남은 금액 : " + "${my.remain}"
+        val text2 = intToStr(my.remain!!,"사용 금액 : ","/") +
+                data[position].price.absoluteValue + " 원"
+        holder.category_txt.text = text
         holder.amount.text =text2
-        holder.rank_txt.text = my.place.toString()
 
+            val rank_personal = item.members.find {
+            it.id == User.id
+        }
+        holder.rank_txt.text = rank_personal?.place.toString()
+        val background = holder.rank_txt.background as GradientDrawable
+        if(rank_personal?.place == 1){
+            background.color = appColorSL(R.color.colorPrimary)
+        }
+        else{
+            background.color = appColorSL(R.color.colorControlNormal)
+        }
+        Log.d("dodo", rank_personal?.place.toString())
         val onClickListener = View.OnClickListener {
             listener?.onItemClick(it, position)
         }

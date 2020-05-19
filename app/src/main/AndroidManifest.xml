@@ -58,6 +58,10 @@
         <activity
             android:name=".RankActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".DialogActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Dialog"/>
     </application>
 
 </manifest>
