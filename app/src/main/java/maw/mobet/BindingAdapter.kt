@@ -47,6 +47,26 @@ fun bindPrice(view: TextView, price: Int?) {
     }
 }
 
+@BindingAdapter("bind_price2")
+fun bindPrice2(view: TextView, price: Int?) {
+    if (price == null) {
+        return
+    }
+    view.text = intToStr(price.absoluteValue, prefix = appStr(R.string.won_char))
+}
+
+@BindingAdapter("bind_price2")
+fun bindPrice2(view: ImageView, price: Int?) {
+    if (price == null) {
+        return
+    }
+    view.setImageResource(if (price > 0) {
+        R.drawable.ic_arrow_upward_24dp
+    } else {
+        R.drawable.ic_arrow_downward_24dp
+    })
+}
+
 @BindingAdapter("bind_category")
 fun bindCategory(view: TextView, category: Int?) {
     if (category == null) {
@@ -153,4 +173,16 @@ fun bindDate(view: TextView, date: Date?) {
         7 -> view.setTextColor(appColor(R.color.colorSaturday))
         else -> view.setTextColor(appColor(R.color.colorWeekday))
     }
+}
+
+@BindingAdapter("bind_category", "bind_startDate", "bind_endDate")
+fun bindTitleTop(view: TextView, category: Int?, startDate: Date?, endDate: Date?) {
+    if (category == null || startDate == null || endDate == null) {
+        return
+    }
+    val categoryArr = appStrArray(R.array.category)
+    val start = startDate.toString("MM.dd")
+    val end = endDate.toString("MM.dd")
+    val text = "[${categoryArr[category]}] $start ~ $end"
+    view.text = text
 }
