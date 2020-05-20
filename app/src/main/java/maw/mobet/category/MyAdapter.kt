@@ -32,8 +32,7 @@ class MyAdapter(
         holder.category_txt.text = item.title
 
         with (holder.itemView) {
-            // position 저장
-            tag = position + 1
+            tag = item
             setOnClickListener(onClickListener)
         }
     }

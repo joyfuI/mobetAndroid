@@ -10,9 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_rank_personal.*
 import maw.mobet.api.RankItem
-import maw.mobet.notify.MyAdapter
 import maw.mobet.ui.my.finish.PersonalViewModel
-import splitties.activities.start
 
 class RankActivity : AppCompatActivity() {
 

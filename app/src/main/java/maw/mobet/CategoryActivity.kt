@@ -24,7 +24,7 @@ class CategoryActivity : AppCompatActivity(), MyAdapter.OnItemClickListener {
             if (titleArr[i] == null) {
                 continue
             }
-            val item = CategoryListItem(titleArr[i], drawableArr.getResourceId(i, 0))
+            val item = CategoryListItem(titleArr[i], drawableArr.getResourceId(i, 0), i)
             categoryList.add(item)
         }
 
@@ -37,7 +37,7 @@ class CategoryActivity : AppCompatActivity(), MyAdapter.OnItemClickListener {
 
     override fun onItemClick(view: View) {
         val intent = Intent()
-        intent.putExtra("result", view.tag as Int)
+        intent.putExtra("result", (view.tag as CategoryListItem).position)
         setResult(RESULT_OK, intent)
         finish()
     }

@@ -27,7 +27,9 @@ class DialogActivity : AppCompatActivity() {
         }
         viewModel.loadData(id)
     }
+}
 
+    override fun onClick(view: View, position: Int, delete: () -> Unit) {
 
-
+    }
 }

@@ -53,14 +53,14 @@ interface AppService {
     @POST("post.php")
     fun deleteGame(@Body data: IdData): Call<ResultItem>
 
-    @POST("rank.json")
+    @POST("friend.json")
     fun rankList(): Call<List<MemberItem>>
 
     @POST("my.json")
     fun my(): Call<MyItem>
 
     @Multipart
-    @POST("upload.php")
+    @POST("restore-img/")
     fun uploadImg(@Part file: MultipartBody.Part): Call<ResultItem>
 
     @POST("rank.json")
