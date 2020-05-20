@@ -50,6 +50,8 @@ class FragmentFinish : Fragment(), MyfinishAdapter.OnItemClickListener {
         start<DialogActivity> {
             putExtra("id", item.id)
             putExtra("data", item)
+
+
         }
     }
 }

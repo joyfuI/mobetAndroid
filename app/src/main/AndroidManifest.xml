@@ -61,7 +61,8 @@
         <activity
             android:name=".DialogActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Dialog"/>
+            android:theme="@style/DialogTheme"
+            />
     </application>
 
 </manifest>
