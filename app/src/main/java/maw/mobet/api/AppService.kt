@@ -60,6 +60,6 @@ interface AppService {
     fun my(): Call<MyItem>
 
     @Multipart
-    @POST("upload.php")
+    @POST("restore-img/")
     fun uploadImg(@Part file: MultipartBody.Part): Call<ResultItem>
 }

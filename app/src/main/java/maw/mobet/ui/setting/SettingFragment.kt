@@ -66,6 +66,8 @@ class SettingFragment : PreferenceFragmentCompat() {
 
         if (requestCode == 0) {
             if (resultCode == RESULT_OK && data != null) {
+                val extension = requireActivity().contentResolver.getType(data.data!!)!!.split("/")[1]
+
                 val inputStream = requireActivity().contentResolver.openInputStream(data.data!!)!!
                 val outputStream = FileOutputStream(file)
                 val buffer = ByteArray(inputStream.available())
@@ -79,7 +81,17 @@ class SettingFragment : PreferenceFragmentCompat() {
                 val service = RetrofitClient.getInstance()
                 val fileBody = file.asRequestBody("image/*".toMediaType())
                 val filePart = MultipartBody.Part.createFormData(
-                    "upload", "profile", fileBody
+                    "upload",
+                    "profile"/* + when (extension) {
+                        "jpeg" -> ".jpg"
+                        "png" -> ".png"
+                        "gif" -> ".gif"
+                        else -> {
+                            toast(R.string.profile_img_extension)
+                            return
+                        }
+                    }*/,
+                    fileBody
                 )
                 val dataCall = service.uploadImg(filePart)
                 dataCall.enqueue(object : Callback<ResultItem> {
