@@ -53,7 +53,7 @@ interface AppService {
     @POST("post.php")
     fun deleteGame(@Body data: IdData): Call<ResultItem>
 
-    @POST("rank.json")
+    @POST("friend.json")
     fun rankList(): Call<List<MemberItem>>
 
     @POST("my.json")
