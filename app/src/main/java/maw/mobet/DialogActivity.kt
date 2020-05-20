@@ -13,7 +13,7 @@ import retrofit2.Response
 import splitties.resources.txt
 import splitties.toast.toast
 
-class DialogActivity : AppCompatActivity(), MyAdapter.OnClickListener {
+class DialogActivity : AppCompatActivity() {
     private lateinit var viewModel: GameViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +29,5 @@ class DialogActivity : AppCompatActivity(), MyAdapter.OnClickListener {
     }
 
 
-    override fun onClick(view: View, position: Int, delete: () -> Unit) {
 
-    }
 }

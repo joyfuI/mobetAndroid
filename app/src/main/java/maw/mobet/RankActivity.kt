@@ -14,16 +14,11 @@ import maw.mobet.notify.MyAdapter
 import maw.mobet.ui.my.finish.PersonalViewModel
 import splitties.activities.start
 
-class RankActivity : AppCompatActivity(), MyAdapter.OnItemClickListener {
-    private val list = MutableLiveData<List<NotifyItem>>().apply {
-        loadData()
-    }
+class RankActivity : AppCompatActivity() {
 
-class RankActivity : AppCompatActivity(), MyAdapter.OnClickListener {
     private lateinit var viewModel: PersonalViewModel
     private lateinit var rank : RankItem
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rank_personal)
@@ -32,23 +27,18 @@ class RankActivity : AppCompatActivity(), MyAdapter.OnClickListener {
         viewModel.loadData()
         viewModel.rank.observe(this, Observer {
             rank = it
-            progress_grade.setProgress(rank.nextRank.toInt(),true)
-            progress_rank.setProgress(rank.toppercent.toInt(),true)
+            progress_grade.progress = rank.nextRank.toInt()
+            progress_rank.progress = rank.toppercent.toInt()
             grade_txt.text = rank.my.grade
             val text = "다음 등급까지 " + "${rank.nextRank.toString()} %"
             grade_next_txt.text = text
             val text2 = "상위 " + "${rank.nextRank.toString()} %"
             rank_txt.text = rank.my.rank.toString()
             top_rank_txt.text = text2
-            progressbar_win.setProgress(rank.toppercent.toInt(), true)
-            progressbar_first.setProgress(rank.first.toInt(), true)
-            progressbar_play.setProgress(rank.playtimes.toInt(), true)
+            progressbar_win.progress = rank.toppercent.toInt()
+            progressbar_first.progress = rank.first.toInt()
+            progressbar_play.progress = rank.playtimes.toInt()
 
-            override fun onFailure(call: Call<List<NotifyItem>>, t: Throwable) {
-                toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
-            }
         })
-    }
-    override fun onClick(view: View, position: Int, delete: () -> Unit) {
     }
 }
