@@ -1,25 +1,16 @@
 package maw.mobet
 
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_rank_personal.*
 import maw.mobet.api.RankItem
-import maw.mobet.notify.MyAdapter
 import maw.mobet.ui.my.finish.PersonalViewModel
-import splitties.activities.start
 
-class RankActivity : AppCompatActivity(), MyAdapter.OnItemClickListener {
-    private val list = MutableLiveData<List<NotifyItem>>().apply {
-        loadData()
-    }
-
-class RankActivity : AppCompatActivity(), MyAdapter.OnClickListener {
+class RankActivity : AppCompatActivity() {
     private lateinit var viewModel: PersonalViewModel
     private lateinit var rank : RankItem
 
@@ -43,12 +34,6 @@ class RankActivity : AppCompatActivity(), MyAdapter.OnClickListener {
             progressbar_win.setProgress(rank.toppercent.toInt(), true)
             progressbar_first.setProgress(rank.first.toInt(), true)
             progressbar_play.setProgress(rank.playtimes.toInt(), true)
-
-            override fun onFailure(call: Call<List<NotifyItem>>, t: Throwable) {
-                toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
-            }
         })
-    }
-    override fun onClick(view: View, position: Int, delete: () -> Unit) {
     }
 }
