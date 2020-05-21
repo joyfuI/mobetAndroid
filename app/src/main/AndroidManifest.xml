@@ -14,8 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:networkSecurityConfig="@xml/network_security_config"
-        tools:ignore="LockedOrientationActivity"
-        tools:targetApi="n">
+        tools:ignore="LockedOrientationActivity">
+        <activity android:name=".FriendActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".InviteActivity"
             android:screenOrientation="portrait"
@@ -61,8 +62,7 @@
         <activity
             android:name=".DialogActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/DialogTheme"
-            />
+            android:theme="@style/DialogTheme" />
     </application>
 
 </manifest>
