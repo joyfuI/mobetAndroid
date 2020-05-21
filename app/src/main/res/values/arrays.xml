@@ -36,18 +36,18 @@
 
     <array name="category_background">
         <item>@null</item>
-        <item>@drawable/ic_launcher_background</item>
-        <item>@drawable/ic_launcher_background</item>
+        <item>@drawable/cate_meal</item>
+        <item>@drawable/cate_cafe</item>
         <item>@null</item>
-        <item>@drawable/ic_launcher_background</item>
-        <item>@drawable/ic_launcher_background</item>
-        <item>@drawable/ic_launcher_background</item>
-        <item>@drawable/ic_launcher_background</item>
+        <item>@drawable/cate_hotel</item>
+        <item>@drawable/cate_culture</item>
+        <item>@drawable/cate_marts</item>
+        <item>@drawable/cate_hospital</item>
         <item>@null</item>
-        <item>@drawable/ic_launcher_background</item>
-        <item>@drawable/ic_launcher_background</item>
-        <item>@drawable/ic_launcher_background</item>
-        <item>@drawable/ic_launcher_background</item>
+        <item>@drawable/cate_bus</item>
+        <item>@drawable/cate_convenience</item>
+        <item>@drawable/cate_hotel</item>
+        <item>@drawable/cate_bus</item>
         <item>@drawable/ic_launcher_background</item>
     </array>
 </resources>
