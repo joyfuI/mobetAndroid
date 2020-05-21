@@ -1,9 +1,18 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <Preference
         app:key="profileImg"
         app:title="@string/setting_profile_img"
         app:iconSpaceReserved="false">
+    </Preference>
+    <Preference
+        app:key="friend"
+        app:title="@string/setting_friend"
+        app:iconSpaceReserved="false">
+        <intent
+            android:targetPackage="maw.mobet"
+            android:targetClass="maw.mobet.FriendActivity" />
     </Preference>
     <Preference
         app:key="logout"
