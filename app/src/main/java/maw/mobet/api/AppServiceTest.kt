@@ -5,7 +5,7 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface AppServiceTest : AppService {
-    @GET("post.php")
+    @GET("notify.json")
     override fun login(): Call<ResultItem>
 
     @POST("post.php")

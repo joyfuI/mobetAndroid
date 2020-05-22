@@ -45,21 +45,23 @@ class LoginActivity : AppCompatActivity() {
             dataCall.enqueue(object : Callback<ResultItem> {
                 override fun onResponse(call: Call<ResultItem>, response: Response<ResultItem>) {
                     val result = response.body()
-                    if (result == null) {
-                        toast("${txt(R.string.error)} ${result?.code}")
-                        isClickable = true
+                    if (result?.code != 0) {
+                        User.id = result?.code
+                        start<MainActivity>()
+                        finish()
+                        return
                     }
-                    User.id = result?.code
+                    toast(R.string.login_error)
+                    isClickable = true
+                    auth.signOut()
                 }
 
                 override fun onFailure(call: Call<ResultItem>, t: Throwable) {
                     toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
                     isClickable = true
+                    auth.signOut()
                 }
             })
-
-            start<MainActivity>()
-            finish()
         }
     }
 
