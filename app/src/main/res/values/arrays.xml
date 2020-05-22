@@ -48,6 +48,6 @@
         <item>@drawable/cate_convenience</item>
         <item>@drawable/cate_hotel</item>
         <item>@drawable/cate_bus</item>
-        <item>@drawable/ic_launcher_background</item>
+        <item>@color/ic_launcher_background</item>
     </array>
 </resources>
