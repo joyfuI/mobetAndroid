@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         }
         nav_view.setupWithNavController(navController)
 
-        fab.alpha = 0.5f
+//        fab.alpha = 0.5f
 
         auth = FirebaseAuth.getInstance()
     }
