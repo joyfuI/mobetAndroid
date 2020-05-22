@@ -32,7 +32,7 @@ interface AppService {
     @GET("notification/")
     fun notifyList(): Call<List<NotifyItem>>
 
-    @POST("account.json")
+    @GET("account.json")
     fun account(): Call<AccountItem>
 
     @POST("game/")

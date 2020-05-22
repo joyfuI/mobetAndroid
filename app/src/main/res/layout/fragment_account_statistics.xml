@@ -90,35 +90,6 @@
                 </LinearLayout>
             </HorizontalScrollView>
 
-            <RadioGroup
-                android:layout_width="299.3dp"
-                android:layout_height="33.5dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="17.8dp"
-                android:background="@drawable/radio_group"
-                android:orientation="horizontal">
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_height="33.5dp"
-                    android:gravity="center"
-                    android:button="@drawable/radio_flat_selected"
-                    android:checked="true"
-                    android:text="날짜별"
-                    android:textColor="#5c1488"
-                    android:textSize="12.5sp" />
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_height="33.5dp"
-                    android:gravity="center"
-                    android:button="@drawable/radio_flat_regular"
-                    android:checked="false"
-                    android:text="경쟁전"
-                    android:textColor="#e0e0e0"
-                    android:textSize="12.5sp" />
-            </RadioGroup>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
