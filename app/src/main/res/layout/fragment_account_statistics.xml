@@ -171,8 +171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
                 android:background="#FAFAFA"
-                android:clipToPadding="false"
-                 />
+                android:clipToPadding="false" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

@@ -7,8 +7,7 @@
                 android:centerColor="#5c1488"
                 android:centerY="0.75"
                 android:endColor="#5c1488"
-                android:angle="180"
-                />
+                android:angle="180" />
         </shape>
     </item>
     <item android:id="@android:id/secondaryProgress">
@@ -19,8 +18,7 @@
                     android:centerColor="#5c1488"
                     android:centerY="0.75"
                     android:endColor="#5c1488"
-                    android:angle="180"
-                    />
+                    android:angle="180" />
             </shape>
         </clip>
     </item>
@@ -32,8 +30,7 @@
                     android:centerColor="#5c1488"
                     android:centerY="0.75"
                     android:endColor="#5c1488"
-                    android:angle="180"
-                    />
+                    android:angle="180" />
             </shape>
         </clip>
     </item>

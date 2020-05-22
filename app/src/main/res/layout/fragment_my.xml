@@ -32,8 +32,7 @@
             android:letterSpacing="0.1"
             android:singleLine="true"
             android:ellipsize="end"
-            android:layout_toEndOf="@+id/profile_img"
-            />
+            android:layout_toEndOf="@+id/profile_img" />
 
         <TextView android:id="@+id/msg_txt"
             android:layout_width="wrap_content"
@@ -46,8 +45,7 @@
             android:maxLines="2"
             android:ellipsize="end"
             android:layout_toEndOf="@+id/profile_img"
-            android:layout_below="@+id/profile_txt"
-            />
+            android:layout_below="@+id/profile_txt" />
     </RelativeLayout>
 
     <RadioGroup
@@ -65,8 +63,7 @@
             android:button="@drawable/radio_flat_selected"
             android:checked="true"
             android:text="@string/playing"
-            android:textSize="12.5sp"
-            />
+            android:textSize="12.5sp" />
         <RadioButton
             android:id="@+id/end_rdo_btn"
             android:layout_width="wrap_content"
@@ -76,8 +73,7 @@
             android:button="@drawable/radio_flat_regular"
             android:checked="true"
             android:text="@string/ending"
-            android:textSize="12.5sp"
-            />
+            android:textSize="12.5sp" />
 
     </RadioGroup>
 
