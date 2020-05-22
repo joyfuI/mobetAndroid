@@ -14,10 +14,8 @@ import maw.mobet.User
 import maw.mobet.api.GameItem
 import maw.mobet.diffDate
 import maw.mobet.intToStr
-import splitties.resources.appColor
 import splitties.resources.appColorSL
 import splitties.resources.appTxtArray
-import java.util.*
 import kotlin.math.absoluteValue
 
 class MyfinishAdapter (
@@ -35,7 +33,6 @@ class MyfinishAdapter (
     }
 
     override fun getItemCount(): Int = data.size
-
 
     override fun onBindViewHolder(holder: MyfinishAdapter.ViewHolder, position: Int) {
         val item = data[position]
@@ -56,18 +53,18 @@ class MyfinishAdapter (
         holder.category_txt.text = text
         holder.amount.text =text2
 
-            val rank_personal = item.members.find {
+            val rankPersonal = item.members.find {
             it.id == User.id
         }
-        holder.rank_txt.text = rank_personal?.place.toString()
+        holder.rank_txt.text = rankPersonal?.place.toString()
         val background = holder.rank_txt.background as GradientDrawable
-        if(rank_personal?.place == 1){
+        if(rankPersonal?.place == 1){
             background.color = appColorSL(R.color.colorPrimary)
         }
         else{
             background.color = appColorSL(R.color.colorControlNormal)
         }
-        Log.d("dodo", rank_personal?.place.toString())
+        Log.d("dodo", rankPersonal?.place.toString())
         val onClickListener = View.OnClickListener {
             listener?.onItemClick(it, position)
         }
@@ -76,8 +73,8 @@ class MyfinishAdapter (
             setOnClickListener(onClickListener)
         }
     }
+
     inner class ViewHolder(
         override val containerView: View
     ) : RecyclerView.ViewHolder(containerView), LayoutContainer
-
 }

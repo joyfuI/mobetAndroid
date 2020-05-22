@@ -21,8 +21,8 @@ import kotlin.math.ceil
 const val TEST = true
 
 object RetrofitClient {
-    val realServer = "http://192.168.0.4:8000/"
-    val testServer = "https://ljm.wo.tc/test/"
+    private const val realServer = "http://192.168.0.4:8000/"
+    private const val testServer = "https://ljm.wo.tc/test/"
 
     private var key: String? = null
 

@@ -158,22 +158,18 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
                         } else {
                             editL.error = null
                         }
-                        if (
+                        when {
                             diffDate(
                                 start_edit.text.toString().toDate()!!,
                                 end_edit.text.toString().toDate()!!
-                            ) < 0
-                        ) {
-                            end_edit_l.error = txt(R.string.enddate_less_date)
-                        } else if (
+                            ) < 0 -> end_edit_l.error = txt(R.string.enddate_less_date)
+
                             diffDate(
                                 start_edit.text.toString().toDate()!!,
                                 end_edit.text.toString().toDate()!!
-                            ) > 365
-                        ) {
-                            end_edit_l.error = txt(R.string.todate_enddate)
-                        } else {
-                            end_edit_l.error = null
+                            ) > 365 -> end_edit_l.error = txt(R.string.todate_enddate)
+
+                            else -> end_edit_l.error = null
                         }
                     },
                     cal.get(Calendar.YEAR),

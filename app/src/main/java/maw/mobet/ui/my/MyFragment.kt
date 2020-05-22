@@ -6,23 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_my.*
-import kotlinx.android.synthetic.main.list_item_my.*
-import maw.mobet.CreategameActivity
-import maw.mobet.MainActivity
 import maw.mobet.R
 import maw.mobet.RankActivity
 import maw.mobet.api.MyItem
 import maw.mobet.ui.my.finish.FragmentFinish
 import maw.mobet.ui.my.playing.FragmentPlaying
-
 
 class MyFragment : Fragment() {
     private lateinit var viewModel: MyViewModel
@@ -53,12 +46,10 @@ class MyFragment : Fragment() {
             msg_txt.text = FirebaseAuth.getInstance().currentUser?.email.toString()
         })
         viewModel.loadData()
-        profile_img.setOnClickListener(){
+        profile_img.setOnClickListener {
             val intent = Intent(activity, RankActivity::class.java)
             intent.putExtra("id",myItem.my.nick )
             startActivityForResult(intent, 0)
         }
     }
-
-
 }

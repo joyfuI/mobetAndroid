@@ -1,35 +1,16 @@
 package maw.mobet
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_dialog.*
-import kotlinx.android.synthetic.main.activity_dialog.grade_btn
-import kotlinx.android.synthetic.main.activity_dialog.list_view
-import kotlinx.android.synthetic.main.activity_rank_personal.*
-import kotlinx.android.synthetic.main.fragment_rank.*
-import kotlinx.android.synthetic.main.list_item_rank.*
 import maw.mobet.api.GameItem
 import maw.mobet.api.MyItem
-import maw.mobet.api.NotifyItem
-import maw.mobet.api.RankItem
-import maw.mobet.notify.MyAdapter
-import maw.mobet.ui.game.GameViewModel
 import maw.mobet.ui.my.MyViewModel
 import maw.mobet.ui.my.finish.DialogAdapter
-import maw.mobet.ui.my.finish.PersonalViewModel
-import maw.mobet.ui.rank.RankViewModel
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import splitties.resources.txt
 import splitties.toast.toast
-import java.util.*
 import kotlin.math.absoluteValue
 
 class DialogActivity : AppCompatActivity() {
@@ -41,7 +22,6 @@ class DialogActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[MyViewModel::class.java]
         list_view.layoutManager = LinearLayoutManager(this)
-
     }
 
     override fun onStart() {

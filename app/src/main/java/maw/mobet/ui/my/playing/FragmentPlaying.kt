@@ -12,7 +12,6 @@ import kotlinx.android.synthetic.main.fragment_my_playing.*
 import maw.mobet.GameActivity
 import maw.mobet.R
 import maw.mobet.api.GameItem
-import maw.mobet.api.MyItem
 import maw.mobet.ui.my.MyFragment
 import maw.mobet.ui.my.MyViewModel
 import splitties.fragments.start
@@ -23,7 +22,6 @@ class FragmentPlaying  : Fragment(), MyplayingAdapter.OnItemClickListener {
     }
 
     private lateinit var viewModel: MyViewModel
-    private lateinit var listDate: List<MyItem>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?

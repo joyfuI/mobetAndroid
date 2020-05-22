@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import maw.mobet.R
 import maw.mobet.RetrofitClient
-import maw.mobet.api.GameItem
 import maw.mobet.api.MyItem
 import retrofit2.Call
 import retrofit2.Callback

@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit
 
 class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
     private lateinit var auth: FirebaseAuth
-    private var emailOk = 0  // 0: 확인x, 1: 사용가능, 2: 중복
+    private var emailOk = 0 // 0: 확인x, 1: 사용가능, 2: 중복
     private var nickOk = 0  // 0: 확인x, 1: 사용가능, 2: 중복
     private var phoneOk = 0 // 0: 확인x, 1: 사용가능, 2: 중복, 3: 인증완료, 4: 코드전송, 5: 잘못된코드
     private var isClickable = true
