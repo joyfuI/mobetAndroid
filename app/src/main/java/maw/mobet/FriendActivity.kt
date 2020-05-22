@@ -30,7 +30,11 @@ class FriendActivity : AppCompatActivity(), MyAdapter.OnItemClickListener, Swipe
 
         // 액션바
         changeTitle(app_title_txt, getString(R.string.setting_friend))
+        back_img.visibility = View.VISIBLE
         noti_img.visibility = View.GONE
+        back_img.setOnClickListener {
+            finish()
+        }
 
         list_view.layoutManager = LinearLayoutManager(this)
         list.observe(this, Observer {

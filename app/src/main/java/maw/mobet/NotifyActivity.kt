@@ -31,7 +31,11 @@ class NotifyActivity : AppCompatActivity(), MyAdapter.OnItemClickListener, Swipe
         setContentView(R.layout.activity_notify)
 
         // 액션바
+        back_img.visibility = View.VISIBLE
         noti_img.visibility = View.GONE
+        back_img.setOnClickListener {
+            finish()
+        }
 
         list_view.layoutManager = LinearLayoutManager(this)
         list.observe(this, Observer {

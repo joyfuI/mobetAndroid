@@ -28,7 +28,11 @@ class CreategameActivity : AppCompatActivity(), View.OnFocusChangeListener {
         setContentView(R.layout.activity_creategame)
 
         // 액션바
+        back_img.visibility = View.VISIBLE
         noti_img.visibility = View.GONE
+        back_img.setOnClickListener {
+            finish()
+        }
 
         // Spinner
         val items = listOf(
