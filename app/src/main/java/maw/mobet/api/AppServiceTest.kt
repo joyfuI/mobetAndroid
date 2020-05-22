@@ -32,6 +32,9 @@ interface AppServiceTest : AppService {
     @GET("notifylist.json")
     override fun notifyList(): Call<List<NotifyItem>>
 
+    @GET("account.json")
+    override fun account(): Call<AccountItem>
+
     @POST("post.php")
     override fun createGame(@Body data: CreategameData): Call<ResultItem>
 
@@ -46,6 +49,9 @@ interface AppServiceTest : AppService {
 
     @POST("post.php")
     override fun invite(@Body data: List<IdData>): Call<ResultItem>
+
+    @POST("post.php")
+    override fun deleteGame(@Body data: IdData): Call<ResultItem>
 
     @Multipart
     @POST("upload.php")

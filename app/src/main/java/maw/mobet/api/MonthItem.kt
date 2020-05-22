@@ -1,8 +1,9 @@
 package maw.mobet.api
 
+import com.google.gson.annotations.SerializedName
 import java.util.*
 
 data class MonthItem(
-    val month: Date,    // 월 (형식: yyyy-MM-01)
-    val sum: Int        // 월 지출 총합
+    @SerializedName("month") val month: Date,   // 월 (형식: yyyy-MM-01)
+    @SerializedName("sum") val sum: Int         // 월 지출 총합
 )

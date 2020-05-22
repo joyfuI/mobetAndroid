@@ -32,7 +32,7 @@ interface AppService {
     @GET("notification/")
     fun notifyList(): Call<List<NotifyItem>>
 
-    @GET("account.json")
+    @GET("account-inform/")
     fun account(): Call<AccountItem>
 
     @POST("game/")
@@ -50,7 +50,7 @@ interface AppService {
     @POST("notification/")
     fun invite(@Body data: List<IdData>): Call<ResultItem>
 
-    @POST("post.php")
+    @POST("game-delete/")
     fun deleteGame(@Body data: IdData): Call<ResultItem>
 
     @POST("friend.json")
