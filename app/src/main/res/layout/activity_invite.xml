@@ -38,7 +38,8 @@
         app:layout_constraintTop_toBottomOf="@id/list_view"
         app:layout_constraintStart_toEndOf="@id/cancel_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        style="@style/Button.Cyan" />
 
     <Button android:id="@+id/cancel_btn"
         android:layout_width="wrap_content"
@@ -49,6 +50,7 @@
         app:layout_constraintTop_toBottomOf="@id/list_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/ok_btn"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        style="@style/Button.Orange" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
