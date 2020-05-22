@@ -134,7 +134,7 @@ class SettingFragment : PreferenceFragmentCompat() {
                 val fileBody = file.asRequestBody("image/*".toMediaType())
                 val filePart = MultipartBody.Part.createFormData(
                     "upload",
-                    "profile"/* + when (extension) {
+                    "profile" + when (extension) {
                         "jpeg" -> ".jpg"
                         "png" -> ".png"
                         "gif" -> ".gif"
@@ -142,7 +142,7 @@ class SettingFragment : PreferenceFragmentCompat() {
                             toast(R.string.profile_img_extension)
                             return
                         }
-                    }*/,
+                    },
                     fileBody
                 )
                 val dataCall = service.uploadImg(filePart)
