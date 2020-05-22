@@ -35,9 +35,9 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == R.id.navigation_home) {
-                fab.visibility = View.VISIBLE
+                fab.show()
             } else {
-                fab.visibility = View.GONE
+                fab.hide()
             }
         }
         nav_view.setupWithNavController(navController)
