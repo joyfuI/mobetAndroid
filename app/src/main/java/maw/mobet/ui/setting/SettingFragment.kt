@@ -150,7 +150,12 @@ class SettingFragment : PreferenceFragmentCompat() {
                     override fun onResponse(
                         call: Call<ResultItem>, response: Response<ResultItem>
                     ) {
-                        toast(R.string.profile_img_ok)
+                        val result = response.body()
+                        if (result?.code == 0) {
+                            toast(R.string.profile_img_ok)
+                            return
+                        }
+                        toast("${txt(R.string.error)} ${result?.code}")
                     }
 
                     override fun onFailure(call: Call<ResultItem>, t: Throwable) {
