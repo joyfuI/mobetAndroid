@@ -18,6 +18,7 @@ import maw.mobet.api.SignupData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import splitties.resources.colorSL
 import splitties.resources.txt
 import splitties.toast.toast
 import java.util.concurrent.TimeUnit
@@ -106,7 +107,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                 } else if (emailOk == 2) {
                     email_edit_l.error = txt(R.string.email_no)
                 } else if (emailOk == 1) {
-                    email_edit_l.setErrorTextColor(getColorStateList(R.color.colorControlNormal))
+                    email_edit_l.setErrorTextColor(colorSL(R.color.colorControlNormal))
                     email_edit_l.error = txt(R.string.email_ok)
                 } else {
                     email_edit_l.error = null
@@ -142,7 +143,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                 } else if (nickOk == 2) {
                     nick_edit_l.error = txt(R.string.nick_no)
                 } else if (nickOk == 1) {
-                    nick_edit_l.setErrorTextColor(getColorStateList(R.color.colorControlNormal))
+                    nick_edit_l.setErrorTextColor(colorSL(R.color.colorControlNormal))
                     nick_edit_l.error = txt(R.string.nick_ok)
                 } else {
                     nick_edit_l.error = null
@@ -159,10 +160,10 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                 } else if (phoneOk == 2) {
                     phone_edit_l.error = txt(R.string.phone_no)
                 } else if (phoneOk == 4) {
-                    phone_edit_l.setErrorTextColor(getColorStateList(R.color.colorControlNormal))
+                    phone_edit_l.setErrorTextColor(colorSL(R.color.colorControlNormal))
                     phone_edit_l.error = txt(R.string.send_code)
                 } else if (phoneOk == 3) {
-                    phone_edit_l.setErrorTextColor(getColorStateList(R.color.colorControlNormal))
+                    phone_edit_l.setErrorTextColor(colorSL(R.color.colorControlNormal))
                     phone_edit_l.error = txt(R.string.code_ok)
                 } else {
                     phone_edit_l.error = null
@@ -239,9 +240,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                             // 사용가능
                             0 -> {
                                 emailOk = 1
-                                email_edit_l.setErrorTextColor(
-                                    getColorStateList(R.color.colorControlNormal)
-                                )
+                                email_edit_l.setErrorTextColor(colorSL(R.color.colorControlNormal))
                                 email_edit_l.error = txt(R.string.email_ok)
                             }
                             // 중복
@@ -285,9 +284,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                             // 사용가능
                             0 -> {
                                 nickOk = 1
-                                nick_edit_l.setErrorTextColor(
-                                    getColorStateList(R.color.colorControlNormal)
-                                )
+                                nick_edit_l.setErrorTextColor(colorSL(R.color.colorControlNormal))
                                 nick_edit_l.error = txt(R.string.nick_ok)
                             }
                             // 중복
@@ -381,7 +378,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
                             phoneOk = 3
-                            phone_edit_l.setErrorTextColor(getColorStateList(R.color.colorControlNormal))
+                            phone_edit_l.setErrorTextColor(colorSL(R.color.colorControlNormal))
                             phone_edit_l.error = txt(R.string.code_ok)
                             code_l.visibility = View.GONE
                         } else {
@@ -531,7 +528,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
         // 인증 완료(자동인증)
         override fun onVerificationCompleted(credential: PhoneAuthCredential) {
             phoneOk = 3
-            phone_edit_l.setErrorTextColor(getColorStateList(R.color.colorControlNormal))
+            phone_edit_l.setErrorTextColor(colorSL(R.color.colorControlNormal))
             phone_edit_l.error = txt(R.string.code_ok)
             code_l.visibility = View.GONE
         }
@@ -546,7 +543,7 @@ class SignupActivity : AppCompatActivity(), View.OnFocusChangeListener {
             token: PhoneAuthProvider.ForceResendingToken
         ) {
             phoneOk = 4
-            phone_edit_l.setErrorTextColor(getColorStateList(R.color.colorControlNormal))
+            phone_edit_l.setErrorTextColor(colorSL(R.color.colorControlNormal))
             phone_edit_l.error = txt(R.string.send_code)
             code_l.visibility = View.VISIBLE
             code_edit_l.error = null
