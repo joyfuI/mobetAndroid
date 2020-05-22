@@ -67,7 +67,7 @@ interface AppService {
     fun personal(): Call<RankItem>
 
     @POST("post.php")
-    fun friendAdd(@Body data: IdData): Call<ResultItem>
+    fun friendAdd(@Body data: String): Call<ResultItem>
 
     @POST("post.php")
     fun friendDelete(@Body data: IdData): Call<ResultItem>

@@ -3,6 +3,8 @@ package maw.mobet.ui.setting
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.google.firebase.auth.FirebaseAuth
@@ -33,7 +35,8 @@ class SettingFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
-        findPreference<Preference>("profileImg")?.setOnPreferenceClickListener {
+        // 프로필 이미지 변경
+        findPreference<Preference>("profile_img")?.setOnPreferenceClickListener {
             val intent = Intent().apply {
                 type = "image/*"
                 action = Intent.ACTION_GET_CONTENT
@@ -42,6 +45,55 @@ class SettingFragment : PreferenceFragmentCompat() {
             false
         }
 
+        // 친구 추가
+        findPreference<Preference>("friend_add")?.setOnPreferenceClickListener {
+            val editText = EditText(requireContext())
+
+            AlertDialog.Builder(requireContext())
+                .setTitle(R.string.setting_friend_add)
+                .setMessage(R.string.setting_friend_msg)
+                .setView(editText)
+                .apply {
+                    cancelButton()
+                    okButton {
+                        if (editText.text.isEmpty()) {
+                            toast(R.string.setting_friend_msg)
+                        } else {
+                            // 친구 추가
+                            val service = RetrofitClient.getInstance()
+                            val dataCall = service.friendAdd(editText.text.toString())
+                            dataCall.enqueue(object : Callback<ResultItem> {
+                                override fun onResponse(
+                                    call: Call<ResultItem>, response: Response<ResultItem>
+                                ) {
+                                    val result = response.body()
+                                    when (result?.code) {
+                                        // 완료
+                                        0 -> {
+                                            toast(R.string.friend_add_ok)
+                                        }
+                                        // 없음
+                                        1 -> {
+                                            toast(R.string.friend_add_no)
+                                        }
+                                        // 오류
+                                        else -> {
+                                            toast("${txt(R.string.error)} ${result?.code}")
+                                        }
+                                    }
+                                }
+
+                                override fun onFailure(call: Call<ResultItem>, t: Throwable) {
+                                    toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
+                                }
+                            })
+                        }
+                    }
+                }.show()
+            false
+        }
+
+        // 로그아웃
         findPreference<Preference>("logout")?.setOnPreferenceClickListener {
             requireContext().alertDialog {
                 messageResource = R.string.setting_logout_alert

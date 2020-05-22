@@ -32,9 +32,7 @@ class MyAdapter(
         }
         holder.itemView.delete_btn.setOnClickListener(onClickListener)
 
-        with (holder.itemView) {
-            tag = item
-        }
+        holder.itemView.delete_btn.tag = item
     }
 
     override fun getItemCount(): Int = data.size

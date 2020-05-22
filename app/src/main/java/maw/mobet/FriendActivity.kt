@@ -16,9 +16,6 @@ import maw.mobet.friend.MyAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import splitties.alertdialog.appcompat.alertDialog
-import splitties.alertdialog.appcompat.cancelButton
-import splitties.alertdialog.appcompat.okButton
 import splitties.resources.txt
 import splitties.toast.toast
 
@@ -58,21 +55,6 @@ class FriendActivity : AppCompatActivity(), MyAdapter.OnItemClickListener, Swipe
                 toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
             }
         })
-    }
-
-    fun onClick(view: View) {
-        when (view) {
-            add_btn -> {
-                alertDialog {
-                    this.
-                    setMultiChoiceItems(list.value!!.map {
-                        it.nick
-                    }.toTypedArray(), booleanArrayOf(), null)
-                    okButton()
-                    cancelButton()
-                }.show()
-            }
-        }
     }
 
     // 리스트 아이템 클릭

@@ -7,6 +7,7 @@
 
     <include android:id="@+id/actionbar"
         layout="@layout/custom_actionbar" />
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout android:id="@+id/swipe_l"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
