@@ -56,7 +56,7 @@ interface AppService {
     @POST("friend.json")
     fun rankList(): Call<List<MemberItem>>
 
-    @POST("my.json")
+    @GET("mypage/")
     fun my(): Call<MyItem>
 
     @Multipart

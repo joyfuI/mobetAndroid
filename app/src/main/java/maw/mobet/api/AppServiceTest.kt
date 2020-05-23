@@ -53,6 +53,9 @@ interface AppServiceTest : AppService {
     @POST("post.php")
     override fun deleteGame(@Body data: IdData): Call<ResultItem>
 
+    @GET("my.json")
+    override fun my(): Call<MyItem>
+
     @Multipart
     @POST("upload.php")
     override fun uploadImg(@Part file: MultipartBody.Part): Call<ResultItem>
