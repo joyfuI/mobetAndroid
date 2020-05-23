@@ -47,7 +47,9 @@ class SettingFragment : PreferenceFragmentCompat() {
 
         // 친구 추가
         findPreference<Preference>("friend_add")?.setOnPreferenceClickListener {
-            val editText = EditText(requireContext())
+            val editText = EditText(requireContext()).apply {
+                isSingleLine = true
+            }
 
             AlertDialog.Builder(requireContext())
                 .setTitle(R.string.setting_friend_add)
