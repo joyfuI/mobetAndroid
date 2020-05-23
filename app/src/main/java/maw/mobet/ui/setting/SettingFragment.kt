@@ -69,17 +69,11 @@ class SettingFragment : PreferenceFragmentCompat() {
                                     val result = response.body()
                                     when (result?.code) {
                                         // 완료
-                                        0 -> {
-                                            toast(R.string.friend_add_ok)
-                                        }
+                                        0 -> toast(R.string.friend_add_ok)
                                         // 없음
-                                        1 -> {
-                                            toast(R.string.friend_add_no)
-                                        }
+                                        1 -> toast(R.string.friend_add_no)
                                         // 오류
-                                        else -> {
-                                            toast("${txt(R.string.error)} ${result?.code}")
-                                        }
+                                        else -> toast("${txt(R.string.error)} ${result?.code}")
                                     }
                                 }
 
