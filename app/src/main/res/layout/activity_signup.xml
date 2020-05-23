@@ -73,7 +73,7 @@
                     <com.google.android.material.textfield.TextInputEditText android:id="@+id/email_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text"
+                        android:inputType="textEmailAddress"
                         android:textSize="13.8sp"
                         android:nextFocusDown="@id/passwd_edit"
                         style="@style/EditText" />
