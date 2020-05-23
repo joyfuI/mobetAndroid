@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import maw.mobet.R
 import maw.mobet.RetrofitClient
+import maw.mobet.User
+import maw.mobet.api.IdData
 import maw.mobet.api.RankItem
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,7 +24,7 @@ class PersonalViewModel : ViewModel() {
 
     fun loadData() {
         val service = RetrofitClient.getInstance()
-        val dataCall = service.personal()
+        val dataCall = service.personal(IdData(User.id!!, 0))
         dataCall.enqueue(object : Callback<RankItem> {
             override fun onResponse(
                 call: Call<RankItem>, response: Response<RankItem>

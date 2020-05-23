@@ -53,7 +53,7 @@ interface AppService {
     @POST("game-delete/")
     fun deleteGame(@Body data: IdData): Call<ResultItem>
 
-    @POST("friend.json")
+    @GET("rank-list/")
     fun rankList(): Call<List<MemberItem>>
 
     @GET("mypage/")
@@ -63,12 +63,12 @@ interface AppService {
     @POST("restore-img/")
     fun uploadImg(@Part file: MultipartBody.Part): Call<ResultItem>
 
-    @POST("rank.json")
-    fun personal(): Call<RankItem>
+    @POST("myranking/")
+    fun personal(@Body data: IdData): Call<RankItem>
 
-    @POST("post.php")
+    @POST("friend-list/")
     fun friendAdd(@Body data: String): Call<ResultItem>
 
-    @POST("post.php")
+    @POST("friend-delete/")
     fun friendDelete(@Body data: IdData): Call<ResultItem>
 }
