@@ -31,40 +31,6 @@ class LoginActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        val user = auth.currentUser
-        if (user != null) {
-            // 자동로그인
-            RetrofitClient.setKey(user.uid)
-
-            // 로그인 요청
-            val service = RetrofitClient.getInstance()
-            val dataCall = service.login()
-            dataCall.enqueue(object : Callback<ResultItem> {
-                override fun onResponse(call: Call<ResultItem>, response: Response<ResultItem>) {
-                    val result = response.body()
-                    if (result?.code != 0) {
-                        User.id = result?.code
-                        start<MainActivity>()
-                        finish()
-                        return
-                    }
-                    toast(R.string.login_error)
-                    isClickable = true
-                    auth.signOut()
-                }
-
-                override fun onFailure(call: Call<ResultItem>, t: Throwable) {
-                    toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
-                    isClickable = true
-                    auth.signOut()
-                }
-            })
-        }
-    }
-
     fun onclick(view: View) {
         if (!isClickable) {
             return
@@ -90,7 +56,33 @@ class LoginActivity : AppCompatActivity() {
                     passwd_edit.text.toString()
                 ).addOnCompleteListener(this@LoginActivity) { task ->
                     if (task.isSuccessful) {
-                        onStart()
+                        // 로그인 처리
+                        RetrofitClient.setKey(auth.currentUser!!.uid)
+                        // 로그인 요청
+                        val service = RetrofitClient.getInstance()
+                        val dataCall = service.login()
+                        dataCall.enqueue(object : Callback<ResultItem> {
+                            override fun onResponse(
+                                call: Call<ResultItem>, response: Response<ResultItem>
+                            ) {
+                                val result = response.body()
+                                if (result?.code != 0) {
+                                    User.id = result?.code
+                                    start<MainActivity>()
+                                    finish()
+                                    return
+                                }
+                                toast(R.string.login_error)
+                                auth.signOut()
+                                isClickable = true
+                            }
+
+                            override fun onFailure(call: Call<ResultItem>, t: Throwable) {
+                                toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
+                                auth.signOut()
+                                isClickable = true
+                            }
+                        })
                     } else {
                         toast(R.string.login_error)
                         isClickable = true

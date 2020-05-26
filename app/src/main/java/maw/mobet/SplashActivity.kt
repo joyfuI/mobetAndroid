@@ -9,9 +9,16 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import maw.mobet.api.ResultItem
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import splitties.activities.start
 import splitties.dimensions.dip
 import splitties.resources.color
+import splitties.resources.txt
+import splitties.toast.toast
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,10 +58,44 @@ class SplashActivity : AppCompatActivity() {
         setContentView(layout)
 
         // 초기화 영역
-        RetrofitClient.getInstance()
+        val service = RetrofitClient.getInstance()
+        val auth = FirebaseAuth.getInstance()
 
-        start<LoginActivity> {
-            addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+        val user = auth.currentUser
+        if (user != null) {
+            // 자동로그인
+            RetrofitClient.setKey(user.uid)
+            // 로그인 요청
+            val dataCall = service.login()
+            dataCall.enqueue(object : Callback<ResultItem> {
+                override fun onResponse(call: Call<ResultItem>, response: Response<ResultItem>) {
+                    val result = response.body()
+                    if (result?.code != 0) {
+                        User.id = result?.code
+                        start<MainActivity> {
+                            addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                        }
+                    } else {
+                        toast(R.string.login_error)
+                        auth.signOut()
+                        start<LoginActivity> {
+                            addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<ResultItem>, t: Throwable) {
+                    toast("${txt(R.string.network_error)}\n${t.localizedMessage}")
+                    auth.signOut()
+                    start<LoginActivity> {
+                        addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+                    }
+                }
+            })
+        } else {
+            start<LoginActivity> {
+                addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+            }
         }
     }
 }
