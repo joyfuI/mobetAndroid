@@ -7,7 +7,7 @@
     android:layout_marginVertical="13.2dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView android:id="@+id/title_img"
+    <ImageView android:id="@+id/titles_img"
         android:layout_width="120.8dp"
         android:layout_height="103.5dp"
         android:scaleType="centerCrop"
@@ -22,8 +22,8 @@
         android:orientation="horizontal"
         android:background="#66000000"
         android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="@id/title_img"
-        app:layout_constraintStart_toStartOf="@id/title_img">
+        app:layout_constraintBottom_toBottomOf="@id/titles_img"
+        app:layout_constraintStart_toStartOf="@id/titles_img">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_my_img"
@@ -57,7 +57,7 @@
         android:textColor="#151026"
         android:textSize="12sp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/title_img"
+        app:layout_constraintStart_toEndOf="@+id/titles_img"
         tools:layout_editor_absoluteY="7.5dp"
         tools:text="#군것질금지 #누가이기나 #다_들어.." />
 
@@ -72,7 +72,7 @@
         android:lineSpacingExtra="1.3sp"
         android:textColor="#151026"
         android:textSize="12sp"
-        app:layout_constraintLeft_toRightOf="@+id/title_img"
+        app:layout_constraintLeft_toRightOf="@+id/titles_img"
         app:layout_constraintTop_toBottomOf="@+id/title_txt"
         tools:text="[편의점]" />
 
@@ -102,7 +102,7 @@
         android:lineSpacingExtra="1.5sp"
         android:textColor="#151026"
         android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/title_img"
+        app:layout_constraintStart_toEndOf="@+id/titles_img"
         app:layout_constraintTop_toBottomOf="@+id/category_txt"
         tools:text="남은 금액 : 287,000" />
 
@@ -116,7 +116,7 @@
         android:fontFamily="@font/notosanskr_m"
         android:textColor="@color/colorWhiteText"
         android:textSize="13.8sp"
-        app:layout_constraintStart_toEndOf="@+id/title_img"
+        app:layout_constraintStart_toEndOf="@+id/titles_img"
         app:layout_constraintTop_toBottomOf="@+id/amount" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

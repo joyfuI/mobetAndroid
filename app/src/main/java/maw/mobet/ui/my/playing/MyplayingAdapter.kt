@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.extensions.LayoutContainer
+import kotlinx.android.synthetic.main.activity_dialog.*
 import kotlinx.android.synthetic.main.list_item_my.*
+import kotlinx.android.synthetic.main.list_item_my.title_txt
 import maw.mobet.R
 import maw.mobet.User
 import maw.mobet.api.GameItem
@@ -44,6 +46,9 @@ class MyplayingAdapter(
 
         Glide.with(holder.itemView).load(item.admin.imgUrl)
             .into(holder.profile_my_img)
+        val backgroundArr = holder.titles_img.resources.obtainTypedArray(R.array.category_background)
+        holder.titles_img.setImageResource(backgroundArr.getResourceId(item.category, 0))
+        backgroundArr.recycle()
         holder.profile_nick.text = item.admin.nick
         holder.title_txt.text = item.title
         val category = appTxtArray(R.array.category)

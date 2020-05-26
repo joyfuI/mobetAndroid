@@ -21,6 +21,7 @@ class RankActivity : AppCompatActivity() {
         viewModel.rank.observe(this, Observer {
             rank = it
             progress_grade.progress = rank.nextRank.toInt()
+
             progress_rank.progress = rank.toppercent.toInt()
             grade_txt.text = rank.my.grade
             val text = "다음 등급까지 " + "${rank.nextRank} %"

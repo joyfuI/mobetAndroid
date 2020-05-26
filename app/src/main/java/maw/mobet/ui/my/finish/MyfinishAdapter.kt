@@ -45,6 +45,9 @@ class MyfinishAdapter (
             .into(holder.profile_my_img)
         holder.profile_nick.text = item.admin.nick
         holder.title_txt.text = item.title
+        val backgroundArr = holder.titles_img.resources.obtainTypedArray(R.array.category_background)
+        holder.titles_img.setImageResource(backgroundArr.getResourceId(item.category, 0))
+        backgroundArr.recycle()
         val category = appTxtArray(R.array.category)
         val text = "[${category[item.category]}] " + diffDate(item.startDate,item.endDate) + " 일"
         holder.category_txt.text = text
