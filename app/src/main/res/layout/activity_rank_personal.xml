@@ -2,8 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <com.dinuscxj.progressbar.CircleProgressBar
         android:id="@+id/progress_grade"
         android:layout_marginTop="137dp"
@@ -141,7 +140,7 @@
         android:layout_height="0dp"
         android:indeterminate="false"
         android:max="100"
-        android:progressBackgroundTint="@android:color/transparent"
+        android:progressBackgroundTint="#e0e0e0"
         android:progressTint="@color/colorPrimary"
         app:layout_constraintTop_toBottomOf="@+id/progressbar_win_txt"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -157,7 +156,7 @@
         android:layout_height="0dp"
         android:indeterminate="false"
         android:max="100"
-        android:progressBackgroundTint="@android:color/transparent"
+        android:progressBackgroundTint="#e0e0e0"
         android:progressTint="@color/colorPrimary"
         app:layout_constraintRight_toLeftOf="@+id/progressbar_play"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -175,7 +174,7 @@
         android:layout_marginBottom="16dp"
         android:indeterminate="false"
         android:max="100"
-        android:progressBackgroundTint="@android:color/transparent"
+        android:progressBackgroundTint="#e0e0e0"
         android:progressTint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"

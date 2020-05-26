@@ -18,10 +18,10 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.math.ceil
 
-const val TEST = true
+const val TEST = false
 
 object RetrofitClient {
-    private const val realServer = "http://192.168.0.4:8000/"
+    private const val realServer = "https://771f9155.ngrok.io/"
     private const val testServer = "https://ljm.wo.tc/test/"
 
     private var key: String? = null
