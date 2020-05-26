@@ -16,11 +16,13 @@
             android:layout_width="47dp"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:indeterminateDrawable="@android:drawable/progress_indeterminate_horizontal"
+            android:indeterminateOnly="false"
             android:progressBackgroundTint="@android:color/transparent"
             android:progressTint="@{select ? @color/colorPrimary : @color/colorControlNormal}"
+            android:progressDrawable="@drawable/progressbar"
             app:bind_current="@{month.sum}"
-            app:bind_max="@{max}"
-            style="@style/Widget.ProgressBar.Vertical" />
+            app:bind_max="@{max}" />
 
         <TextView
             android:layout_width="wrap_content"
