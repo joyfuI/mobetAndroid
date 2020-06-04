@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.fragment_account_statistics.*
 import maw.mobet.R
 import maw.mobet.api.AccountItem
+import maw.mobet.api.MonthItem
 import maw.mobet.databinding.FragmentAccountStatisticsBinding
 import maw.mobet.ui.account.AccountFragment
 import maw.mobet.ui.account.AccountViewModel
@@ -93,14 +94,22 @@ class StatisticsFragment : Fragment(), View.OnClickListener, MyAdapter.OnItemCli
         var max = 0
         var sum = 0
 
-        for (i in data.month) {
+        val monthList = data.month.toMutableList()
+        for (i in monthList) {
             if (max < i.sum) {
                 max = i.sum
             }
             sum += i.sum
         }
+        while (monthList.size != 6) {
+            val cal = Calendar.getInstance().apply {
+                time = monthList[0].month
+                add(Calendar.MONTH, -1)
+            }
+            monthList.add(0, MonthItem(cal.time, 0))
+        }
 
-        return AccountItem2(position, data, max, sum / 6)
+        return AccountItem2(position, AccountItem(data.history, monthList), max, sum / 6)
     }
 
     private fun createList(data: Date): List<CalendarItem> {
